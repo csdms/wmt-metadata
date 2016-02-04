@@ -21,7 +21,7 @@ extras:
         max: 3153600000
       units: s
   update_time_step:
-    description: Update time step for ports
+    description: Time step at which ports are updated
     value:
       type: float
       default: 3600

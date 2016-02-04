@@ -20,6 +20,15 @@ extras:
         min: 0
         max: 3153600000
       units: s
+  update_time_step:
+    description: Time step at which ports are updated
+    value:
+      type: float
+      default: 3600
+      range:
+        min: 0
+        max: 1.e6
+      units: s
   rti_file:
     description: RiverTools info file
     value:
