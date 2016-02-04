@@ -4,6 +4,8 @@ ignore:
   - stop_code
   - n_steps
   - stop_time
+globals:
+  - run_duration
 extras:
   run_duration:
     description: Simulation run time

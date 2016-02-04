@@ -7,6 +7,9 @@ ignore:
   - LAW_OF_WALL
   - 'nval*'
   - 'z0val*'
+globals:
+  - run_duration
+  - rti_file
 extras:
   run_duration:
     description: Simulation run time

@@ -2,6 +2,9 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+globals:
+  - run_duration
+  - rti_file
 extras:
   run_duration:
     description: Simulation run time
