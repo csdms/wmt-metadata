@@ -7,6 +7,9 @@ ignore:
   - LAW_OF_WALL
   - 'nval*'
   - 'z0val*'
+globals:
+  - run_duration
+  - rti_file
 extras:
   run_duration:
     description: Simulation run time
@@ -16,6 +19,15 @@ extras:
       range:
         min: 0
         max: 3153600000
+      units: s
+  update_time_step:
+    description: Update time step for ports
+    value:
+      type: float
+      default: 3600
+      range:
+        min: 0
+        max: 1.e6
       units: s
   rti_file:
     description: RiverTools info file
