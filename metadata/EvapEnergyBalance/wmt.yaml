@@ -66,3 +66,11 @@ uses:
     exchange_items:
     - snowpack__depth
     required: false
+provides:
+  evap:
+    exchange_items:
+    - land_surface_soil__conduction_heat_flux
+    - land_surface_water__domain_time_integral_of_evaporation_volume_flux
+    - land_surface_water__evaporation_volume_flux
+    - model__time_step
+    required: false

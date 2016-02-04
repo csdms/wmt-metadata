@@ -79,3 +79,17 @@ uses:
     - land_surface_net-total-energy__energy_flux
     - water-liquid__mass-per-volume_density
     required: false
+provides:
+  snow:
+    exchange_items:
+    - model__time_step
+    - snowpack__domain_time_integral_of_melt_volume_flux
+    - snowpack__energy-per-area_cold_content
+    - snowpack__depth
+    - snowpack__initial_depth
+    - snowpack__initial_liquid-equivalent_depth
+    - snowpack__liquid-equivalent_depth
+    - snowpack__melt_volume_flux
+    - snowpack__z_mean_of_mass-per-volume_density
+    - snowpack__z_mean_of_mass-specific_isobaric_heat_capacity
+    required: false
