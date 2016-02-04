@@ -106,4 +106,33 @@ sections:
   - sinu_ptype
   - sinu_scalar
   - sinu_file
-
+provides:
+  channels:
+    required: false
+    exchange_items: '*'
+uses:
+  satzone:
+    required: false 
+    exchange_items:
+    - land_surface_water__baseflow_volume_flux
+  evap:
+    required: false
+    exchange_items:
+      - land_surface_water__evaporation_volume_flux
+  snow:
+    required: false
+    exchange_items:
+    - snowpack__melt_volume_flux
+  ice:
+    required: false
+    exchange_items:
+    - glacier_ice__melt_volume_flux
+  infil:
+    required: false
+    exchange_items:
+    - soil_surface_water__infiltration_volume_flux
+  meteorology:
+    required: false
+    exchange_items:
+    - atmosphere_water__rainfall_volume_flux
+    - water-liquid__mass-per-volume_density
