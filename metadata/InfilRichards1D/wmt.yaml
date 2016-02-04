@@ -236,4 +236,29 @@ sections:
   - dz_val_2
   - nz_val_2
   - type_of_soil_layer_2
-
+uses:
+  erode:
+    exchange_items:
+    - land_surface__elevation
+    required: false
+  evap:
+    exchange_items:
+    - land_surface_water__evaporation_volume_flux
+    required: false
+  ice:
+    exchange_items:
+    - glacier_ice__melt_volume_flux
+    required: false
+  meteorology:
+    exchange_items:
+    - atmosphere_water__rainfall_volume_flux
+    required: false
+  satzone:
+    exchange_items:
+    - land_surface__elevation
+    - soil_water_sat-zone_top_surface__elevation
+    required: false
+  snow:
+    exchange_items:
+    - snowpack__melt_volume_flux
+    required: false

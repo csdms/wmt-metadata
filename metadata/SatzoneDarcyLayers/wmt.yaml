@@ -131,4 +131,16 @@ sections:
   - Ks_2_ptype
   - Ks_2_scalar
   - Ks_2_file
-
+uses:
+  channels:
+    exchange_items:
+    - channel_water_x-section__mean_depth
+    required: false
+  evap:
+    exchange_items:
+    - land_surface_water__evaporation_volume_flux
+    required: false
+  infil:
+    exchange_items:
+    - soil_water_sat-zone_top__recharge_volume_flux
+    required: false

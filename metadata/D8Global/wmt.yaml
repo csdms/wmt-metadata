@@ -39,4 +39,9 @@ sections:
   - FILL_PITS_IN_Z0
   - LR_PERIODIC
   - TB_PERIODIC
+uses:
+  erode:
+    exchange_items:
+    - land_surface__elevation
+    required: false
 

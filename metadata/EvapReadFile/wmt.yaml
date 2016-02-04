@@ -33,4 +33,8 @@ sections:
 - title: Input
   members:
   - ET_file
-
+uses:
+  channels:
+    exchange_items:
+    - channel_water_x-section__mean_depth
+    required: false

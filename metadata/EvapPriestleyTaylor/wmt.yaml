@@ -61,4 +61,11 @@ sections:
   - T_soil_x_ptype
   - T_soil_x_scalar
   - T_soil_x_file
-
+uses:
+  meteorology:
+    exchange_items:
+    - atmosphere_bottom_air__temperature
+    - land_surface_net-longwave-radiation__energy_flux
+    - land_surface_net-shortwave-radiation__energy_flux
+    - land_surface__temperature
+    required: false

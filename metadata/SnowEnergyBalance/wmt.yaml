@@ -68,4 +68,14 @@ sections:
   - h0_swe_ptype
   - h0_swe_scalar
   - h0_swe_file
-
+uses:
+  meteorology:
+    exchange_items:
+    - atmosphere_bottom_air__mass-per-volume_density
+    - atmosphere_bottom_air__mass-specific_isobaric_heat_capacity
+    - atmosphere_bottom_air__temperature
+    - atmosphere_water__snowfall_leq-volume_flux
+    - land_surface__temperature
+    - land_surface_net-total-energy__energy_flux
+    - water-liquid__mass-per-volume_density
+    required: false
