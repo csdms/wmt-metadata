@@ -35,23 +35,23 @@ extras:
 groups:
   T0_group:
   - T0_ptype
-  - T0_scalar
+  - T0
   - T0_file
   c0_group:
   - c0_ptype
-  - c0_scalar
+  - c0
   - c0_file
   h0_snow_group:
   - h0_snow_ptype
-  - h0_snow_scalar
+  - h0_snow
   - h0_snow_file
   h0_swe_group:
   - h0_swe_ptype
-  - h0_swe_scalar
+  - h0_swe
   - h0_swe_file
   rho_snow_group:
   - rho_snow_ptype
-  - rho_snow_scalar
+  - rho_snow
   - rho_snow_file
 sections:
 - title: Run
@@ -63,19 +63,19 @@ sections:
 - title: Input
   members:
   - rho_snow_ptype
-  - rho_snow_scalar
+  - rho_snow
   - rho_snow_file
   - c0_ptype
-  - c0_scalar
+  - c0
   - c0_file
   - T0_ptype
-  - T0_scalar
+  - T0
   - T0_file
   - h0_snow_ptype
-  - h0_snow_scalar
+  - h0_snow
   - h0_snow_file
   - h0_swe_ptype
-  - h0_swe_scalar
+  - h0_swe
   - h0_swe_file
 uses:
   meteorology:

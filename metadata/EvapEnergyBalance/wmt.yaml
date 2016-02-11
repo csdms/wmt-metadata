@@ -35,15 +35,15 @@ extras:
 groups:
   K_soil_group:
   - K_soil_ptype
-  - K_soil_scalar
+  - K_soil
   - K_soil_file
   T_soil_x_group:
   - T_soil_x_ptype
-  - T_soil_x_scalar
+  - T_soil_x
   - T_soil_x_file
   soil_x_group:
   - soil_x_ptype
-  - soil_x_scalar
+  - soil_x
   - soil_x_file
 sections:
 - title: Run
@@ -55,13 +55,13 @@ sections:
 - title: Input
   members:
   - K_soil_ptype
-  - K_soil_scalar
+  - K_soil
   - K_soil_file
   - soil_x_ptype
-  - soil_x_scalar
+  - soil_x
   - soil_x_file
   - T_soil_x_ptype
-  - T_soil_x_scalar
+  - T_soil_x
   - T_soil_x_file
 uses:
   meteorology:
