@@ -3,7 +3,9 @@ import shutil
 
 from wmt.config import site
 from wmt.utils.hook import find_simulation_input_file
-from topoflow_utils.hook import assign_parameters, scalar_to_rtg_file
+from topoflow_utils.hook import (assign_parameters,
+                                 scalar_to_rtg_file,
+                                 to_rts_file)
 
 
 file_list = ['aspect_grid_file',
@@ -35,8 +37,11 @@ def execute(env):
     src = find_simulation_input_file(env['site_prefix'] + '.rti')
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
 
-    for var in ('rho_H2O', 'Cp_air', 'rho_air', 'P', 'T_air', 'T_surf', 'RH',
-                'p0', 'uz', 'z', 'z0_air', 'albedo', 'em_surf', 'dust_atten',
-                'cloud_factor', 'canopy_factor'):
+    for var in ('rho_H2O', 'Cp_air', 'rho_air', 'T_air', 'T_surf',
+                'RH', 'p0', 'uz', 'z', 'z0_air', 'albedo', 'em_surf',
+                'dust_atten', 'cloud_factor', 'canopy_factor'):
         if env[var + '_ptype'] == 'Scalar':
             scalar_to_rtg_file(var, env)
+
+    if env['P_ptype'] != 'Grid_Sequence':
+        to_rts_file('P', env)
