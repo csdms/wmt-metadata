@@ -29,9 +29,9 @@ extras:
     description: RiverTools info file
     value:
       type: file
-      default: default.rti
+      default: site.rti
       files:
-      - default.rti
+      - site.rti
 groups:
   Ks_0_group:
   - Ks_0_ptype

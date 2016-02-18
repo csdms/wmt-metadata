@@ -29,9 +29,9 @@ extras:
     description: RiverTools info file
     value:
       type: file
-      default: default.rti
+      default: site.rti
       files:
-      - default.rti
+      - site.rti
 groups:
   Cp_air_group:
   - Cp_air_ptype
