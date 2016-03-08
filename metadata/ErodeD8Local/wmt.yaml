@@ -16,6 +16,22 @@ extras:
         min: 0
         max: 3153600000
       units: s
+  output_interval:
+    description: Number of time steps between output files
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+  output_format:
+    description: File format for output files
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
 groups:
   make_z0_group:
   - make_z0_method
@@ -29,10 +45,12 @@ sections:
 - title: Run
   members:
   - run_duration
-  - CFL_factor
-  - pixel_file
+  - output_interval
+  - output_format
 - title: Input
   members:
+  - CFL_factor
+  - pixel_file
   - nx
   - ny
   - dx

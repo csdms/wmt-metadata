@@ -1,5 +1,7 @@
 ignore:
   - n_steps
+  - site_prefix
+  - case_prefix
 globals:
   - run_duration
 extras:
@@ -17,6 +19,4 @@ sections:
 - title: Run
   members:
   - run_duration
-  - site_prefix
-  - case_prefix
 

@@ -21,16 +21,34 @@ extras:
       default: site.rti
       files:
       - site.rti
+  output_interval:
+    description: Number of time steps between output files
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+  output_format:
+    description: File format for output files
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
 groups: {}
 sections:
 - title: Run
   members:
   - run_duration
   - dt
-  - rti_file
-  - pixel_file
+  - output_interval
+  - output_format
 - title: Input
   members:
+  - rti_file
+  - pixel_file
   - source_file
   - sink_file
   - canal_file
