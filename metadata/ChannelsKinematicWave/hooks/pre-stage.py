@@ -4,8 +4,7 @@ import shutil
 from wmt.config import site
 from wmt.models.submissions import prepend_to_path
 from wmt.utils.hook import find_simulation_input_file
-from topoflow_utils.hook import (assign_parameters, load_rti,
-                                 scalar_to_rtg_file)
+from topoflow_utils.hook import assign_parameters, scalar_to_rtg_file
 
 
 file_list = []
@@ -34,16 +33,34 @@ def execute(env):
 
     env['nval_ptype'] = env['z0val_ptype'] = env['roughness_ptype']
     env['nval'] = env['z0val'] = env['roughness']
-    env['nval_file'] = env['z0val_file'] = env['roughness_file']    
+    env['nval_file'] = env['z0val_file'] = env['roughness_file']
 
     assign_parameters(env, file_list)
 
-    for fname in ['code_file', 'slope_file'] + file_list:
-        src = find_simulation_input_file(env[fname])
-        shutil.copy(src, os.curdir)
-    src = find_simulation_input_file(env['site_prefix'] + '.rti')
+    # for fname in ['code_file', 'slope_file'] + file_list:
+    #     src = find_simulation_input_file(env[fname])
+    #     shutil.copy(src, os.curdir)
+
+    src = find_simulation_input_file(env['code_file'])
+    env['code_file'] = env['site_prefix'] + '_flow.rtg'
+    shutil.copy(src, os.path.join(os.curdir, env['code_file']))
+
+    src = find_simulation_input_file(env['slope_file'])
+    env['slope_file'] = env['site_prefix'] + '_slope.rtg'
+    shutil.copy(src, os.path.join(os.curdir, env['slope_file']))
+
+    # src = find_simulation_input_file(env['site_prefix'] + '.rti')
+    # shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
+
+    src = find_simulation_input_file(env['rti_file'])
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
 
-    for var in ('width', 'angle', 'MANNING', 'LAW_OF_WALL', 'd0', 'sinu'):
-        if env[var] == 'Scalar':
+    for var in ('width', 'angle', 'roughness', 'd0', 'sinu'):
+        if env[var + '_ptype'] == 'Scalar':
             scalar_to_rtg_file(var, env)
+
+    for var in ('nval', 'z0val'):
+        env[var + '_ptype'] = env['roughness_ptype']
+        env[var + '_dtype'] = env['roughness_dtype']
+        env[var] = env['roughness']
+        env[var + '_file'] = env['roughness_file']

@@ -34,7 +34,10 @@ def execute(env):
     for fname in file_list:
         src = find_simulation_input_file(env[fname])
         shutil.copy(src, os.curdir)
-    src = find_simulation_input_file(env['site_prefix'] + '.rti')
+    # src = find_simulation_input_file(env['site_prefix'] + '.rti')
+    # shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
+
+    src = find_simulation_input_file(env['rti_file'])
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
 
     for var in ('rho_H2O', 'Cp_air', 'rho_air', 'T_air', 'T_surf',

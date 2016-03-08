@@ -7,9 +7,7 @@ from wmt.utils.hook import find_simulation_input_file
 from topoflow_utils.hook import choices_map, units_map
 
 
-file_list = ['rti_file',
-             'DEM_file',
-             'pixel_file']
+file_list = ['DEM_file']
 
 
 def execute(env):
@@ -25,13 +23,8 @@ def execute(env):
     env['save_grid_dt'] = float(env['dt'])
     env['save_pixels_dt'] = float(env['dt'])
 
-    # TopoFlow needs site_prefix and case_prefix.
-    env['site_prefix'] = os.path.splitext(env['rti_file'])[0]
-    env['case_prefix'] = 'WMT'
-
     # If no pixel_file is given, let TopoFlow make one.
     if env['pixel_file'] == 'off':
-        file_list.remove('pixel_file')
         env['pixel_file'] = env['case_prefix'] + '_outlets.txt'
 
     env['A_units'] = units_map[env['A_units']]
@@ -40,10 +33,8 @@ def execute(env):
     env['LR_PERIODIC'] = choices_map[env['LR_PERIODIC']]
     env['TB_PERIODIC'] = choices_map[env['TB_PERIODIC']]
 
-    # Default files common to all TopoFlow components are stored with the
-    # topoflow component metadata.
-    prepend_to_path('WMT_INPUT_FILE_PATH',
-                    os.path.join(site['db'], 'components', 'topoflow', 'files'))
     for fname in file_list:
         src = find_simulation_input_file(env[fname])
         shutil.copy(src, os.curdir)
+    # src = find_simulation_input_file(env['site_prefix'] + '.rti')
+    # shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
