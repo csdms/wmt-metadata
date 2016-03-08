@@ -80,7 +80,7 @@ sections:
   members:
   - rti_file
   - pixel_file
-- title: Input: Soil layer 0
+- title: "Input: Soil layer 0"
   members:
   - Ks_0_ptype
   - Ks_0

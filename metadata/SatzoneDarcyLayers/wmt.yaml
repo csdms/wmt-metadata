@@ -132,7 +132,7 @@ sections:
   - d_thaw_ptype
   - d_thaw
   - d_thaw_file
-- title: Input: Soil layer 0
+- title: "Input: Soil layer 0"
   members:
   - th_0_ptype
   - th_0
@@ -143,7 +143,7 @@ sections:
   - Ks_0_ptype
   - Ks_0
   - Ks_0_file
-- title: Input: Soil layer 1
+- title: "Input: Soil layer 1"
   members:
   - th_1_ptype
   - th_1
@@ -154,7 +154,7 @@ sections:
   - Ks_1_ptype
   - Ks_1
   - Ks_1_file
-- title: Input: Soil layer 2
+- title: "Input: Soil layer 2"
   members:
   - th_2_ptype
   - th_2

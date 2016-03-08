@@ -169,7 +169,7 @@ sections:
   members:
   - rti_file
   - pixel_file
-- title: Input: Soil layer 0
+- title: "Input: Soil layer 0"
   members:
   - Ks_val_0_ptype
   - Ks_val_0
@@ -201,7 +201,7 @@ sections:
   - dz_val_0
   - nz_val_0
   - type_of_soil_layer_0
-- title: Input: Soil layer 1
+- title: "Input: Soil layer 1"
   members:
   - Ks_val_1_ptype
   - Ks_val_1
@@ -233,7 +233,7 @@ sections:
   - dz_val_1
   - nz_val_1
   - type_of_soil_layer_1
-- title: Input: Soil layer 2
+- title: "Input: Soil layer 2"
   members:
   - Ks_val_2_ptype
   - Ks_val_2
