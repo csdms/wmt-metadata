@@ -1,0 +1,256 @@
+#! /usr/bin/env python
+import os
+import argparse
+import json
+from distutils.dir_util import mkpath
+import fnmatch
+import re
+import warnings
+import subprocess
+
+import paramiko
+import getpass
+import yaml
+
+
+class cd(object):
+    def __init__(self, dir):
+        self._dir = dir
+
+    def __enter__(self):
+        self._starting_dir = os.path.abspath(os.getcwd())
+        if not os.path.isdir(self._dir):
+            mkpath(self._dir)
+        os.chdir(self._dir)
+        return os.path.abspath(os.getcwd())
+
+    def __exit__(self, type, value, traceback):
+        os.chdir(self._starting_dir)
+
+
+def load_config(file_like):
+    return yaml.load(file_like)
+
+
+def load_wmt_config(file_like):
+    return yaml.load(file_like)
+
+
+def dump_info(info, api):
+    info['id'] = api['class']
+    info['name'] = api['class']
+    info['class'] = api['class']
+    try:
+        info['initialize_args'] = api['initialize_args']
+    except KeyError:
+        warnings.warn('missing initialize_args')
+        info['initialize_args'] = ''
+
+    with open('info.json', 'w') as fp:
+        json.dump(info, fp, indent=4)
+
+
+def pop_ignored_params(params, ignore):
+    names = params.keys()
+
+    ignored = []
+    for pattern in ignore:
+        p = re.compile(fnmatch.translate(pattern))
+        ignored.extend(filter(p.match, params))
+
+    for name in ignored:
+        if name in params:
+            # params.pop(name)
+            params[name]['visible'] = False
+        else:
+            if name not in names:
+                warnings.warn('{name}: pattern not in params'.format(name=name))
+
+
+def add_extras(params, extras):
+    params.update(extras)
+
+
+def section_break(title):
+    return {
+        'key': 'separator',
+        'name': title,
+        'description': title,
+        'value': {
+            'type': 'string',
+            'default': '',
+        }
+    }
+
+
+def old_style_parameter(name, param):
+    return {
+        'key': name,
+        'name': param['description'],
+        'description': param['description'],
+        'value': param['value'],
+        'visible': param.get('visible', True),
+    }
+
+
+def make_sections(params, sections):
+    added = set()
+    ordered_params = []
+    for section in sections:
+        ordered_params.append(section_break(section['title']))
+        for member in section['members']:
+            try:
+                ordered_params.append(old_style_parameter(member, params[member]))
+            except KeyError:
+                warnings.warn('{name}: missing parameter'.format(name=member))
+            else:
+                added.add(member)
+
+    missing = set(params.keys()) - added
+    if len(missing) > 0:
+        # ordered_params.append(section_break('Invisible Parameters'))
+        for name in missing:
+            params[name]['visible'] = False
+            ordered_params.append(old_style_parameter(name, params[name]))
+
+    return ordered_params
+
+
+def make_groups(params, groups):
+    for group, members in groups.items():
+        for item in params:
+            if item['key'] in members:
+                item['group'] = {
+                    "name": group,
+                    "leader": item['key'] == members[0],
+                    "members": len(members),
+                }
+    return params
+
+
+def dump_parameters(params, wmt_config):
+    add_extras(params, wmt_config['extras'])
+    pop_ignored_params(params, wmt_config['ignore'])
+    sections = make_sections(params, wmt_config.get('sections', []))
+    sections = make_groups(sections, wmt_config.get('groups', {}))
+    with open('parameters.json', 'w') as fp:
+        json.dump(sections, fp, indent=4)
+
+
+def dump_files(files):
+    prefix = os.path.commonprefix(files)
+    shortened_files = []
+    for name in files:
+        shortened_files.append(name[len(prefix):])
+
+    with open('files.json', 'w') as fp:
+        json.dump(shortened_files, fp, indent=4)
+
+
+def dump_uses(uses_names, wmt_config):
+    ports = []
+
+    uses = wmt_config.get('uses', [])
+    for name in uses:
+        names = []
+        for pattern in uses[name]['exchange_items']:
+            p = re.compile(fnmatch.translate(pattern))
+            names.extend(filter(p.match, uses_names))
+
+        ports.append({
+            'id': name,
+            'required': uses[name]['required'],
+            'exchange_items': uses[name]['exchange_items'],
+        })
+    
+    with open('uses.json', 'w') as fp:
+        json.dump(ports, fp, indent=4)
+
+
+def dump_provides(provides_names, wmt_config):
+    ports = []
+    provides = wmt_config.get('provides', [])
+    for name in provides:
+        names = []
+        for pattern in provides[name]['exchange_items']:
+            p = re.compile(fnmatch.translate(pattern))
+            names.extend(filter(p.match, provides_names))
+
+        ports.append({
+            'id': name,
+            'required': provides[name]['required'],
+            'exchange_items': names,
+        })
+    
+    with open('provides.json', 'w') as fp:
+        json.dump(ports, fp, indent=4)
+
+
+def build_file_list(config, prefix='.'):
+    all_files = []
+    for name, component in config['components'].items():
+        for file in component['files']:
+            all_files.append(
+                (file,
+                 os.path.join(prefix, name, 'files', os.path.basename(file))))
+    return all_files
+
+
+def build_metadata(config, prefix='.'):
+    for name, component in config['components'].items():
+        with cd(os.path.join(prefix, name)):
+            with open('wmt.yaml', 'r') as fp:
+                wmt_config = load_wmt_config(fp)
+
+        with cd(os.path.join(prefix, name, 'db')):
+            dump_info(component['info'], component['api'])
+            dump_parameters(component['parameters'], wmt_config)
+            dump_files(component['files'])
+            dump_uses(component['uses'], wmt_config)
+            dump_provides(component['provides'], wmt_config)
+
+
+def fetch_files(config, prefix='.'):
+    files_to_fetch = build_file_list(config, prefix=prefix)
+
+    hostname = config['host']['hostname']
+
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    try:
+        ssh.connect(hostname)
+    except paramiko.AuthenticationException:
+        password = getpass.getpass()
+        ssh.connect(hostname, password=password)
+    except paramiko.SSHException:
+        raise
+
+    sftp = ssh.open_sftp()
+
+    # def callback(bytes, total):
+    #     print '{bytes} / {total}'.format(bytes=bytes, total=total)
+
+    for src, dst in files_to_fetch:
+        print '{src} --> {dst}'.format(src=src, dst=dst)
+        with cd(os.path.dirname(dst)):
+            sftp.get(src, os.path.basename(dst))
+            # sftp.get(src, os.path.basename(dst), callback=callback)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('file', type=argparse.FileType('r'),
+                        help='Execution server configuration file')
+    parser.add_argument('--prefix', default='.',
+                        help='Path to installation')
+    args = parser.parse_args()
+
+    config = load_config(args.file)
+
+    build_metadata(config, prefix=os.path.abspath(args.prefix))
+    fetch_files(config, prefix=os.path.abspath(args.prefix))
+
+
+if __name__ == '__main__':
+    main()
