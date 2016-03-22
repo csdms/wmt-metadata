@@ -85,27 +85,42 @@ extras:
       default: 'off'
       files:
       - 'off'
-groups:
-  angle_group:
-  - angle_ptype
-  - angle
-  - angle_file
-  d0_group:
-  - d0_ptype
-  - d0
-  - d0_file
-  roughness_group:
-  - roughness_ptype
-  - roughness
-  - roughness_file
-  sinu_group:
-  - sinu_ptype
-  - sinu
-  - sinu_file
-  width_group:
-  - width_ptype
-  - width
-  - width_file
+parameter_mappers:
+  angle_mapper:
+    selector: angle_ptype
+    selections:
+      - Scalar: angle
+      - Time_Series: angle_file
+      - Grid: angle_file
+      - Grid_Sequence: angle_file
+  d0_mapper:
+    selector: d0_ptype
+    selections:
+      - Scalar: d0
+      - Time_Series: d0_file
+      - Grid: d0_file
+      - Grid_Sequence: d0_file
+  roughness_mapper:
+    selector: roughness_ptype
+    selections:
+      - Scalar: roughness
+      - Time_Series: roughness_file
+      - Grid: roughness_file
+      - Grid_Sequence: roughness_file
+  sinu_mapper:
+    selector: sinu_ptype
+    selections:
+      - Scalar: sinu
+      - Time_Series: sinu_file
+      - Grid: sinu_file
+      - Grid_Sequence: sinu_file
+  width_mapper:
+    selector: width_ptype
+    selections:
+      - Scalar: width
+      - Time_Series: width_file
+      - Grid: width_file
+      - Grid_Sequence: width_file
 sections:
 - title: Run
   members:
