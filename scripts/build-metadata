@@ -7,6 +7,7 @@ import fnmatch
 import re
 import warnings
 import subprocess
+import collections
 
 import paramiko
 import getpass
@@ -128,11 +129,45 @@ def make_groups(params, groups):
     return params
 
 
+def get_mapped_parameters(roles):
+    mapped_params = [roles['selector']]
+    for mapping in roles['selections']:
+        param = mapping.values()[0]
+        try:
+            mapped_params.index(param)
+        except ValueError:
+            mapped_params.append(param)
+    return mapped_params
+
+
+def get_mappings(selections):
+    mappings = collections.OrderedDict()
+    for mapping in selections:
+        for ptype, param in mapping.items():
+            mappings[ptype] = param
+    return mappings
+
+
+def make_mappers(params, mappers):
+    for mapper, roles in mappers.items():
+        mapped_params = get_mapped_parameters(roles)
+        for item in params:
+            if item['key'] in mapped_params:
+                item['selection'] = {
+                    'name': mapper,
+                    'selector': roles['selector'] == item['key'],
+                    'members': len(mapped_params),
+                    'mapping': get_mappings(roles['selections']),
+                    }
+    return params
+
+
 def dump_parameters(params, wmt_config):
     add_extras(params, wmt_config['extras'])
     pop_ignored_params(params, wmt_config['ignore'])
     sections = make_sections(params, wmt_config.get('sections', []))
     sections = make_groups(sections, wmt_config.get('groups', {}))
+    sections = make_mappers(sections, wmt_config.get('parameter_mappers', {}))
     with open('parameters.json', 'w') as fp:
         json.dump(sections, fp, indent=4)
 
