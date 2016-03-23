@@ -54,59 +54,98 @@ extras:
       default: site_flow.rtg
       files:
       - site_flow.rtg
-groups:
-  Ks_0_group:
-  - Ks_0_ptype
-  - Ks_0
-  - Ks_0_file
-  Ks_1_group:
-  - Ks_1_ptype
-  - Ks_1
-  - Ks_1_file
-  Ks_2_group:
-  - Ks_2_ptype
-  - Ks_2
-  - Ks_2_file
-  d_freeze_group:
-  - d_freeze_ptype
-  - d_freeze
-  - d_freeze_file
-  d_thaw_group:
-  - d_thaw_ptype
-  - d_thaw
-  - d_thaw_file
-  elev_group:
-  - elev_ptype
-  - elev
-  - elev_file
-  h0_table_group:
-  - h0_table_ptype
-  - h0_table
-  - h0_table_file
-  qs_0_group:
-  - qs_0_ptype
-  - qs_0
-  - qs_0_file
-  qs_1_group:
-  - qs_1_ptype
-  - qs_1
-  - qs_1_file
-  qs_2_group:
-  - qs_2_ptype
-  - qs_2
-  - qs_2_file
-  th_0_group:
-  - th_0_ptype
-  - th_0
-  - th_0_file
-  th_1_group:
-  - th_1_ptype
-  - th_1
-  - th_1_file
-  th_2_group:
-  - th_2_ptype
-  - th_2
-  - th_2_file
+parameter_mappers:
+  Ks_0_mapper:
+    selector: Ks_0_ptype
+    selections:
+      - Scalar: Ks_0
+      - Time_Series: Ks_0_file
+      - Grid: Ks_0_file
+      - Grid_Sequence: Ks_0_file
+  Ks_1_mapper:
+    selector: Ks_1_ptype
+    selections:
+      - Scalar: Ks_1
+      - Time_Series: Ks_1_file
+      - Grid: Ks_1_file
+      - Grid_Sequence: Ks_1_file
+  Ks_2_mapper:
+    selector: Ks_2_ptype
+    selections:
+      - Scalar: Ks_2
+      - Time_Series: Ks_2_file
+      - Grid: Ks_2_file
+      - Grid_Sequence: Ks_2_file
+  d_freeze_mapper:
+    selector: d_freeze_ptype
+    selections:
+      - Scalar: d_freeze
+      - Time_Series: d_freeze_file
+      - Grid: d_freeze_file
+      - Grid_Sequence: d_freeze_file
+  d_thaw_mapper:
+    selector: d_thaw_ptype
+    selections:
+      - Scalar: d_thaw
+      - Time_Series: d_thaw_file
+      - Grid: d_thaw_file
+      - Grid_Sequence: d_thaw_file
+  elev_mapper:
+    selector: elev_ptype
+    selections:
+      - Scalar: elev
+      - Time_Series: elev_file
+      - Grid: elev_file
+      - Grid_Sequence: elev_file
+  h0_table_mapper:
+    selector: h0_table_ptype
+    selections:
+      - Scalar: h0_table
+      - Time_Series: h0_table_file
+      - Grid: h0_table_file
+      - Grid_Sequence: h0_table_file
+  qs_0_mapper:
+    selector: qs_0_ptype
+    selections:
+      - Scalar: qs_0
+      - Time_Series: qs_0_file
+      - Grid: qs_0_file
+      - Grid_Sequence: qs_0_file
+  qs_1_mapper:
+    selector: qs_1_ptype
+    selections:
+      - Scalar: qs_1
+      - Time_Series: qs_1_file
+      - Grid: qs_1_file
+      - Grid_Sequence: qs_1_file
+  qs_2_mapper:
+    selector: qs_2_ptype
+    selections:
+      - Scalar: qs_2
+      - Time_Series: qs_2_file
+      - Grid: qs_2_file
+      - Grid_Sequence: qs_2_file
+  th_0_mapper:
+    selector: th_0_ptype
+    selections:
+      - Scalar: th_0
+      - Time_Series: th_0_file
+      - Grid: th_0_file
+      - Grid_Sequence: th_0_file
+  th_1_mapper:
+    selector: th_1_ptype
+    selections:
+      - Scalar: th_1
+      - Time_Series: th_1_file
+      - Grid: th_1_file
+      - Grid_Sequence: th_1_file
+  th_2_mapper:
+    selector: th_2_ptype
+    selections:
+      - Scalar: th_2
+      - Time_Series: th_2_file
+      - Grid: th_2_file
+      - Grid_Sequence: th_2_file
 sections:
 - title: Run
   members:

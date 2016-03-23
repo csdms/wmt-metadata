@@ -47,23 +47,35 @@ extras:
       choices:
         - netcdf
         - vtk
-groups:
-  K_soil_group:
-  - K_soil_ptype
-  - K_soil
-  - K_soil_file
-  T_soil_x_group:
-  - T_soil_x_ptype
-  - T_soil_x
-  - T_soil_x_file
-  alpha_group:
-  - alpha_ptype
-  - alpha
-  - alpha_file
-  soil_x_group:
-  - soil_x_ptype
-  - soil_x
-  - soil_x_file
+parameter_mappers:
+  K_soil_mapper:
+    selector: K_soil_ptype
+    selections:
+      - Scalar: K_soil
+      - Time_Series: K_soil_file
+      - Grid: K_soil_file
+      - Grid_Sequence: K_soil_file
+  T_soil_x_mapper:
+    selector: T_soil_x_ptype
+    selections:
+      - Scalar: T_soil_x
+      - Time_Series: T_soil_x_file
+      - Grid: T_soil_x_file
+      - Grid_Sequence: T_soil_x_file
+  alpha_mapper:
+    selector: alpha_ptype
+    selections:
+      - Scalar: alpha
+      - Time_Series: alpha_file
+      - Grid: alpha_file
+      - Grid_Sequence: alpha_file
+  soil_x_mapper:
+    selector: soil_x_ptype
+    selections:
+      - Scalar: soil_x
+      - Time_Series: soil_x_file
+      - Grid: soil_x_file
+      - Grid_Sequence: soil_x_file
 sections:
 - title: Run
   members:

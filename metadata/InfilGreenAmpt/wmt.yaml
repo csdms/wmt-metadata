@@ -47,27 +47,42 @@ extras:
       choices:
         - netcdf
         - vtk
-groups:
-  G_0_group:
-  - G_0_ptype
-  - G_0
-  - G_0_file
-  Ki_0_group:
-  - Ki_0_ptype
-  - Ki_0
-  - Ki_0_file
-  Ks_0_group:
-  - Ks_0_ptype
-  - Ks_0
-  - Ks_0_file
-  qi_0_group:
-  - qi_0_ptype
-  - qi_0
-  - qi_0_file
-  qs_0_group:
-  - qs_0_ptype
-  - qs_0
-  - qs_0_file
+parameter_mappers:
+  G_0_mapper:
+    selector: G_0_ptype
+    selections:
+      - Scalar: G_0
+      - Time_Series: G_0_file
+      - Grid: G_0_file
+      - Grid_Sequence: G_0_file
+  Ki_0_mapper:
+    selector: Ki_0_ptype
+    selections:
+      - Scalar: Ki_0
+      - Time_Series: Ki_0_file
+      - Grid: Ki_0_file
+      - Grid_Sequence: Ki_0_file
+  Ks_0_mapper:
+    selector: Ks_0_ptype
+    selections:
+      - Scalar: Ks_0
+      - Time_Series: Ks_0_file
+      - Grid: Ks_0_file
+      - Grid_Sequence: Ks_0_file
+  qi_0_mapper:
+    selector: qi_0_ptype
+    selections:
+      - Scalar: qi_0
+      - Time_Series: qi_0_file
+      - Grid: qi_0_file
+      - Grid_Sequence: qi_0_file
+  qs_0_mapper:
+    selector: qs_0_ptype
+    selections:
+      - Scalar: qs_0
+      - Time_Series: qs_0_file
+      - Grid: qs_0_file
+      - Grid_Sequence: qs_0_file
 sections:
 - title: Run
   members:

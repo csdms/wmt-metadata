@@ -47,27 +47,42 @@ extras:
       choices:
         - netcdf
         - vtk
-groups:
-  T0_group:
-  - T0_ptype
-  - T0
-  - T0_file
-  c0_group:
-  - c0_ptype
-  - c0
-  - c0_file
-  h0_snow_group:
-  - h0_snow_ptype
-  - h0_snow
-  - h0_snow_file
-  h0_swe_group:
-  - h0_swe_ptype
-  - h0_swe
-  - h0_swe_file
-  rho_snow_group:
-  - rho_snow_ptype
-  - rho_snow
-  - rho_snow_file
+parameter_mappers:
+  T0_mapper:
+    selector: T0_ptype
+    selections:
+      - Scalar: T0
+      - Time_Series: T0_file
+      - Grid: T0_file
+      - Grid_Sequence: T0_file
+  c0_mapper:
+    selector: c0_ptype
+    selections:
+      - Scalar: c0
+      - Time_Series: c0_file
+      - Grid: c0_file
+      - Grid_Sequence: c0_file
+  h0_snow_mapper:
+    selector: h0_snow_ptype
+    selections:
+      - Scalar: h0_snow
+      - Time_Series: h0_snow_file
+      - Grid: h0_snow_file
+      - Grid_Sequence: h0_snow_file
+  h0_swe_mapper:
+    selector: h0_swe_ptype
+    selections:
+      - Scalar: h0_swe
+      - Time_Series: h0_swe_file
+      - Grid: h0_swe_file
+      - Grid_Sequence: h0_swe_file
+  rho_snow_mapper:
+    selector: rho_snow_ptype
+    selections:
+      - Scalar: rho_snow
+      - Time_Series: rho_snow_file
+      - Grid: rho_snow_file
+      - Grid_Sequence: rho_snow_file
 sections:
 - title: Run
   members:

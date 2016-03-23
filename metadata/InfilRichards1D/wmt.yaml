@@ -47,115 +47,196 @@ extras:
       choices:
         - netcdf
         - vtk
-groups:
-  Ki_val_0_group:
-  - Ki_val_0_ptype
-  - Ki_val_0
-  - Ki_val_0_file
-  Ki_val_1_group:
-  - Ki_val_1_ptype
-  - Ki_val_1
-  - Ki_val_1_file
-  Ki_val_2_group:
-  - Ki_val_2_ptype
-  - Ki_val_2
-  - Ki_val_2_file
-  Ks_val_0_group:
-  - Ks_val_0_ptype
-  - Ks_val_0
-  - Ks_val_0_file
-  Ks_val_1_group:
-  - Ks_val_1_ptype
-  - Ks_val_1
-  - Ks_val_1_file
-  Ks_val_2_group:
-  - Ks_val_2_ptype
-  - Ks_val_2
-  - Ks_val_2_file
-  c_val_0_group:
-  - c_val_0_ptype
-  - c_val_0
-  - c_val_0_file
-  c_val_1_group:
-  - c_val_1_ptype
-  - c_val_1
-  - c_val_1_file
-  c_val_2_group:
-  - c_val_2_ptype
-  - c_val_2
-  - c_val_2_file
-  lam_val_0_group:
-  - lam_val_0_ptype
-  - lam_val_0
-  - lam_val_0_file
-  lam_val_1_group:
-  - lam_val_1_ptype
-  - lam_val_1
-  - lam_val_1_file
-  lam_val_2_group:
-  - lam_val_2_ptype
-  - lam_val_2
-  - lam_val_2_file
-  pA_val_0_group:
-  - pA_val_0_ptype
-  - pA_val_0
-  - pA_val_0_file
-  pA_val_1_group:
-  - pA_val_1_ptype
-  - pA_val_1
-  - pA_val_1_file
-  pA_val_2_group:
-  - pA_val_2_ptype
-  - pA_val_2
-  - pA_val_2_file
-  pB_val_0_group:
-  - pB_val_0_ptype
-  - pB_val_0
-  - pB_val_0_file
-  pB_val_1_group:
-  - pB_val_1_ptype
-  - pB_val_1
-  - pB_val_1_file
-  pB_val_2_group:
-  - pB_val_2_ptype
-  - pB_val_2
-  - pB_val_2_file
-  qi_val_0_group:
-  - qi_val_0_ptype
-  - qi_val_0
-  - qi_val_0_file
-  qi_val_1_group:
-  - qi_val_1_ptype
-  - qi_val_1
-  - qi_val_1_file
-  qi_val_2_group:
-  - qi_val_2_ptype
-  - qi_val_2
-  - qi_val_2_file
-  qr_val_0_group:
-  - qr_val_0_ptype
-  - qr_val_0
-  - qr_val_0_file
-  qr_val_1_group:
-  - qr_val_1_ptype
-  - qr_val_1
-  - qr_val_1_file
-  qr_val_2_group:
-  - qr_val_2_ptype
-  - qr_val_2
-  - qr_val_2_file
-  qs_val_0_group:
-  - qs_val_0_ptype
-  - qs_val_0
-  - qs_val_0_file
-  qs_val_1_group:
-  - qs_val_1_ptype
-  - qs_val_1
-  - qs_val_1_file
-  qs_val_2_group:
-  - qs_val_2_ptype
-  - qs_val_2
-  - qs_val_2_file
+parameter_mappers:
+  Ki_val_0_mapper:
+    selector: Ki_val_0_ptype
+    selections:
+      - Scalar: Ki_val_0
+      - Time_Series: Ki_val_0_file
+      - Grid: Ki_val_0_file
+      - Grid_Sequence: Ki_val_0_file
+  Ki_val_1_mapper:
+    selector: Ki_val_1_ptype
+    selections:
+      - Scalar: Ki_val_1
+      - Time_Series: Ki_val_1_file
+      - Grid: Ki_val_1_file
+      - Grid_Sequence: Ki_val_1_file
+  Ki_val_2_mapper:
+    selector: Ki_val_2_ptype
+    selections:
+      - Scalar: Ki_val_2
+      - Time_Series: Ki_val_2_file
+      - Grid: Ki_val_2_file
+      - Grid_Sequence: Ki_val_2_file
+  Ks_val_0_mapper:
+    selector: Ks_val_0_ptype
+    selections:
+      - Scalar: Ks_val_0
+      - Time_Series: Ks_val_0_file
+      - Grid: Ks_val_0_file
+      - Grid_Sequence: Ks_val_0_file
+  Ks_val_1_mapper:
+    selector: Ks_val_1_ptype
+    selections:
+      - Scalar: Ks_val_1
+      - Time_Series: Ks_val_1_file
+      - Grid: Ks_val_1_file
+      - Grid_Sequence: Ks_val_1_file
+  Ks_val_2_mapper:
+    selector: Ks_val_2_ptype
+    selections:
+      - Scalar: Ks_val_2
+      - Time_Series: Ks_val_2_file
+      - Grid: Ks_val_2_file
+      - Grid_Sequence: Ks_val_2_file
+  c_val_0_mapper:
+    selector: c_val_0_ptype
+    selections:
+      - Scalar: c_val_0
+      - Time_Series: c_val_0_file
+      - Grid: c_val_0_file
+      - Grid_Sequence: c_val_0_file
+  c_val_1_mapper:
+    selector: c_val_1_ptype
+    selections:
+      - Scalar: c_val_1
+      - Time_Series: c_val_1_file
+      - Grid: c_val_1_file
+      - Grid_Sequence: c_val_1_file
+  c_val_2_mapper:
+    selector: c_val_2_ptype
+    selections:
+      - Scalar: c_val_2
+      - Time_Series: c_val_2_file
+      - Grid: c_val_2_file
+      - Grid_Sequence: c_val_2_file
+  lam_val_0_mapper:
+    selector: lam_val_0_ptype
+    selections:
+      - Scalar: lam_val_0
+      - Time_Series: lam_val_0_file
+      - Grid: lam_val_0_file
+      - Grid_Sequence: lam_val_0_file
+  lam_val_1_mapper:
+    selector: lam_val_1_ptype
+    selections:
+      - Scalar: lam_val_1
+      - Time_Series: lam_val_1_file
+      - Grid: lam_val_1_file
+      - Grid_Sequence: lam_val_1_file
+  lam_val_2_mapper:
+    selector: lam_val_2_ptype
+    selections:
+      - Scalar: lam_val_2
+      - Time_Series: lam_val_2_file
+      - Grid: lam_val_2_file
+      - Grid_Sequence: lam_val_2_file
+  pA_val_0_mapper:
+    selector: pA_val_0_ptype
+    selections:
+      - Scalar: pA_val_0
+      - Time_Series: pA_val_0_file
+      - Grid: pA_val_0_file
+      - Grid_Sequence: pA_val_0_file
+  pA_val_1_mapper:
+    selector: pA_val_1_ptype
+    selections:
+      - Scalar: pA_val_1
+      - Time_Series: pA_val_1_file
+      - Grid: pA_val_1_file
+      - Grid_Sequence: pA_val_1_file
+  pA_val_2_mapper:
+    selector: pA_val_2_ptype
+    selections:
+      - Scalar: pA_val_2
+      - Time_Series: pA_val_2_file
+      - Grid: pA_val_2_file
+      - Grid_Sequence: pA_val_2_file
+  pB_val_0_mapper:
+    selector: pB_val_0_ptype
+    selections:
+      - Scalar: pB_val_0
+      - Time_Series: pB_val_0_file
+      - Grid: pB_val_0_file
+      - Grid_Sequence: pB_val_0_file
+  pB_val_1_mapper:
+    selector: pB_val_1_ptype
+    selections:
+      - Scalar: pB_val_1
+      - Time_Series: pB_val_1_file
+      - Grid: pB_val_1_file
+      - Grid_Sequence: pB_val_1_file
+  pB_val_2_mapper:
+    selector: pB_val_2_ptype
+    selections:
+      - Scalar: pB_val_2
+      - Time_Series: pB_val_2_file
+      - Grid: pB_val_2_file
+      - Grid_Sequence: pB_val_2_file
+  qi_val_0_mapper:
+    selector: qi_val_0_ptype
+    selections:
+      - Scalar: qi_val_0
+      - Time_Series: qi_val_0_file
+      - Grid: qi_val_0_file
+      - Grid_Sequence: qi_val_0_file
+  qi_val_1_mapper:
+    selector: qi_val_1_ptype
+    selections:
+      - Scalar: qi_val_1
+      - Time_Series: qi_val_1_file
+      - Grid: qi_val_1_file
+      - Grid_Sequence: qi_val_1_file
+  qi_val_2_mapper:
+    selector: qi_val_2_ptype
+    selections:
+      - Scalar: qi_val_2
+      - Time_Series: qi_val_2_file
+      - Grid: qi_val_2_file
+      - Grid_Sequence: qi_val_2_file
+  qr_val_0_mapper:
+    selector: qr_val_0_ptype
+    selections:
+      - Scalar: qr_val_0
+      - Time_Series: qr_val_0_file
+      - Grid: qr_val_0_file
+      - Grid_Sequence: qr_val_0_file
+  qr_val_1_mapper:
+    selector: qr_val_1_ptype
+    selections:
+      - Scalar: qr_val_1
+      - Time_Series: qr_val_1_file
+      - Grid: qr_val_1_file
+      - Grid_Sequence: qr_val_1_file
+  qr_val_2_mapper:
+    selector: qr_val_2_ptype
+    selections:
+      - Scalar: qr_val_2
+      - Time_Series: qr_val_2_file
+      - Grid: qr_val_2_file
+      - Grid_Sequence: qr_val_2_file
+  qs_val_0_mapper:
+    selector: qs_val_0_ptype
+    selections:
+      - Scalar: qs_val_0
+      - Time_Series: qs_val_0_file
+      - Grid: qs_val_0_file
+      - Grid_Sequence: qs_val_0_file
+  qs_val_1_mapper:
+    selector: qs_val_1_ptype
+    selections:
+      - Scalar: qs_val_1
+      - Time_Series: qs_val_1_file
+      - Grid: qs_val_1_file
+      - Grid_Sequence: qs_val_1_file
+  qs_val_2_mapper:
+    selector: qs_val_2_ptype
+    selections:
+      - Scalar: qs_val_2
+      - Time_Series: qs_val_2_file
+      - Grid: qs_val_2_file
+      - Grid_Sequence: qs_val_2_file
 sections:
 - title: Run
   members:
