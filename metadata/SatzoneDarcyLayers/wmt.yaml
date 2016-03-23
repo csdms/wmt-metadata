@@ -158,10 +158,10 @@ sections:
   members:
   - rti_file
   - pixel_file
+  - flow_grid_file
   - elev_ptype
   - elev
   - elev_file
-  - flow_grid_file
   - h0_table_ptype
   - h0_table
   - h0_table_file
