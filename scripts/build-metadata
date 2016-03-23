@@ -157,8 +157,9 @@ def make_mappers(params, mappers):
                     'name': mapper,
                     'selector': roles['selector'] == item['key'],
                     'members': len(mapped_params),
-                    'mapping': get_mappings(roles['selections']),
                     }
+                if item['selection']['selector'] is True:
+                    item['selection']['mapping'] = get_mappings(roles['selections'])
     return params
 
 
