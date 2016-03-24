@@ -122,7 +122,7 @@ sections:
   - gam_0_ptype
   - gam_0
   - gam_0_file
-  - soil_ptype_0
+  - soil_type_0
 uses:
   erode:
     exchange_items:

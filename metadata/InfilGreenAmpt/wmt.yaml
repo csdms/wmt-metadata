@@ -112,7 +112,7 @@ sections:
   - G_0_ptype
   - G_0
   - G_0_file
-  - soil_ptype_0
+  - soil_type_0
 uses:
   erode:
     exchange_items:

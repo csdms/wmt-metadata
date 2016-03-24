@@ -281,7 +281,7 @@ sections:
   - c_val_0_file
   - dz_val_0
   - nz_val_0
-  - type_of_soil_layer_0
+  - soil_0_type
 - title: "Input: Soil layer 1"
   members:
   - Ks_val_1_ptype
@@ -313,7 +313,7 @@ sections:
   - c_val_1_file
   - dz_val_1
   - nz_val_1
-  - type_of_soil_layer_1
+  - soil_1_type
 - title: "Input: Soil layer 2"
   members:
   - Ks_val_2_ptype
@@ -345,7 +345,7 @@ sections:
   - c_val_2_file
   - dz_val_2
   - nz_val_2
-  - type_of_soil_layer_2
+  - soil_2_type
 uses:
   erode:
     exchange_items:
