@@ -168,10 +168,6 @@ uses:
     required: false
     exchange_items:
     - snowpack__melt_volume_flux
-  ice:
-    required: false
-    exchange_items:
-    - glacier_ice__melt_volume_flux
   infil:
     required: false
     exchange_items:

@@ -122,10 +122,6 @@ uses:
     exchange_items:
     - land_surface_water__evaporation_volume_flux
     required: false
-  ice:
-    exchange_items:
-    - glacier_ice__melt_volume_flux
-    required: false
   meteorology:
     exchange_items:
     - atmosphere_water__rainfall_volume_flux
