@@ -72,6 +72,12 @@ def add_extras(params, extras):
     params.update(extras)
 
 
+def set_globals(params, globals):
+    for name in globals:
+        if name in params.keys():
+            params[name]['global'] = True
+
+
 def section_break(title):
     return {
         'key': 'separator',
@@ -91,6 +97,7 @@ def old_style_parameter(name, param):
         'description': param['description'],
         'value': param['value'],
         'visible': param.get('visible', True),
+        'global': param.get('global', False)
     }
 
 
@@ -165,6 +172,7 @@ def make_mappers(params, mappers):
 
 def dump_parameters(params, wmt_config):
     add_extras(params, wmt_config['extras'])
+    set_globals(params, wmt_config.get('globals', []))
     pop_ignored_params(params, wmt_config['ignore'])
     sections = make_sections(params, wmt_config.get('sections', []))
     sections = make_groups(sections, wmt_config.get('groups', {}))
