@@ -5,4 +5,4 @@ Metadata for components used by the WMT.
     sudo rm -rf ../../db/components
     sudo cp -r metadata/ ../../db/components
     sudo chown -R huttone ../../db/components
-    ./build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
+    ./scripts/build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
