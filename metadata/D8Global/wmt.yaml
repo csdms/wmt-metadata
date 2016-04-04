@@ -3,6 +3,11 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+  - run_duration
+  - update_time_step
+  - output_interval
+  - output_format
+  - dt
 globals:
   - run_duration
   - rti_file
@@ -11,7 +16,7 @@ extras:
     description: Simulation run time
     value:
       type: int
-      default: 3600
+      default: 1
       range:
         min: 0
         max: 3153600000
@@ -20,7 +25,7 @@ extras:
     description: Number of time steps between port updates
     value:
       type: int
-      default: 600
+      default: 1
       range:
         min: 1
         max: 1000000
