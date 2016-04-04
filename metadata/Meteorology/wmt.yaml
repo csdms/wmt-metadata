@@ -172,6 +172,8 @@ sections:
   members:
   - rti_file
   - pixel_file
+  - slope_grid_file
+  - aspect_grid_file
   - PRECIP_ONLY
   - rho_H2O_ptype
   - rho_H2O
@@ -221,8 +223,6 @@ sections:
   - canopy_factor_ptype
   - canopy_factor
   - canopy_factor_file
-  - slope_grid_file
-  - aspect_grid_file
   - GMT_offset
   - start_month
   - start_day
