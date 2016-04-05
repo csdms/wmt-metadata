@@ -40,7 +40,7 @@ extras:
     description: Number of time steps between output files
     value:
       type: int
-      default: 600
+      default: 1
       range:
         min: 1
         max: 1000000
@@ -54,13 +54,6 @@ extras:
         - vtk
 groups: {}
 sections:
-- title: Run
-  members:
-  - run_duration
-  - dt
-  - update_time_step
-  - output_interval
-  - output_format
 - title: Input
   members:
   - rti_file
