@@ -84,16 +84,18 @@ parameter_mappers:
       - Grid: qs_0_file
       - Grid_Sequence: qs_0_file
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - dt
   - update_time_step
   - output_interval
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
 - title: "Input: Soil layer 0"
   members:

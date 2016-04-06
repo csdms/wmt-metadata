@@ -84,16 +84,18 @@ parameter_mappers:
       - Grid: rho_snow_file
       - Grid_Sequence: rho_snow_file
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - dt
   - update_time_step
   - output_interval
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
   - rho_snow_ptype
   - rho_snow

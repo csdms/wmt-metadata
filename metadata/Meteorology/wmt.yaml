@@ -161,16 +161,18 @@ parameter_mappers:
       - Grid: z_file
       - Grid_Sequence: z_file
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - dt
   - update_time_step
   - output_interval
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
   - slope_grid_file
   - aspect_grid_file

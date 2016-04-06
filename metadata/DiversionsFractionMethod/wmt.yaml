@@ -39,15 +39,17 @@ extras:
         - vtk
 groups: {}
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - dt
   - output_interval
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
   - source_file
   - sink_file

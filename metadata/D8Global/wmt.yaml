@@ -54,9 +54,11 @@ extras:
         - vtk
 groups: {}
 sections:
-- title: Input
+- title: Globals
   members:
   - rti_file
+- title: Input
+  members:
   - pixel_file
   - DEM_file
   - A_units

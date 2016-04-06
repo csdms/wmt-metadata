@@ -238,9 +238,12 @@ parameter_mappers:
       - Grid: qs_val_2_file
       - Grid_Sequence: qs_val_2_file
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - n_layers
   - dt
   - update_time_step
@@ -248,7 +251,6 @@ sections:
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
 - title: "Input: Soil layer 0"
   members:

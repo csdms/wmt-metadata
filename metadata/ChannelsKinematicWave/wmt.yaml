@@ -122,16 +122,18 @@ parameter_mappers:
       - Grid: width_file
       - Grid_Sequence: width_file
 sections:
-- title: Run
+- title: Globals
   members:
   - run_duration
+  - rti_file
+- title: Run
+  members:
   - dt
   - update_time_step
   - output_interval
   - output_format
 - title: Input
   members:
-  - rti_file
   - pixel_file
   - code_file
   - slope_file
