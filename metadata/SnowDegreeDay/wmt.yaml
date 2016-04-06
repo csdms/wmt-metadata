@@ -85,10 +85,6 @@ parameter_mappers:
       - Grid: rho_snow_file
       - Grid_Sequence: rho_snow_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

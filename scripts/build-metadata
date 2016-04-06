@@ -86,8 +86,7 @@ def section_break(title):
         'value': {
             'type': 'string',
             'default': '',
-        },
-        'global': title == 'Globals'
+        }
     }
 
 
@@ -105,6 +104,19 @@ def old_style_parameter(name, param):
 def make_sections(params, sections):
     added = set()
     ordered_params = []
+
+    driver = section_break('Globals')
+    driver['global'] = True
+    ordered_params.append(driver)
+    for name in params.keys():
+        if params[name].has_key('global') and params[name]['global'] is True:
+            try:
+                ordered_params.append(old_style_parameter(name, params[name]))
+            except KeyError:
+                warnings.warn('{name}: missing parameter'.format(name=name))
+            else:
+                added.add(name)
+
     for section in sections:
         ordered_params.append(section_break(section['title']))
         for member in section['members']:

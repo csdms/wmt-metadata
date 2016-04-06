@@ -78,10 +78,6 @@ parameter_mappers:
       - Grid: soil_x_file
       - Grid_Sequence: soil_x_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

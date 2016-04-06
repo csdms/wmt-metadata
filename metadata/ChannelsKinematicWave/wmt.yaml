@@ -123,10 +123,6 @@ parameter_mappers:
       - Grid: width_file
       - Grid_Sequence: width_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

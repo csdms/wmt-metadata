@@ -55,9 +55,6 @@ extras:
         - vtk
 groups: {}
 sections:
-- title: Globals
-  members:
-  - rti_file
 - title: Input
   members:
   - pixel_file

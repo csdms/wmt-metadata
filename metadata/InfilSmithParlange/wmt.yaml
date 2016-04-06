@@ -92,10 +92,6 @@ parameter_mappers:
       - Grid: qs_0_file
       - Grid_Sequence: qs_0_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

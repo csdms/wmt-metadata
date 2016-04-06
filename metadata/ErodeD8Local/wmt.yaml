@@ -42,9 +42,6 @@ groups:
   - noise_scale
   - seed
 sections:
-- title: Globals
-  members:
-  - run_duration
 - title: Run
   members:
   - output_interval

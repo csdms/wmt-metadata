@@ -148,10 +148,6 @@ parameter_mappers:
       - Grid: th_2_file
       - Grid_Sequence: th_2_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

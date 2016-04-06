@@ -49,10 +49,6 @@ extras:
         - vtk
 groups: {}
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

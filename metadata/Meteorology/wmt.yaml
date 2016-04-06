@@ -162,10 +162,6 @@ parameter_mappers:
       - Grid: z_file
       - Grid_Sequence: z_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - dt

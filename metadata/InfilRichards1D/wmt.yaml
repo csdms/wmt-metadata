@@ -239,10 +239,6 @@ parameter_mappers:
       - Grid: qs_val_2_file
       - Grid_Sequence: qs_val_2_file
 sections:
-- title: Globals
-  members:
-  - run_duration
-  - rti_file
 - title: Run
   members:
   - n_layers
