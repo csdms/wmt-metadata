@@ -86,7 +86,8 @@ def section_break(title):
         'value': {
             'type': 'string',
             'default': '',
-        }
+        },
+        'global': title == 'Globals'
     }
 
 
