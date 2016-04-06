@@ -22,13 +22,14 @@ extras:
         max: 3153600000
       units: s
   update_time_step:
-    description: Number of time steps between port updates
+    description: Interval between port updates
     value:
       type: int
       default: 1
       range:
         min: 1
         max: 1000000
+      units: s
   rti_file:
     description: RiverTools info file
     value:
@@ -37,7 +38,7 @@ extras:
       files:
       - site.rti
   output_interval:
-    description: Number of time steps between output files
+    description: Number of output files
     value:
       type: int
       default: 1

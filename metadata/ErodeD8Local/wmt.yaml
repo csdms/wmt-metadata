@@ -17,10 +17,10 @@ extras:
         max: 3153600000
       units: s
   output_interval:
-    description: Number of time steps between output files
+    description: Number of output files
     value:
       type: int
-      default: 600
+      default: 6
       range:
         min: 1
         max: 1000000
