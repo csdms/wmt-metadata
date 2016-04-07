@@ -243,9 +243,9 @@ sections:
   members:
   - n_layers
   - dt
-  - update_time_step
-  - output_interval
-  - output_format
+  - _update_time_step
+  - _output_interval
+  - _output_format
 - title: Input
   members:
   - pixel_file

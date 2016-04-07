@@ -42,8 +42,8 @@ sections:
 - title: Run
   members:
   - dt
-  - output_interval
-  - output_format
+  - _output_interval
+  - _output_format
 - title: Input
   members:
   - pixel_file

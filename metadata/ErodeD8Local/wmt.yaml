@@ -44,8 +44,8 @@ groups:
 sections:
 - title: Run
   members:
-  - output_interval
-  - output_format
+  - _output_interval
+  - _output_format
 - title: Input
   members:
   - CFL_factor

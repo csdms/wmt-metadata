@@ -4,9 +4,9 @@ ignore:
   - case_prefix
   - n_steps
   - run_duration
-  - update_time_step
-  - output_interval
-  - output_format
+  - _update_time_step
+  - _output_interval
+  - _output_format
   - dt
 globals:
   - run_duration
