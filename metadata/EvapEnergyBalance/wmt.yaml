@@ -40,7 +40,7 @@ extras:
       range:
         min: 1
         max: 1000000
-  output_format:
+  _output_format:
     description: File format for output files
     value:
       type: choice
