@@ -7,7 +7,7 @@ ignore:
 globals:
   - run_duration
 extras:
-  run_duration:
+  _run_duration:
     description: Simulation run time
     value:
       type: int

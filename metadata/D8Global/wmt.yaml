@@ -12,7 +12,7 @@ globals:
   - run_duration
   - rti_file
 extras:
-  run_duration:
+  _run_duration:
     description: Simulation run time
     value:
       type: int
