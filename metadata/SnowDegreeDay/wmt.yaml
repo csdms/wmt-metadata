@@ -16,7 +16,7 @@ extras:
         min: 0
         max: 3153600000
       units: s
-  update_time_step:
+  _update_time_step:
     description: Interval between port updates
     value:
       type: int
