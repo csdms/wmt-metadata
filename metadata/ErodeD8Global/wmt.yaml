@@ -16,7 +16,7 @@ extras:
         min: 0
         max: 3153600000
       units: s
-  output_interval:
+  _output_interval:
     description: Number of output files
     value:
       type: int

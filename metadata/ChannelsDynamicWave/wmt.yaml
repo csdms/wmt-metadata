@@ -36,7 +36,7 @@ extras:
       default: site.rti
       files:
       - site.rti
-  output_interval:
+  _output_interval:
     description: Number of output files
     value:
       type: int
