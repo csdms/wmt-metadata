@@ -8,7 +8,7 @@ ignore:
   - 'nval*'
   - 'z0val*'
 globals:
-  - run_duration
+  - _run_duration
   - rti_file
 extras:
   _run_duration:

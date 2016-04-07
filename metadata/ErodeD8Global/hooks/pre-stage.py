@@ -33,7 +33,7 @@ def execute(env):
 
     """
     env['stop_code'] = 1  # my choice
-    env['stop_time'] = env['run_duration']  # years
+    env['stop_time'] = env['_run_duration']  # years
     env['n_steps'] = 1  # WMT needs something here
     env['save_grid_dt'] = 1.0  # years
     env['save_pixels_dt'] = 1.0  # years

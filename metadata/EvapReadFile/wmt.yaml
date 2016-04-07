@@ -3,7 +3,7 @@ ignore:
   - case_prefix
   - n_steps
 globals:
-  - run_duration
+  - _run_duration
   - rti_file
 extras:
   _run_duration:

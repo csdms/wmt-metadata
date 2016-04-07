@@ -20,7 +20,7 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    env['n_steps'] = int(round(float(env['run_duration']) / float(env['dt'])))
+    env['n_steps'] = int(round(float(env['_run_duration']) / float(env['dt'])))
     env['save_grid_dt'] = float(env['dt'])
     env['save_pixels_dt'] = float(env['dt'])
     env['n_layers'] = 1  # my choice

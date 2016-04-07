@@ -4,7 +4,7 @@ ignore:
   - site_prefix
   - case_prefix
 globals:
-  - run_duration
+  - _run_duration
   - rti_file
 extras:
   _run_duration:
