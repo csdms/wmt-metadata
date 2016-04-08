@@ -5,7 +5,6 @@ ignore:
   - n_steps
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -78,6 +77,9 @@ parameter_mappers:
       - Grid: soil_x_file
       - Grid_Sequence: soil_x_file
 sections:
+- title: Grid
+  members:
+  - rti_file
 - title: Run
   members:
   - dt

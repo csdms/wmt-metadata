@@ -9,7 +9,6 @@ ignore:
   - 'z0val*'
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -123,6 +122,11 @@ parameter_mappers:
       - Grid: width_file
       - Grid_Sequence: width_file
 sections:
+- title: Grid
+  members:
+  - rti_file
+  - code_file
+  - slope_file
 - title: Run
   members:
   - dt
@@ -132,8 +136,6 @@ sections:
 - title: Input
   members:
   - pixel_file
-  - code_file
-  - slope_file
   - roughness_option
   - roughness_ptype
   - roughness
@@ -156,7 +158,7 @@ provides:
     exchange_items: '*'
 uses:
   satzone:
-    required: false 
+    required: false
     exchange_items:
     - land_surface_water__baseflow_volume_flux
   evap:

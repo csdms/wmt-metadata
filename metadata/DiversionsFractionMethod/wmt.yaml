@@ -3,7 +3,6 @@ ignore:
   - case_prefix
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -39,6 +38,9 @@ extras:
         - vtk
 groups: {}
 sections:
+- title: Grid
+  members:
+  - rti_file
 - title: Run
   members:
   - dt

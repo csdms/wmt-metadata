@@ -5,7 +5,6 @@ ignore:
   - n_steps
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -239,6 +238,9 @@ parameter_mappers:
       - Grid: qs_val_2_file
       - Grid_Sequence: qs_val_2_file
 sections:
+- title: Grid
+  members:
+  - rti_file
 - title: Run
   members:
   - n_layers

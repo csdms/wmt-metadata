@@ -5,7 +5,6 @@ ignore:
   - case_prefix
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -162,6 +161,11 @@ parameter_mappers:
       - Grid: z_file
       - Grid_Sequence: z_file
 sections:
+- title: Grid
+  members:
+  - rti_file
+  - slope_grid_file
+  - aspect_grid_file
 - title: Run
   members:
   - dt
@@ -171,8 +175,6 @@ sections:
 - title: Input
   members:
   - pixel_file
-  - slope_grid_file
-  - aspect_grid_file
   - PRECIP_ONLY
   - rho_H2O_ptype
   - rho_H2O

@@ -5,7 +5,6 @@ ignore:
   - n_steps
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -148,6 +147,10 @@ parameter_mappers:
       - Grid: th_2_file
       - Grid_Sequence: th_2_file
 sections:
+- title: Grid
+  members:
+  - rti_file
+  - flow_grid_file
 - title: Run
   members:
   - dt
@@ -157,7 +160,6 @@ sections:
 - title: Input
   members:
   - pixel_file
-  - flow_grid_file
   - elev_ptype
   - elev
   - elev_file

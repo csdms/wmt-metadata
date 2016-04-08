@@ -10,7 +10,6 @@ ignore:
   - dt
 globals:
   - _run_duration
-  - rti_file
 extras:
   _run_duration:
     description: Simulation run time
@@ -55,10 +54,13 @@ extras:
         - vtk
 groups: {}
 sections:
+- title: Grid
+  members:
+  - rti_file
+  - DEM_file
 - title: Input
   members:
   - pixel_file
-  - DEM_file
   - A_units
   - LINK_FLATS
   - FILL_PITS_IN_Z0
