@@ -4,7 +4,8 @@ import shutil
 from wmt.config import site
 from wmt.models.submissions import prepend_to_path
 from wmt.utils.hook import find_simulation_input_file
-from topoflow_utils.hook import assign_parameters, scalar_to_rtg_file
+from topoflow_utils.hook import (assign_parameters, lowercase_choice,
+                                 scalar_to_rtg_file)
 
 
 file_list = []
@@ -31,6 +32,10 @@ def execute(env):
         env['pixel_file'] = env['case_prefix'] + '_outlets.txt'
 
     assign_parameters(env, file_list)
+
+    env['soil_0_type'] = lowercase_choice(env['soil_0_type'])
+    env['soil_1_type'] = lowercase_choice(env['soil_1_type'])
+    env['soil_2_type'] = lowercase_choice(env['soil_2_type'])
 
     for fname in file_list:
         src = find_simulation_input_file(env[fname])
