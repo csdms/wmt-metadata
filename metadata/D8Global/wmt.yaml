@@ -1,7 +1,6 @@
 ignore:
   - '*_dtype'
   - site_prefix
-  - case_prefix
   - n_steps
   - _run_duration
   - _update_time_step
@@ -11,6 +10,7 @@ ignore:
   - pixel_file
 globals:
   - _run_duration
+  - case_prefix
 extras:
   _run_duration:
     description: Simulation run time
