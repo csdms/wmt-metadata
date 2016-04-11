@@ -3,6 +3,7 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -159,7 +160,6 @@ sections:
   - _output_format
 - title: Input
   members:
-  - pixel_file
   - elev_ptype
   - elev
   - elev_file

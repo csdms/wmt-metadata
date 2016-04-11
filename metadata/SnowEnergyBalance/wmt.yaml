@@ -3,6 +3,7 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -95,7 +96,6 @@ sections:
   - _output_format
 - title: Input
   members:
-  - pixel_file
   - rho_snow_ptype
   - rho_snow
   - rho_snow_file

@@ -3,6 +3,7 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -248,9 +249,6 @@ sections:
   - _update_time_step
   - _output_interval
   - _output_format
-- title: Input
-  members:
-  - pixel_file
 - title: "Input: Soil layer 0"
   members:
   - Ks_val_0_ptype

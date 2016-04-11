@@ -3,6 +3,7 @@ ignore:
   - n_steps
   - site_prefix
   - case_prefix
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -174,7 +175,6 @@ sections:
   - _output_format
 - title: Input
   members:
-  - pixel_file
   - PRECIP_ONLY
   - rho_H2O_ptype
   - rho_H2O

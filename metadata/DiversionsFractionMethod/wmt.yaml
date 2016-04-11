@@ -1,6 +1,7 @@
 ignore:
   - site_prefix
   - case_prefix
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -48,7 +49,6 @@ sections:
   - _output_format
 - title: Input
   members:
-  - pixel_file
   - source_file
   - sink_file
   - canal_file

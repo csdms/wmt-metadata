@@ -3,6 +3,7 @@ ignore:
   - site_prefix
   - case_prefix
   - n_steps
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -81,7 +82,6 @@ sections:
   - _output_format
 - title: Input
   members:
-  - pixel_file
   - K_soil_ptype
   - K_soil
   - K_soil_file

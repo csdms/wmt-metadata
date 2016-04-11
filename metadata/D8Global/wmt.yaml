@@ -8,6 +8,7 @@ ignore:
   - _output_interval
   - _output_format
   - dt
+  - pixel_file
 globals:
   - _run_duration
 extras:
@@ -60,7 +61,6 @@ sections:
   - DEM_file
 - title: Input
   members:
-  - pixel_file
   - A_units
   - LINK_FLATS
   - FILL_PITS_IN_Z0
