@@ -4,10 +4,11 @@ import shutil
 from wmt.config import site
 from wmt.models.submissions import prepend_to_path
 from wmt.utils.hook import find_simulation_input_file
-from topoflow_utils.hook import assign_parameters, scalar_to_rtg_file
+from topoflow_utils.hook import (assign_parameters,
+                                 scalar_to_rtg_file, choices_map, units_map)
 
 
-file_list = []
+file_list = ['DEM_file']
 
 
 def execute(env):
@@ -37,9 +38,9 @@ def execute(env):
 
     assign_parameters(env, file_list)
 
-    # for fname in ['code_file', 'slope_file'] + file_list:
-    #     src = find_simulation_input_file(env[fname])
-    #     shutil.copy(src, os.curdir)
+    for fname in file_list:
+        src = find_simulation_input_file(env[fname])
+        shutil.copy(src, os.curdir)
 
     src = find_simulation_input_file(env['code_file'])
     env['code_file'] = env['site_prefix'] + '_flow.rtg'
@@ -54,6 +55,12 @@ def execute(env):
 
     src = find_simulation_input_file(env['rti_file'])
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
+
+    env['A_units'] = units_map[env['A_units']]
+    env['LINK_FLATS'] = choices_map[env['LINK_FLATS']]
+    env['FILL_PITS_IN_Z0'] = choices_map[env['FILL_PITS_IN_Z0']]
+    env['LR_PERIODIC'] = choices_map[env['LR_PERIODIC']]
+    env['TB_PERIODIC'] = choices_map[env['TB_PERIODIC']]
 
     for var in ('width', 'angle', 'roughness', 'd0', 'sinu'):
         if env[var + '_ptype'] == 'Scalar':
