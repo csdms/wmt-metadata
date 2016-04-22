@@ -53,10 +53,8 @@ def execute(env):
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
 
     env['A_units'] = units_map[env['A_units']]
-    env['LINK_FLATS'] = choices_map[env['LINK_FLATS']]
-    env['FILL_PITS_IN_Z0'] = choices_map[env['FILL_PITS_IN_Z0']]
-    env['LR_PERIODIC'] = choices_map[env['LR_PERIODIC']]
-    env['TB_PERIODIC'] = choices_map[env['TB_PERIODIC']]
+    for var in ('LINK_FLATS', 'FILL_PITS_IN_Z0', 'LR_PERIODIC',
+        'TB_PERIODIC'): env[var] = choices_map[env[var]]
 
     for var in ('width', 'angle', 'roughness', 'd0', 'sinu'):
         if env[var + '_ptype'] == 'Scalar':
