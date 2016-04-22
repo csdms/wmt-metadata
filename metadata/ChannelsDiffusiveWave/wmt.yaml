@@ -126,6 +126,7 @@ sections:
 - title: Grid
   members:
   - rti_file
+  - DEM_file
   - code_file
   - slope_file
 - title: Run
@@ -152,6 +153,11 @@ sections:
   - sinu_ptype
   - sinu
   - sinu_file
+  - A_units
+  - LINK_FLATS
+  - FILL_PITS_IN_Z0
+  - LR_PERIODIC
+  - TB_PERIODIC
 provides:
   channels:
     required: false
