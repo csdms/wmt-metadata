@@ -4,10 +4,11 @@ import shutil
 from wmt.config import site
 from wmt.models.submissions import prepend_to_path
 from wmt.utils.hook import find_simulation_input_file
-from topoflow_utils.hook import assign_parameters, scalar_to_rtg_file
+from topoflow_utils.hook import (assign_parameters,
+                                 scalar_to_rtg_file, choices_map, units_map)
 
 
-file_list = []
+file_list = ['DEM_file']
 
 
 def execute(env):
@@ -31,10 +32,6 @@ def execute(env):
     env['MANNING'] = env['roughness_option'].startswith('Manning') * 1
     env['LAW_OF_WALL'] = 1 - env['MANNING']
 
-    env['nval_ptype'] = env['z0val_ptype'] = env['roughness_ptype']
-    env['nval'] = env['z0val'] = env['roughness']
-    env['nval_file'] = env['z0val_file'] = env['roughness_file']
-
     assign_parameters(env, file_list)
 
     # for fname in ['code_file', 'slope_file'] + file_list:
@@ -54,6 +51,10 @@ def execute(env):
 
     src = find_simulation_input_file(env['rti_file'])
     shutil.copy(src, os.path.join(os.curdir, env['site_prefix'] + '.rti'))
+
+    env['A_units'] = units_map[env['A_units']]
+    for var in ('LINK_FLATS', 'FILL_PITS_IN_Z0', 'LR_PERIODIC',
+        'TB_PERIODIC'): env[var] = choices_map[env[var]]
 
     for var in ('width', 'angle', 'roughness', 'd0', 'sinu'):
         if env[var + '_ptype'] == 'Scalar':
