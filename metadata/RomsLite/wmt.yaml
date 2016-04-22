@@ -1,0 +1,44 @@
+ignore:
+  - number_of_steps
+  - _update_time_step
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 0
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+      units: s
+sections:
+- title: Run
+  members:
+  - time_step
+- title: Cohesive Sediment
+  members:
+  - mud_class_0_settling_velocity
+  - mud_class_1_settling_velocity
+  - mud_class_2_settling_velocity
+  - mud_class_0_critical_shear_stress_for_erosion
+  - mud_class_1_critical_shear_stress_for_erosion
+  - mud_class_2_critical_shear_stress_for_erosion
+  - mud_class_0_critical_shear_stress_for_deposition
+  - mud_class_1_critical_shear_stress_for_deposition
+  - mud_class_2_critical_shear_stress_for_deposition
+- title: Non-Cohesive Sediment
+  members:
+  - sand_settling_velocity
+  - sand_critical_shear_stress_for_erosion
+  - sand_critical_shear_stress_for_deposition
