@@ -32,10 +32,6 @@ def execute(env):
     env['MANNING'] = env['roughness_option'].startswith('Manning') * 1
     env['LAW_OF_WALL'] = 1 - env['MANNING']
 
-    env['nval_ptype'] = env['z0val_ptype'] = env['roughness_ptype']
-    env['nval'] = env['z0val'] = env['roughness']
-    env['nval_file'] = env['z0val_file'] = env['roughness_file']
-
     assign_parameters(env, file_list)
 
     for fname in file_list:
