@@ -26,19 +26,25 @@ sections:
 - title: Run
   members:
   - time_step
-- title: Cohesive Sediment
+- title: Settling Velocity
   members:
   - mud_class_0_settling_velocity
   - mud_class_1_settling_velocity
   - mud_class_2_settling_velocity
+  - sand_settling_velocity
+- title: Critical Shear Stress for Erosion
+  members:
   - mud_class_0_critical_shear_stress_for_erosion
   - mud_class_1_critical_shear_stress_for_erosion
   - mud_class_2_critical_shear_stress_for_erosion
+  - sand_critical_shear_stress_for_erosion
+- title: Critical Shear Stress for Deposition
+  members:
   - mud_class_0_critical_shear_stress_for_deposition
   - mud_class_1_critical_shear_stress_for_deposition
   - mud_class_2_critical_shear_stress_for_deposition
-- title: Non-Cohesive Sediment
-  members:
-  - sand_settling_velocity
-  - sand_critical_shear_stress_for_erosion
   - sand_critical_shear_stress_for_deposition
+- title: Forcing
+  members:
+  - river_forcing_file
+  - ocean_forcing_file
