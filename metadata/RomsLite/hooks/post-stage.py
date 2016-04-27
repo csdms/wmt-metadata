@@ -21,7 +21,8 @@ def execute(env):
     for name in _DEFAULT_FILES:
         if env[name] != _DEFAULT_FILES[name]:
             try:
-                os.remove(os.path.join(os.curdir, 'Forcing', env[name]))
+                os.remove(os.path.join(os.curdir, 'Forcing',
+                                       _DEFAULT_FILES[name]))
             except OSError:
                 pass
 
