@@ -13,6 +13,6 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    for name in ('river_forcing_file', 'ocean_forcing_file'):
+    for name in ('river_forcing_file', 'waves_forcing_file'):
         src = find_simulation_input_file(env[name])
         shutil.copy(src, os.path.join(os.curdir, 'Forcing'))

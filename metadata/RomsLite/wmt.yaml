@@ -47,4 +47,4 @@ sections:
 - title: Forcing
   members:
   - river_forcing_file
-  - ocean_forcing_file
+  - waves_forcing_file
