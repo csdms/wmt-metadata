@@ -13,3 +13,5 @@ def execute(env):
     """
     env['number_of_steps'] = int(round(float(env['_run_duration']) /
                                        float(env['time_step'])))
+
+    env['_update_time_step'] = float(env['_run_duration'])
