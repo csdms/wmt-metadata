@@ -37,7 +37,7 @@ extras:
       files:
       - site.rti
   _output_interval:
-    description: Number of output files
+    description: Number of times to write output
     value:
       type: int
       default: 6
@@ -45,7 +45,7 @@ extras:
         min: 1
         max: 1000000
   _output_format:
-    description: File format for output files
+    description: File format for output
     value:
       type: choice
       default: netcdf
