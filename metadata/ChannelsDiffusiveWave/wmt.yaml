@@ -8,6 +8,7 @@ ignore:
   - 'nval*'
   - 'z0val*'
   - pixel_file
+  - 'basin_outlet_*'
 globals:
   - _run_duration
 extras:
