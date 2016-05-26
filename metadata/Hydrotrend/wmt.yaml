@@ -35,6 +35,18 @@ extras:
       choices:
         - netcdf
         - vtk
+  hypsometry_file:
+    description: Basin hypsometry file
+    value:
+      type: file
+      default: waipaoa.hyps
+      files:
+        - danube.hyps
+        - eel.hyps
+        - ganges.hyps
+        - lanyang.hyps
+        - po.hyps
+        - waipaoa.hyps
 groups:
   mean_annual_temperature_group:
   - starting_mean_annual_temperature
