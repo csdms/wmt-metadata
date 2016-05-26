@@ -107,7 +107,6 @@ groups:
 sections:
 - title: Run
   members:
-  - dt
   - _update_time_step
   - _output_interval
   - _output_format
