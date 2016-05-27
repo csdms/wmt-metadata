@@ -203,10 +203,15 @@ sections:
 provides:
   discharge:
     exchange_items:
-    - channel_outflow_end_water__speed
-    - channel_outflow_end__width
-    - channel_outflow_end_water__depth
-    - channel_outflow_end_water__discharge
-    - channel_outflow_end_suspended_sediment__discharge
-    - channel_outflow_end_bed_load_sediment__mass_flow_rate
+    - atmosphere_bottom_air__domain_mean_of_temperature
+    - channel_exit_water_sediment~suspended__mass_flow_rate
+    - channel_exit_water_flow__speed
+    - channel_entrance_water_sediment~bedload__mass_flow_rate
+    - channel_exit_water__volume_flow_rate
+    - channel_exit_water_x-section__width
+    - channel_exit_water_x-section__depth
+    - channel_entrance_water__volume_flow_rate
+    - atmosphere_water__domain_mean_of_precipitation_leq-volume_flux
+    - channel_exit_water_sediment~bedload__mass_flow_rate
+    - channel_exit_water_sediment~suspended__mass_concentration
     required: false
