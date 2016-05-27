@@ -1,0 +1,59 @@
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 1
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+      units: s
+  _output_interval:
+    description: Number of output files
+    value:
+      type: int
+      default: 6
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output files
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+sections:
+- title: Run
+  members:
+  - _update_time_step
+  - _output_interval
+  - _output_format
+- title: Input
+  members:
+  - incoming_wave_height
+  - incoming_wave_period
+  - angle_highness_factor
+  - angle_asymmetry
+provides:
+  waves:
+    exchange_items:
+    - sea_water_surface_wave__from_direction
+    - max_over_increment_of_sea_water_surface_wave__from_direction
+    - min_over_increment_of_sea_water_surface_wave__from_direction
+    - mean_over_increment_of_sea_water_surface_wave__from_direction
+    - sea_water_surface_wave__height
+    - sea_water_surface_wave__period
+    required: false

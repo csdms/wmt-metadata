@@ -1,0 +1,53 @@
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 1
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+      units: s
+  _output_interval:
+    description: Number of output files
+    value:
+      type: int
+      default: 6
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output files
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+sections:
+- title: Run
+  members:
+  - _update_time_step
+  - _output_interval
+  - _output_format
+- title: Discharge
+  members:
+  - bed_load_flux
+  - water_discharge
+provides:
+  discharge:
+    exchange_items:
+    - channel_inflow_end_bed_load_sediment__mass_flow_rate
+    - channel_inflow_end_water__discharge
+    required: false
