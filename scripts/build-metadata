@@ -186,7 +186,8 @@ def make_mappers(params, mappers):
 def dump_parameters(params, wmt_config):
     add_extras(params, wmt_config['extras'])
     set_globals(params, wmt_config.get('globals', []))
-    pop_ignored_params(params, wmt_config['ignore'])
+    if wmt_config.has_key('ignore'):
+        pop_ignored_params(params, wmt_config['ignore'])
     sections = make_sections(params, wmt_config.get('sections', []))
     sections = make_groups(sections, wmt_config.get('groups', {}))
     sections = make_mappers(sections, wmt_config.get('parameter_mappers', {}))
