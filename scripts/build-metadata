@@ -219,7 +219,7 @@ def dump_uses(uses_names, wmt_config):
             'required': uses[name]['required'],
             'exchange_items': uses[name]['exchange_items'],
         })
-    
+
     with open('uses.json', 'w') as fp:
         json.dump(ports, fp, indent=4)
 
@@ -238,7 +238,7 @@ def dump_provides(provides_names, wmt_config):
             'required': provides[name]['required'],
             'exchange_items': names,
         })
-    
+
     with open('provides.json', 'w') as fp:
         json.dump(ports, fp, indent=4)
 
@@ -246,11 +246,39 @@ def dump_provides(provides_names, wmt_config):
 def build_file_list(config, prefix='.'):
     all_files = []
     for name, component in config['components'].items():
+        datadir = os.path.commonprefix(component['files'])
         for file in component['files']:
             all_files.append(
                 (file,
-                 os.path.join(prefix, name, 'files', os.path.basename(file))))
+                 os.path.join(name, 'files', file[len(datadir):])))
+
+            # all_files.append(
+            #     (file,
+            #      os.path.join(prefix, name, 'files', os.path.basename(file))))
+
     return all_files
+
+
+def add_output_vars_to_params(params, sections, provides):
+    print_section = {
+        'title': 'Output files',
+        'members': [],
+    }
+    for name in provides:
+        params[name] = {
+            'description': name,
+            'value': {
+                'type': 'choice',
+                'default': 'off',
+                'choices': [
+                    'off',
+                    name
+                ]
+            }
+        }
+        print_section['members'].append(name)
+
+    sections.append(print_section)
 
 
 def build_metadata(config, prefix='.'):
@@ -258,6 +286,10 @@ def build_metadata(config, prefix='.'):
         with cd(os.path.join(prefix, name)):
             with open('wmt.yaml', 'r') as fp:
                 wmt_config = load_wmt_config(fp)
+
+        add_output_vars_to_params(component['parameters'],
+                                  wmt_config['sections'],
+                                  component.get('provides', []))
 
         with cd(os.path.join(prefix, name, 'db')):
             dump_info(component['info'], component['api'])
@@ -288,10 +320,11 @@ def fetch_files(config, prefix='.'):
     # def callback(bytes, total):
     #     print '{bytes} / {total}'.format(bytes=bytes, total=total)
 
-    for src, dst in files_to_fetch:
-        print '{src} --> {dst}'.format(src=src, dst=dst)
-        with cd(os.path.dirname(dst)):
-            sftp.get(src, os.path.basename(dst))
+    with cd(prefix):
+        for src, dst in files_to_fetch:
+            print '{src} --> {dst}'.format(src=src, dst=dst)
+            with cd(os.path.dirname(dst)):
+                sftp.get(src, os.path.basename(dst))
             # sftp.get(src, os.path.basename(dst), callback=callback)
 
 
