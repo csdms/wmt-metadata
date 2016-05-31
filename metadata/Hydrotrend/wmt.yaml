@@ -5,25 +5,25 @@ extras:
     description: Simulation run time
     value:
       type: int
-      default: 3600
+      default: 365
       range:
         min: 1
         max: 3153600000
-      units: s
+      units: d
   _update_time_step:
     description: Interval between port updates
     value:
       type: int
-      default: 600
+      default: 1
       range:
         min: 1
         max: 1000000
-      units: s
+      units: d
   _output_interval:
     description: Number of output files
     value:
       type: int
-      default: 6
+      default: 12
       range:
         min: 1
         max: 1000000
