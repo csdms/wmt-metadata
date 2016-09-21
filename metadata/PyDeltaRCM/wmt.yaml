@@ -1,0 +1,140 @@
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 1
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+      units: s
+  model_output__site_prefix:
+    name: Site prefix
+    description: Site prefix for output file names
+    value:
+      type: string
+      default:
+      units: '-'
+  model_output__case_prefix:
+    name: Case prefix
+    description: Case prefix for output file names
+    value:
+      type: string
+      default:
+      units: '-'
+  model_output__out_dir:
+    name: Output directory
+    description: Output directory
+    value:
+      type: string
+      default: deltaRCM_Output
+      units: '-'
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 6
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+sections:
+- title: Grid
+  members:
+  - model_grid__length
+  - model_grid__width
+  - model_grid__cell_size
+- title: Land surface
+  members:
+  - land_surface__width
+  - land_surface__slope
+- title: Flow routing
+  members:
+  - model__max_iteration
+  - water__number_parcels
+- title: Channel
+  members:
+  - channel__flow_velocity
+  - channel__width
+  - channel__flow_depth
+- title: Sea surface
+  members:
+  - sea_water_surface__mean_elevation
+  - sea_water_surface__rate_change_elevation
+- title: Sediment
+  members:
+  - sediment__number_parcels
+  - sediment__bedload_fraction
+  - sediment__influx_concentration
+- title: Basin
+  members:
+  - basin__opt_subsidence
+  - basin__maximum_subsidence_rate
+  - basin__subsidence_start_timestep
+- title: Tuning coefficients
+  members:
+  - coeff__surface_smoothing
+  - coeff__under_relaxation__water_surface
+  - coeff__under_relaxation__water_flow
+  - coeff__iterations_smoothing_algorithm
+  - coeff__depth_dependence__water
+  - coeff__depth_dependence__sand
+  - coeff__depth_dependence__mud
+  - coeff__non_linear_exp_sed_flux_flow_velocity
+  - coeff__sedimentation_lag
+  - coeff__velocity_deposition_mud
+  - coeff__velocity_erosion_mud
+  - coeff__velocity_erosion_sand
+  - coeff__topographic_diffusion
+- title: Output options
+  members:
+  - model_output__opt_eta_figs
+  - model_output__opt_stage_figs
+  - model_output__opt_depth_figs
+  - model_output__opt_eta_grids
+  - model_output__opt_stage_grids
+  - model_output__opt_depth_grids
+  - model_output__opt_time_interval
+  - basin__opt_stratigraphy
+provides:
+  subaqueous_delta:
+    required: false
+    exchange_items:
+    - sea_water__depth
+    - sea_bottom_surface__elevation
+    - sea_water_surface__elevation
+uses:
+  channels:
+    required: false
+    exchange_items:
+    - channel__flow_velocity
+    - channel__flow_depth
+    - channel__width
+  sediment:
+    required: false
+    exchange_items:
+    - sediment__bedload_fraction
+    - sediment__influx_concentration
+  sea_water_surface:
+    required: false
+    exchange_items:
+    - sea_water_surface__rate_change_elevation
+    - sea_water_surface__mean_elevation
