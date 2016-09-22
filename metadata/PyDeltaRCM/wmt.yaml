@@ -61,6 +61,11 @@ extras:
         - netcdf
         - vtk
 sections:
+- title: Run
+  members:
+  - _update_time_step
+  - _output_interval
+  - _output_format
 - title: Grid
   members:
   - model_grid__length
