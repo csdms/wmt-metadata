@@ -1,3 +1,7 @@
+ignore:
+  - model_output__case_prefix
+  - model_output__site_prefix
+  - model_output__out_dir
 globals:
   - _run_duration
 extras:
@@ -24,14 +28,14 @@ extras:
     description: Site prefix for output file names
     value:
       type: string
-      default:
+      default: site
       units: '-'
   model_output__case_prefix:
     name: Case prefix
     description: Case prefix for output file names
     value:
       type: string
-      default:
+      default: case
       units: '-'
   model_output__out_dir:
     name: Output directory
