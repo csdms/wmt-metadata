@@ -131,18 +131,15 @@ provides:
     - sea_bottom_surface__elevation
     - sea_water_surface__elevation
 uses:
-  channels:
+  discharge:
     required: false
     exchange_items:
-    - channel__flow_velocity
-    - channel__flow_depth
-    - channel__width
-  sediment:
-    required: false
-    exchange_items:
-    - sediment__bedload_fraction
-    - sediment__influx_concentration
-  sea_water_surface:
+    - channel_exit_water_flow__speed
+    - channel_exit_water_x-section__depth
+    - channel_exit_water_x-section__width
+    - channel_exit_water_sediment~bedload__volume_fraction
+    - channel_exit_water_sediment~suspended__mass_concentration
+  sea_surface:
     required: false
     exchange_items:
     - sea_water_surface__rate_change_elevation
