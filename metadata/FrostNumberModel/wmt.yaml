@@ -54,6 +54,7 @@ parameter_mappers:
     selections:
       - Scalar: T_air_max
       - Time_Series: T_air_max_file
+sections:
 - title: Run
   members:
     - start_year
