@@ -1,0 +1,83 @@
+ignore:
+  - '*_dtype'
+  - permafrost_dir
+  - comp_status
+  - in_directory
+  - out_directory
+  - site_prefix
+  - case_prefix
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 1
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 600
+      range:
+        min: 1
+        max: 1000000
+      units: s
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 6
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+parameter_mappers:
+  T_air_min_mapper:
+    selector: T_air_min_ptype
+    selections:
+      - Scalar: T_air_min
+      - Time_Series: T_air_min_file
+  T_air_max_mapper:
+    selector: T_air_max_ptype
+    selections:
+      - Scalar: T_air_max
+      - Time_Series: T_air_max_file
+- title: Run
+  members:
+    - start_year
+    - end_year
+    - dt
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Input
+  members:
+    - T_air_min_ptype
+    - T_air_min
+    - T_air_max_ptype
+    - T_air_max
+uses:
+  meteorology:
+    required: false
+    exchange_items:
+      - atmosphere_bottom_air__temperature_min
+      - atmosphere_bottom_air__temperature_max
+provides:
+  frost_number:
+    required: false
+    exchange_items:
+      - frostnumber__air
+      - frostnumber__surface
+      - frostnumber__stefan
