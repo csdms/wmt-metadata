@@ -19,9 +19,10 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    assign_parameters(env, file_list)
+    env['end_year'] = long(env['start_year']) + long(env['_run_duration'])
     env['fn_out_filename'] = 'frostnumber_output.dat'
 
+    assign_parameters(env, file_list)
     for fname in file_list:
         src = find_simulation_input_file(env[fname])
         shutil.copy(src, os.curdir)

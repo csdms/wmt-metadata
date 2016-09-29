@@ -6,6 +6,7 @@ ignore:
   - out_directory
   - site_prefix
   - case_prefix
+  - end_year
 globals:
   - _run_duration
 extras:
@@ -57,9 +58,8 @@ parameter_mappers:
 sections:
 - title: Run
   members:
-    - dt
     - start_year
-    - end_year
+    - dt
     - _update_time_step
     - _output_interval
     - _output_format
