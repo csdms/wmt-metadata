@@ -63,3 +63,6 @@ target/
 
 # Emacs backups
 *~
+
+# The component metadata file returned from the WMT executor
+wmt-config-beach.yaml
