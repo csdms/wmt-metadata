@@ -19,3 +19,13 @@ This pulls component information from the executor into the server.
 The ownership of all WMT server files is by the group `nobody`,
 so `sudo` privileges on the server machine
 are needed to install the components.
+
+To instead install components manually, use
+
+```
+ssh beach.colorado.edu PATH=/home/csdms/wmt/topoflow.1/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
+sudo rm -rf ../../db/components
+sudo cp -r metadata/ ../../db/components
+sudo chown -R huttone ../../db/components
+./scripts/build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
+```
