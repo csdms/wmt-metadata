@@ -1,0 +1,64 @@
+ignore:
+  - _run_duration
+globals:
+  - _run_duration
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+sections:
+  - title: MsTMIP models
+    members:
+      - BIOME-BGC
+      - CLASS-CTEM-N
+      - CLM4
+      - CLM4VIC
+      - DLEM
+      - GTEC
+      - ISAM
+      - LPJ-wsl
+      - ORCHIDEE-LSCE
+      - SiB3
+      - SiBCASA
+      - TEM6
+      - TRIPLEX-GHG
+      - VEGAS2.1
+      - VISIT
+  - title: CMIP5 models
+    members:
+      - bcc-csm1-1-m
+      - BNU-ESM
+      - CanESM2
+      - cesm1_2bgc
+      - CESM1-BGC
+      - GFDL-ESM2G
+      - HadGEM2-ES
+      - inmcm4
+      - IPSL-CM5A-LR
+      - MIROC-ESM
+      - MPI-ESM-LR
+      - MRI-ESM1
+      - NorESM1-ME
+  - title: Study variable
+    members:
+      - study_variable
+  - title: Study duration and scope
+    members:
+      - start_year
+      - end_year
+      - region
+  - title: Statistics and skill scores
+    members:
+      - gp_annualmean
+      - gp_bias
+      - gp_rmse
+      - sm_globalbias
+      - sm_rmse
+      - sm_phase
+      - sm_taylor
+      - sm_interannual
