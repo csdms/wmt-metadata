@@ -292,9 +292,10 @@ def build_metadata(config, prefix='.'):
             with open('wmt.yaml', 'r') as fp:
                 wmt_config = load_wmt_config(fp)
 
-        add_output_vars_to_params(component['parameters'],
-                                  wmt_config['sections'],
-                                  component.get('provides', []))
+        if len(component.get('provides', [])) > 0:
+            add_output_vars_to_params(component['parameters'],
+                                      wmt_config['sections'],
+                                      component.get('provides', []))
 
         with cd(os.path.join(prefix, name, 'db')):
             dump_info(component['info'], component['api'])
