@@ -101,13 +101,9 @@ def old_style_parameter(name, param):
     }
 
 
-def make_sections(params, sections):
+def make_sections(ordered_params, params, sections):
     added = set()
-    ordered_params = []
 
-    driver = section_break('Globals')
-    driver['global'] = True
-    ordered_params.append(driver)
     for name in params.keys():
         if params[name].has_key('global') and params[name]['global'] is True:
             try:
@@ -185,14 +181,22 @@ def make_mappers(params, mappers):
 
 def dump_parameters(params, wmt_config):
     add_extras(params, wmt_config['extras'])
-    set_globals(params, wmt_config.get('globals', []))
+
     if wmt_config.has_key('ignore'):
         pop_ignored_params(params, wmt_config['ignore'])
-    sections = make_sections(params, wmt_config.get('sections', []))
-    sections = make_groups(sections, wmt_config.get('groups', {}))
-    sections = make_mappers(sections, wmt_config.get('parameter_mappers', {}))
+
+    plist = []
+    if wmt_config.has_key('globals'):
+        driver = section_break('Globals')
+        driver['global'] = True
+        plist.append(driver)
+        set_globals(params, wmt_config.get('globals', []))
+
+    plist = make_sections(plist, params, wmt_config.get('sections', []))
+    plist = make_groups(plist, wmt_config.get('groups', {}))
+    plist = make_mappers(plist, wmt_config.get('parameter_mappers', {}))
     with open('parameters.json', 'w') as fp:
-        json.dump(sections, fp, indent=4)
+        json.dump(plist, fp, indent=4)
 
 
 def dump_files(files):
