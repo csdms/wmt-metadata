@@ -180,7 +180,8 @@ def make_mappers(params, mappers):
 
 
 def dump_parameters(params, wmt_config):
-    add_extras(params, wmt_config['extras'])
+    if wmt_config.has_key('extras'):
+        add_extras(params, wmt_config['extras'])
 
     if wmt_config.has_key('ignore'):
         pop_ignored_params(params, wmt_config['ignore'])
