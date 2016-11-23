@@ -1,0 +1,89 @@
+ignore:
+  - _run_duration
+  - _update_time_step
+  - _output_interval
+  - _output_format
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+sections:
+  - title: MsTMIP models
+    members:
+      - BIOME-BGC
+      - CLASS-CTEM-N
+      - CLM4
+      - CLM4VIC
+      - DLEM
+      - GTEC
+      - ISAM
+      - LPJ-wsl
+      - ORCHIDEE-LSCE
+      - SiB3
+      - SiBCASA
+      - TEM6
+      - TRIPLEX-GHG
+      - VEGAS21
+      - VISIT
+  - title: CMIP5 models
+    members:
+      - bcc-csm1-1-m
+      - BNU-ESM
+      - CanESM2
+      - cesm1_2bgc
+      - CESM1-BGC
+      - GFDL-ESM2G
+      - HadGEM2-ES
+      - inmcm4
+      - IPSL-CM5A-LR
+      - MIROC-ESM
+      - MPI-ESM-LR
+      - MRI-ESM1
+      - NorESM1-ME
+  - title: Study variable
+    members:
+      - study_variable
+  - title: Study duration and scope
+    members:
+      - start_year
+      - end_year
+      - region
+  - title: Statistics and skill scores
+    members:
+      - gp_annualmean
+      - gp_bias
+      - gp_rmse
+      - sm_globalbias
+      - sm_rmse
+      - sm_phase
+      - sm_taylor
+      - sm_interannual
