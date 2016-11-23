@@ -6,9 +6,9 @@ by setting
 the name of the WMT executor and
 the paths to where WMT is installed on the server and the executor.
 
-    wmt_executor="beach.colorado.edu"
-    wmt_executor_path=/home/csdms/wmt/_testing
-    wmt_server_path=/data/web/htdocs/wmt/api/_testing
+    export wmt_executor="beach.colorado.edu"
+    export wmt_executor_path=/home/csdms/wmt/_testing
+    export wmt_server_path=/data/web/htdocs/wmt/api/_testing
 
 Install the components with
 
@@ -23,9 +23,9 @@ are needed to install the components.
 To instead install components manually, use
 
 ```
-ssh beach.colorado.edu PATH=/home/csdms/wmt/topoflow.1/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
+ssh $wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
 sudo rm -rf ../../db/components
 sudo cp -r metadata/ ../../db/components
-sudo chown -R huttone ../../db/components
+sudo chown -R $USER ../../db/components
 ./scripts/build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
 ```
