@@ -27,7 +27,7 @@ sections:
       - SiBCASA
       - TEM6
       - TRIPLEX-GHG
-      - VEGAS2.1
+      - VEGAS21
       - VISIT
   - title: CMIP5 models
     members:
