@@ -3,11 +3,6 @@
 import os
 import shutil
 
-from wmt.utils.hook import find_simulation_input_file, yaml_dump
-
-
-file_list = []
-
 
 def execute(env):
     """Perform pre-stage tasks for running a component.
@@ -18,4 +13,4 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    yaml_dump('_env.yaml', env)
+    pass
