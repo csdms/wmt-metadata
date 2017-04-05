@@ -148,7 +148,7 @@ uses:
     exchange_items:
       - snowpack__depth
       - snowpack__density
-  soil:
+  infil:
     required: false
     exchange_items:
       - water-liquid__volumetric-water-content-soil
