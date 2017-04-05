@@ -1,5 +1,6 @@
 # wmt-metadata
-Metadata for components used by the WMT.
+
+Metadata for components used by the CSDMS Web Modeling Tool (WMT).
 
 Prepare to install components into a WMT server
 by setting
@@ -24,8 +25,8 @@ To instead install components manually, use
 
 ```
 ssh $wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
-sudo rm -rf ../../db/components
-sudo cp -r metadata/ ../../db/components
-sudo chown -R $USER ../../db/components
+sudo rm -rf $wmt_server_path/db/components
+sudo cp -r metadata/ $wmt_server_path/db/components
+sudo chown -R $USER $wmt_server_path/db/components
 ./scripts/build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
 ```
