@@ -60,7 +60,6 @@ sections:
     - grid_rows
     - i_ul
     - j_ul
-uses:
 provides:
   meteorology:
     required: false
