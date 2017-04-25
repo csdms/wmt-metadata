@@ -1,9 +1,16 @@
 ignore:
   - filename
+  - dataset_start_date
+  - dataset_end_date
   - run_description
   - run_region
+  - run_resolution
+  - grid_name
+  - grid_type
+
 globals:
   - _run_duration
+
 extras:
   _run_duration:
     description: Simulation run time
@@ -39,11 +46,10 @@ extras:
       choices:
         - netcdf
         - vtk
+
 sections:
 - title: Run
   members:
-    - dataset_start_date
-    - dataset_end_date
     - reference_date
     - model_start_date
     - model_end_date
@@ -53,13 +59,11 @@ sections:
     - _output_format
 - title: Grid
   members:
-    - run_resolution
-    - grid_name
-    - grid_type
     - grid_columns
     - grid_rows
     - i_ul
     - j_ul
+
 provides:
   meteorology:
     required: false
