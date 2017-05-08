@@ -1,0 +1,83 @@
+ignore:
+  - config_filename
+  - config_for_method
+  - config_description
+  - run_description
+  - output_directory
+  - **input_var_source**
+  - grid_type
+
+globals:
+  - _run_duration
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 3153600000
+      units: yr
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1000000
+      units: yr
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+
+sections:
+- title: Run
+  members:
+    - model_reference_date
+    - model_start_date
+    - model_end_date
+    - model_timestep
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Input
+  members:
+    - calc_surface_frostnumber
+    - calc_stefan_frostnumber
+- title: Grid
+  members:
+    - grid_columns
+    - grid_rows
+- title: Temperature
+  members:
+    - temperature_grid_date_0
+    - temperature_grid_data_0
+
+uses:
+  meteorology:
+    required: false
+    exchange_items:
+      - atmosphere_bottom_air__temperature
+provides:
+  frost_number:
+    required: false
+    exchange_items:
+      - frostnumber__air
+      - frostnumber__surface
+      - frostnumber__stefan
