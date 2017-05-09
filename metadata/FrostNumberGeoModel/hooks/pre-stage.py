@@ -22,6 +22,9 @@ def execute(env):
     # Todo: Sort out time.
     # env['end_year'] = long(env['start_year']) + long(env['_run_duration']) - 1
 
+    env['input_var_source'] = 'WMT'
+    env['output_filename'] = 'FrostnumberGeo_output.nc'
+
     # Todo: Remove these hooks when methods are implemented.
     env['degree_days_method'] = 'MinJanMaxJul'  # will become a choice
     env['n_precipitation_grid_fields'] = 0
@@ -31,8 +34,6 @@ def execute(env):
 
     # XXX: This is my choice for implementing in WMT.
     env['n_temperature_grid_fields'] = 1
-
-    env['output_filename'] = 'FrostnumberGeo_output.nc'
 
     assign_parameters(env, file_list)
 
