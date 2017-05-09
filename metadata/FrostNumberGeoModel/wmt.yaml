@@ -4,7 +4,6 @@ ignore:
   - config_description
   - run_description
   - output_directory
-  - **input_var_source**
   - grid_type
 
 globals:
