@@ -58,7 +58,7 @@ sections:
 
 uses:
   meteorology:
-    required: false
+    required: true
     exchange_items:
       - atmosphere_bottom_air__temperature
 provides:
