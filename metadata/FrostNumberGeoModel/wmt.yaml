@@ -55,14 +55,6 @@ sections:
     - _update_time_step
     - _output_interval
     - _output_format
-- title: Grid
-  members:
-    - grid_columns
-    - grid_rows
-- title: Temperature
-  members:
-    - temperature_grid_date_0
-    - temperature_grid_data_0
 
 uses:
   meteorology:
