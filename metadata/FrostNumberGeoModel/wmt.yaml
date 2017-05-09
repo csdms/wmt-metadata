@@ -5,6 +5,7 @@ ignore:
   - run_description
   - output_directory
   - grid_type
+  - model_reference_date
 
 globals:
   - _run_duration
@@ -48,7 +49,6 @@ extras:
 sections:
 - title: Run
   members:
-    - model_reference_date
     - model_start_date
     - model_end_date
     - model_timestep
