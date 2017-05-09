@@ -55,10 +55,6 @@ sections:
     - _update_time_step
     - _output_interval
     - _output_format
-- title: Input
-  members:
-    - calc_surface_frostnumber
-    - calc_stefan_frostnumber
 - title: Grid
   members:
     - grid_columns

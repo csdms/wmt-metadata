@@ -26,6 +26,8 @@ def execute(env):
     env['degree_days_method'] = 'MinJanMaxJul'  # will become a choice
     env['n_precipitation_grid_fields'] = 0
     env['n_soilproperties_grid_fields'] = 0
+    env['calc_surface_frostnumber'] = False
+    env['calc_stefan_frostnumber'] = False
 
     # XXX: This is my choice for implementing in WMT.
     env['n_temperature_grid_fields'] = 1
