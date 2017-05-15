@@ -71,12 +71,6 @@ sections:
     - T_air_max_ptype
     - T_air_max
     - T_air_max_file
-uses:
-  meteorology:
-    required: false
-    exchange_items:
-      - atmosphere_bottom_air__temperature_min
-      - atmosphere_bottom_air__temperature_max
 provides:
   frost_number:
     required: false

@@ -137,28 +137,6 @@ sections:
     - Dvt_ptype
     - Dvt
     - Dvt_file
-uses:
-  meteorology:
-    required: false
-    exchange_items:
-      - atmosphere_bottom_air__temperature
-      - atmosphere_bottom_air__temperature_amplitude
-  snow:
-    required: false
-    exchange_items:
-      - snowpack__depth
-      - snowpack__density
-  infil:
-    required: false
-    exchange_items:
-      - water-liquid__volumetric-water-content-soil
-  vegetation:
-    required: false
-    exchange_items:
-      - vegetation__Hvgf
-      - vegetation__Hvgt
-      - vegetation__Dvf
-      - vegetation__Dvt
 provides:
   soil:
     required: false
