@@ -7,9 +7,10 @@ by setting
 the name of the WMT executor and
 the paths to where WMT is installed on the server and the executor.
 
+    export wmt_project=_testing  # change this
     export wmt_executor="beach.colorado.edu"
-    export wmt_executor_path=/home/csdms/wmt/_testing
-    export wmt_server_path=/data/web/htdocs/wmt/api/_testing
+    export wmt_executor_path=/home/csdms/wmt/$wmt_project
+    export wmt_server_path=/data/web/htdocs/wmt/api/$wmt_project
 
 Install the components with
 
