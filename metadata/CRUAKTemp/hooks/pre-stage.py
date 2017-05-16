@@ -19,7 +19,8 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    # env['end_year'] = long(env['start_year']) + long(env['_run_duration']) - 1
+    env['model_end_year'] = long(env['model_start_year']) \
+                            + long(env['_run_duration'])
 
     assign_parameters(env, file_list)
 

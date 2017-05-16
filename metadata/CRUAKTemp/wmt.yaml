@@ -3,6 +3,7 @@ ignore:
   - run_description
   - run_region
   - run_resolution
+  - reference_date
   - grid_name
   - grid_type
 
@@ -48,9 +49,7 @@ extras:
 sections:
 - title: Run
   members:
-    - reference_date
-    - model_start_date
-    - model_end_date
+    - model_start_year
     - timestep
     - _update_time_step
     - _output_interval
