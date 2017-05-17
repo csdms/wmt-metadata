@@ -19,8 +19,8 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    # Todo: Sort out time.
-    # env['end_year'] = long(env['start_year']) + long(env['_run_duration']) - 1
+    env['model_end_date'] = long(env['model_start_date']) \
+                            + long(env['_run_duration'])
 
     env['input_var_source'] = 'WMT'
     env['output_filename'] = 'FrostnumberGeo_output.nc'

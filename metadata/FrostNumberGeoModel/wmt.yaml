@@ -50,11 +50,14 @@ sections:
 - title: Run
   members:
     - model_start_date
-    - model_end_date
     - model_timestep
     - _update_time_step
     - _output_interval
     - _output_format
+- title: Grid
+  members:
+    - grid_columns
+    - grid_rows
 
 uses:
   meteorology:
