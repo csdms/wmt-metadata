@@ -53,46 +53,64 @@ parameter_mappers:
     selections:
       - Scalar: T_air
       - Time_Series: T_air_file
+      - Grid: T_air_file
+      - Grid_Sequence: T_air_file
   A_air_mapper:
     selector: A_air_ptype
     selections:
       - Scalar: A_air
       - Time_Series: A_air_file
+      - Grid: A_air_file
+      - Grid_Sequence: A_air_file
   h_snow_mapper:
     selector: h_snow_ptype
     selections:
       - Scalar: h_snow
       - Time_Series: h_snow_file
+      - Grid: h_snow_file
+      - Grid_Sequence: h_snow_file
   rho_snow_mapper:
     selector: rho_snow_ptype
     selections:
       - Scalar: rho_snow
       - Time_Series: rho_snow_file
+      - Grid: rho_snow_file
+      - Grid_Sequence: rho_snow_file
   vwc_H2O_mapper:
     selector: vwc_H2O_ptype
     selections:
       - Scalar: vwc_H2O
       - Time_Series: vwc_H2O_file
+      - Grid: vwc_H2O_file
+      - Grid_Sequence: vwc_H2O_file
   Hvgf_mapper:
     selector: Hvgf_ptype
     selections:
       - Scalar: Hvgf
       - Time_Series: Hvgf_file
+      - Grid: Hvgf_file
+      - Grid_Sequence: Hvgf_file
   Hvgt_mapper:
     selector: Hvgt_ptype
     selections:
       - Scalar: Hvgt
       - Time_Series: Hvgt_file
+      - Grid: Hvgt_file
+      - Grid_Sequence: Hvgt_file
   Dvf_mapper:
     selector: Dvf_ptype
     selections:
       - Scalar: Dvf
       - Time_Series: Dvf_file
+      - Grid: Dvf_file
+      - Grid_Sequence: Dvf_file
   Dvt_mapper:
     selector: Dvt_ptype
     selections:
       - Scalar: Dvt
       - Time_Series: Dvt_file
+      - Grid: Dvt_file
+      - Grid_Sequence: Dvt_file
 
 sections:
 - title: Run
