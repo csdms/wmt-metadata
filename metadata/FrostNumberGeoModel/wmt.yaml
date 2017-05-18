@@ -64,6 +64,8 @@ uses:
     required: true
     exchange_items:
       - atmosphere_bottom_air__temperature
+      - atmosphere_bottom_air__temperature_mean_jan
+      - atmosphere_bottom_air__temperature_mean_jul
 provides:
   frost_number:
     required: false

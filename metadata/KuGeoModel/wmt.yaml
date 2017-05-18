@@ -1,0 +1,170 @@
+ignore:
+  - '*_dtype'
+  - permafrost_dir
+  - comp_status
+  - in_directory
+  - out_directory
+  - site_prefix
+  - case_prefix
+  - end_year
+
+globals:
+  - _run_duration
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 5
+      range:
+        min: 1
+        max: 3153600000
+      units: yr
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1000000
+      units: yr
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 5
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+
+parameter_mappers:
+  T_air_mapper:
+    selector: T_air_ptype
+    selections:
+      - Scalar: T_air
+      - Time_Series: T_air_file
+      - Grid: T_air_file
+      - Grid_Sequence: T_air_file
+  A_air_mapper:
+    selector: A_air_ptype
+    selections:
+      - Scalar: A_air
+      - Time_Series: A_air_file
+      - Grid: A_air_file
+      - Grid_Sequence: A_air_file
+  h_snow_mapper:
+    selector: h_snow_ptype
+    selections:
+      - Scalar: h_snow
+      - Time_Series: h_snow_file
+      - Grid: h_snow_file
+      - Grid_Sequence: h_snow_file
+  rho_snow_mapper:
+    selector: rho_snow_ptype
+    selections:
+      - Scalar: rho_snow
+      - Time_Series: rho_snow_file
+      - Grid: rho_snow_file
+      - Grid_Sequence: rho_snow_file
+  vwc_H2O_mapper:
+    selector: vwc_H2O_ptype
+    selections:
+      - Scalar: vwc_H2O
+      - Time_Series: vwc_H2O_file
+      - Grid: vwc_H2O_file
+      - Grid_Sequence: vwc_H2O_file
+  Hvgf_mapper:
+    selector: Hvgf_ptype
+    selections:
+      - Scalar: Hvgf
+      - Time_Series: Hvgf_file
+      - Grid: Hvgf_file
+      - Grid_Sequence: Hvgf_file
+  Hvgt_mapper:
+    selector: Hvgt_ptype
+    selections:
+      - Scalar: Hvgt
+      - Time_Series: Hvgt_file
+      - Grid: Hvgt_file
+      - Grid_Sequence: Hvgt_file
+  Dvf_mapper:
+    selector: Dvf_ptype
+    selections:
+      - Scalar: Dvf
+      - Time_Series: Dvf_file
+      - Grid: Dvf_file
+      - Grid_Sequence: Dvf_file
+  Dvt_mapper:
+    selector: Dvt_ptype
+    selections:
+      - Scalar: Dvt
+      - Time_Series: Dvt_file
+      - Grid: Dvt_file
+      - Grid_Sequence: Dvt_file
+
+sections:
+- title: Run
+  members:
+    - start_year
+    - dt
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Air
+  members:
+    - T_air_ptype
+    - T_air
+    - T_air_file
+    - A_air_ptype
+    - A_air
+    - A_air_file
+- title: Snow
+  members:
+    - h_snow_ptype
+    - h_snow
+    - h_snow_file
+    - rho_snow_ptype
+    - rho_snow
+    - rho_snow_file
+- title: Soil
+  members:
+    - vwc_H2O_ptype
+    - vwc_H2O
+    - vwc_H2O_file
+- title: Vegetation
+  members:
+    - Hvgf_ptype
+    - Hvgf
+    - Hvgf_file
+    - Hvgt_ptype
+    - Hvgt
+    - Hvgt_file
+    - Dvf_ptype
+    - Dvf
+    - Dvf_file
+    - Dvt_ptype
+    - Dvt
+    - Dvt_file
+
+uses:
+  meteorology:
+    required: true
+    exchange_items:
+      - atmosphere_bottom_air__temperature
+
+provides:
+  soil:
+    required: false
+    exchange_items:
+      - soil__temperature
+      - soil__active_layer_thickness
