@@ -66,5 +66,6 @@ provides:
     required: false
     exchange_items:
       - atmosphere_bottom_air__temperature
-      - atmosphere_bottom_air__temperature_months
+      - atmosphere_bottom_air__temperature_mean_jan
+      - atmosphere_bottom_air__temperature_mean_jul
       - atmosphere_bottom_air__temperature_year
