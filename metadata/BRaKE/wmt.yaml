@@ -94,7 +94,7 @@ provides:
       - blocks__side_length_9_to_10_meters
 
 uses:
-  erode:
+  elevation:
     required: false
     exchange_items:
       - topographic__elevation
