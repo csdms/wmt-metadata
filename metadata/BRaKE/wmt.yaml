@@ -1,0 +1,100 @@
+ignore:
+  - time_to_run
+  - suffix
+  - recording_interval
+
+globals:
+  - _run_duration
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 200000
+      range:
+        min: 1
+        max: 3153600000
+      units: yr
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 1000000
+      units: yr
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 20
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+
+sections:
+- title: Run
+  members:
+    - time_step
+    - delay_timescale
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Domain
+  members:
+    - n_cells
+    - dx
+- title: Model Physics
+  members:
+    - bl_drop
+    - bed_k
+    - block_k
+    - gamma
+    - side_length
+    - z_0
+    - bed_tau_c
+    - block_tau_c
+    - channel_width
+    - mean_discharge
+    - discharge_variability
+
+provides:
+  erode:
+    required: false
+    exchange_items:
+      - topographic__elevation
+      - topographic__steepest_slope
+      - surface_water__discharge
+      - channel_water__mean_depth
+      - channel_bottom_water_flow__speed
+      - channel_bottom_water_flow__dimensionless_drag_stress
+      - channel_bottom_water_flow__magnitude_of_shear_stress
+      - channel_bottom_water_flow__magnitude_of_available_shear_stress
+      - bedrock__time_averaged_incision_rate
+      - channel__total_blocks
+      - blocks__side_length_0_to_1_meters
+      - blocks__side_length_1_to_2_meters
+      - blocks__side_length_2_to_3_meters
+      - blocks__side_length_3_to_4_meters
+      - blocks__side_length_4_to_5_meters
+      - blocks__side_length_5_to_6_meters
+      - blocks__side_length_6_to_7_meters
+      - blocks__side_length_7_to_8_meters
+      - blocks__side_length_8_to_9_meters
+      - blocks__side_length_9_to_10_meters
+
+uses:
+  elevation:
+    required: false
+    exchange_items:
+      - topographic__elevation
