@@ -17,6 +17,8 @@ def execute(env):
     """
     env['time_to_run'] = int(env['_run_duration'])
     env['suffix'] = 'WMT'
+    env['recording_interval'] = int(float(env['_run_duration'])
+                                    / float(env['_output_interval']))
 
     for fname in file_list:
         src = find_simulation_input_file(env[fname])
