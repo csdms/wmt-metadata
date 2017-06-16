@@ -29,6 +29,21 @@ class cd(object):
         os.chdir(self._starting_dir)
 
 
+# See https://stackoverflow.com/a/21499676/1563298
+def commonpath(l):
+    cp = []
+    ls = [p.split(os.path.sep) for p in l]
+    ml = min(len(p) for p in ls)
+
+    for i in range(ml):
+        s = set(p[i] for p in ls)
+        if len(s) != 1:
+            break
+        cp.append(s.pop())
+
+    return os.path.sep.join(cp)
+
+
 def load_config(file_like):
     return yaml.load(file_like)
 
@@ -201,10 +216,11 @@ def dump_parameters(params, wmt_config):
 
 
 def dump_files(files):
-    prefix = os.path.commonprefix(files)
+    prefix = commonpath(files)
     shortened_files = []
     if len(files) == 1:
-        prefix = os.path.dirname(prefix) + os.path.sep
+        prefix = os.path.dirname(prefix)
+    prefix += os.path.sep
     for name in files:
         shortened_files.append(name[len(prefix):])
 
@@ -254,9 +270,10 @@ def dump_provides(provides_names, wmt_config):
 def build_file_list(config, prefix='.'):
     all_files = []
     for name, component in config['components'].items():
-        datadir = os.path.commonprefix(component['files'])
+        datadir = commonpath(component['files'])
         if len(component['files']) == 1:
-            datadir = os.path.dirname(datadir) + os.path.sep
+            datadir = os.path.dirname(datadir)
+        datadir += os.path.sep
         for file in component['files']:
             all_files.append(
                 (file,
