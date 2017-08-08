@@ -1,0 +1,116 @@
+ignore:
+  - output_filename
+
+globals:
+  - _run_duration
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 3600
+      range:
+        min: 1
+        max: 3153600000
+      units: s
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 1000000
+      units: s
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 60
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+
+sections:
+- title: Run
+  members:
+    - output_timestep
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Domain
+  members:
+    - domain_type
+    - number_of_rows
+    - number_of_columns
+    - grid_size_x
+    - grid_size_y
+- title: Initial conditions
+  members:
+    - elevation_filename
+    - initial_flow_depth
+- title: Boundary conditions
+  members:
+    - boundary_filename
+    - dict_of_boundary_tags
+    - dict_of_boundary_conditions
+    - maximum_triangle_area
+    - interior_polygon_filename
+    - interior_polygon_triangle_area
+- title: Model physics
+  members:
+    - use_sed_transport_operator
+    - inflow_sediment_concentration
+    - initial_sediment_concentration
+    - use_vegetation_operator
+    - stem_diameter
+    - stem_spacing
+    - friction_parameter
+
+provides:
+  elevation:
+    required: false
+    exchange_items:
+      - land_surface__elevation
+      - land_surface__initial_elevation
+  surface_water:
+    required: false
+    exchange_items:
+      - land_surface_water_surface__elevation
+      - land_surface_water__depth
+      - land_surface_water_flow__x_component_of_momentum
+      - land_surface_water_flow__y_component_of_momentum
+      - land_surface_water_flow__shear_stress
+      - land_surface_water_sediment_suspended__volume_concentration
+  vegetation:
+    required: false
+    exchange_items:
+      - land_vegetation__stem_spacing
+      - land_vegetation__stem_diameter
+
+uses:
+  elevation:
+    required: false
+    exchange_items:
+      - land_surface__elevation
+      - land_surface__initial_elevation
+  surface_water:
+    required: false
+    exchange_items:
+      - land_surface_water_surface__elevation
+      - land_surface_water__depth
+      - land_surface_water_sediment_suspended__volume_concentration
+  vegetation:
+    required: false
+    exchange_items:
+      - land_vegetation__stem_spacing
+      - land_vegetation__stem_diameter
