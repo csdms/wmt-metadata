@@ -1,9 +1,5 @@
 """A hook for modifying parameter values read from the WMT client."""
 
-import os
-import shutil
-
-
 def execute(env):
     """Perform pre-stage tasks for running a component.
 
