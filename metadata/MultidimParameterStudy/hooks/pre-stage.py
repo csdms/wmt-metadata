@@ -1,8 +1,5 @@
 """A hook for modifying parameter values read from the WMT client."""
 
-import os
-import shutil
-
 from wmt.utils.hook import find_simulation_input_file, yaml_dump
 
 
@@ -16,9 +13,4 @@ def execute(env):
 
     """
     env['analysis_driver'] = 'dakota_run_component'
-
-    for fname in file_list:
-        src = find_simulation_input_file(env[fname])
-        shutil.copy(src, os.curdir)
-
     yaml_dump('_env.yaml', env)
