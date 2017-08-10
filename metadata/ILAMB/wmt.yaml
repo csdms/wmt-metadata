@@ -4,8 +4,6 @@ ignore:
   - _output_interval
   - _output_format
   - config_file
-  - ilamb_root
-  - model_root
   - build_dir
   - regions
   - models
@@ -53,34 +51,35 @@ extras:
         - gpp
         - lai
         - le
-        - '---'
   _variable2:
     description: Variable 2
     value:
       type: choice
-      default: '---'
+      default: ''
       choices:
         - gpp
         - lai
         - le
-        - '---'
+        - ''
   _variable3:
     description: Variable 3
     value:
       type: choice
-      default: '---'
+      default: ''
       choices:
         - gpp
         - lai
         - le
-        - '---'
-        
+        - ''
+
 sections:
   - title: Run
     members:
-      - simulation name  
-  # - title: Models
-  #   members:
+      - simulation_name
+  - title: Models
+    members:
+      - ilamb_root
+      - model_root
   - title: Variables
     members:
       - _variable1
