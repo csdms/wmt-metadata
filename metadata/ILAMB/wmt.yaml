@@ -43,7 +43,7 @@ extras:
         - netcdf
         - vtk
   _variable1:
-    description: Variable 1
+    description: Variable 1 (must be present)
     value:
       type: choice
       default: gpp
@@ -71,6 +71,14 @@ extras:
         - lai
         - le
         - ''
+  _relationships:
+    description: Calculate relationships between variables?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
 
 sections:
   - title: Run
@@ -80,11 +88,12 @@ sections:
     members:
       - ilamb_root
       - model_root
-  - title: Variables
+  - title: Model outputs
     members:
       - _variable1
       - _variable2
       - _variable3
+      - _relationships
   - title: Regions
     members:
       - define_regions

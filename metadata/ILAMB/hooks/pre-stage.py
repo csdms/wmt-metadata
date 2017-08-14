@@ -17,11 +17,16 @@ def execute(env):
     for k, v in env.items():
         if k.startswith('_variable') and v != '':
             cmip5_vars.append(str(v))
-    f = IlambConfigFile(cmip5_vars)
+
+    has_relationships = (env['_relationships'] == 'Yes') and \
+                        (len(cmip5_vars) > 1)
+
+    f = IlambConfigFile(cmip5_vars, relationships=has_relationships)
     f.setup()
     f.write()
 
     # For debugging.
     env['_sources_file'] = f.sources_file
     env['_cmip5_vars'] = cmip5_vars
+    env['_has_relationships'] = has_relationships
     yaml_dump('_env.yaml', env)
