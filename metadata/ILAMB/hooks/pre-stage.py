@@ -1,7 +1,11 @@
 """A hook for modifying parameter values read from the WMT client."""
-
 from wmt.utils.hook import yaml_dump
 from permafrost_benchmark_system.file import IlambConfigFile
+
+
+region_names = ['global', 'bona', 'tena', 'ceam', 'nhsa', 'shsa',
+                'euro', 'mide', 'nhaf', 'shaf', 'boas', 'ceas',
+                'seas', 'eqas', 'aust']
 
 
 def execute(env):
@@ -24,6 +28,12 @@ def execute(env):
     f = IlambConfigFile(cmip5_vars, relationships=has_relationships)
     f.setup()
     f.write()
+
+    regions = []
+    for r in region_names:
+        if env['_region_' + r] == 'On':
+            regions.append(r)
+    env['regions'] = regions
 
     # For debugging.
     env['_sources_file'] = f.sources_file
