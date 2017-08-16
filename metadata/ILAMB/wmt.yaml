@@ -79,6 +79,144 @@ extras:
       choices:
         - 'Yes'
         - 'No'
+  _region_global:
+    description: Global
+    value:
+      type: choice
+      default: 'On'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_bona:
+    description: Boreal North America (BONA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_tena:
+    description: Temperate North America (TENA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_ceam:
+    description: Central America (CEAM)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_nhsa:
+    description: Northern Hemisphere South America (NHSA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_shsa:
+    description: Southern Hemisphere South America (SHSA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_euro:
+    description: Europe (EURO)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_mide:
+    description: Middle East (MIDE)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_nhaf:
+    description: Northern Hemisphere Africa (NHAF)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_shaf:
+    description: Southern Hemisphere Africa (SHAF)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_boas:
+    description: Boreal Asia (BOAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_ceas:
+    description: Central Asia (CEAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_seas:
+    description: Southeast Asia (SEAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_eqas:
+    description: Equatorial Asia (EQAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_aust:
+    description: Australia (AUST)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+
+groups:
+  regions_group:
+    - _region_global
+    - _region_bona
+    - _region_tena
+    - _region_ceam
+    - _region_nhsa
+    - _region_shsa
+    - _region_euro
+    - _region_mide
+    - _region_nhaf
+    - _region_shaf
+    - _region_boas
+    - _region_ceas
+    - _region_seas
+    - _region_eqas
+    - _region_aust
 
 sections:
   - title: Run
@@ -96,4 +234,19 @@ sections:
       - _relationships
   - title: Regions
     members:
+      - _region_global
+      - _region_bona
+      - _region_tena
+      - _region_ceam
+      - _region_nhsa
+      - _region_shsa
+      - _region_euro
+      - _region_mide
+      - _region_nhaf
+      - _region_shaf
+      - _region_boas
+      - _region_ceas
+      - _region_seas
+      - _region_eqas
+      - _region_aust
       - define_regions
