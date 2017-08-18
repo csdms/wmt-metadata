@@ -199,6 +199,13 @@ extras:
       choices:
         - 'On'
         - 'Off'
+  _define_regions_file:
+    description: File (netCDF or text) defining custom analysis region
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
 
 groups:
   regions_group:
@@ -249,4 +256,4 @@ sections:
       - _region_seas
       - _region_eqas
       - _region_aust
-      - define_regions
+      - _define_regions_file
