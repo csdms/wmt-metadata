@@ -1,11 +1,38 @@
 """A hook for modifying parameter values read from the WMT client."""
+
+import os
+from wmt.models.models import get_model_upload_dir
 from wmt.utils.hook import yaml_dump
-from permafrost_benchmark_system.file import IlambConfigFile
+from permafrost_benchmark_system.file import (IlambConfigFile,
+                                              get_region_labels_txt,
+                                              get_region_labels_ncdf)
 
 
-region_names = ['global', 'bona', 'tena', 'ceam', 'nhsa', 'shsa',
-                'euro', 'mide', 'nhaf', 'shaf', 'boas', 'ceas',
-                'seas', 'eqas', 'aust']
+gfed_region_names = ['global', 'bona', 'tena', 'ceam', 'nhsa', 'shsa',
+                     'euro', 'mide', 'nhaf', 'shaf', 'boas', 'ceas',
+                     'seas', 'eqas', 'aust']
+
+
+def load_custom_regions(regions_file):
+    """Get a list of custom region labels from a file.
+
+    Parameters
+    ----------
+    regions_file : str
+        The path to an ILAMB custom regions file.
+
+    Returns
+    -------
+    list
+        A list of custom region names.
+
+    """
+    try:
+        return get_region_labels_ncdf(regions_file)
+    except:
+        return get_region_labels_txt(regions_file)
+    else:
+        return []
 
 
 def execute(env):
@@ -30,10 +57,17 @@ def execute(env):
     f.write()
 
     regions = []
-    for r in region_names:
+    for r in gfed_region_names:
         if env['_region_' + r] == 'On':
             regions.append(r)
     env['regions'] = regions
+
+    if env['_define_regions_file'] != 'Off':
+        env['define_regions'] = str(env['_define_regions_file'])
+        upload_dir = get_model_upload_dir(env['_model_id'])
+        regions_file = os.path.join(upload_dir, env['define_regions'])
+        custom_regions = load_custom_regions(regions_file)
+        env['regions'].extend(custom_regions)
 
     # For debugging.
     env['_sources_file'] = f.sources_file
