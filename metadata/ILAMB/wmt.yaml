@@ -79,6 +79,14 @@ extras:
       choices:
         - 'Yes'
         - 'No'
+  _mean_model:
+    description: Include mean model calculation?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
   _region_global:
     description: Global
     value:
@@ -239,6 +247,7 @@ sections:
       - _variable2
       - _variable3
       - _relationships
+      - _mean_model
   - title: Regions
     members:
       - _region_global
