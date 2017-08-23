@@ -52,7 +52,9 @@ def execute(env):
     has_relationships = (env['_relationships'] == 'Yes') and \
                         (len(var_list) > 1)
 
-    f = IlambConfigFile(var_list, relationships=has_relationships)
+    f = IlambConfigFile(var_list,
+                        relationships=has_relationships,
+                        title=env['simulation_name'])
     f.setup()
     f.write()
 
