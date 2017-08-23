@@ -42,6 +42,72 @@ extras:
       choices:
         - netcdf
         - vtk
+  _cmip5_models:
+    description: CMIP5 models (click to expand)
+    value:
+      type: choice
+      default: 'All off'
+      choices:
+        - 'All on'
+        - 'All off'
+        - 'User-selected'
+  _model_bcc-csm1-1-m:
+    description: BCC-CSM1-1-M
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_BNU-ESM:
+    description: BNU-ESM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CanESM2:
+    description: CanESM2
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _mstmip_models:
+    description: MsTMIP models (click to expand)
+    value:
+      type: choice
+      default: 'All off'
+      choices:
+        - 'All on'
+        - 'All off'
+        - 'User-selected'
+  _model_BIOME-BGC:
+    description: BIOME-BGC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CLASS-CTEM-N:
+    description: CLASS-CTEM-N
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CLM4:
+    description: CLM4
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
   _variable1:
     description: Variable 1 (must be present)
     value:
@@ -88,7 +154,7 @@ extras:
         - 'Yes'
         - 'No'
   _region_global:
-    description: Global
+    description: Global (click to expand)
     value:
       type: choice
       default: 'On'
@@ -216,6 +282,16 @@ extras:
         - 'Off'
 
 groups:
+  cmip5_models_group:
+    - _cmip5_models
+    - _model_bcc-csm1-1-m
+    - _model_BNU-ESM
+    - _model_CanESM2
+  mstmip_models_group:
+    - _mstmip_models
+    - _model_BIOME-BGC
+    - _model_CLASS-CTEM-N
+    - _model_CLM4
   regions_group:
     - _region_global
     - _region_bona
@@ -234,13 +310,21 @@ groups:
     - _region_aust
 
 sections:
-  - title: Run
+  - title: General
     members:
       - simulation_name
   - title: Models
     members:
       - ilamb_root
       - model_root
+      - _cmip5_models
+      - _model_bcc-csm1-1-m
+      - _model_BNU-ESM
+      - _model_CanESM2
+      - _mstmip_models
+      - _model_BIOME-BGC
+      - _model_CLASS-CTEM-N
+      - _model_CLM4
   - title: Model outputs
     members:
       - _variable1

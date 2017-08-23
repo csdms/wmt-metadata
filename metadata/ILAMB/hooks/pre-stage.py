@@ -58,6 +58,12 @@ def execute(env):
     f.setup()
     f.write()
 
+    model_list = []
+    for k, v in env.items():
+        if k.startswith('_model_') and v == 'On':
+            model_list.append(k.lstrip('_model_').encode('utf-8'))
+    env['models'] = model_list
+
     regions = []
     for r in gfed_region_names:
         if env['_region_' + r] == 'On':
