@@ -1,0 +1,352 @@
+ignore:
+  - _run_duration
+  - _update_time_step
+  - _output_interval
+  - _output_format
+  - config_file
+  - build_dir
+  - regions
+  - models
+  - confrontations
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+  _cmip5_models:
+    description: CMIP5 models (click to expand)
+    value:
+      type: choice
+      default: 'All off'
+      choices:
+        - 'All on'
+        - 'All off'
+        - 'User-selected'
+  _model_bcc-csm1-1-m:
+    description: BCC-CSM1-1-M
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_BNU-ESM:
+    description: BNU-ESM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CanESM2:
+    description: CanESM2
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _mstmip_models:
+    description: MsTMIP models (click to expand)
+    value:
+      type: choice
+      default: 'All off'
+      choices:
+        - 'All on'
+        - 'All off'
+        - 'User-selected'
+  _model_BIOME-BGC:
+    description: BIOME-BGC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CLASS-CTEM-N:
+    description: CLASS-CTEM-N
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CLM4:
+    description: CLM4
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _variable1:
+    description: Variable 1 (must be present)
+    value:
+      type: choice
+      default: gpp
+      choices:
+        - gpp
+        - lai
+        - le
+  _variable2:
+    description: Variable 2
+    value:
+      type: choice
+      default: ''
+      choices:
+        - gpp
+        - lai
+        - le
+        - ''
+  _variable3:
+    description: Variable 3
+    value:
+      type: choice
+      default: ''
+      choices:
+        - gpp
+        - lai
+        - le
+        - ''
+  _relationships:
+    description: Calculate relationships between variables?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
+  _mean_model:
+    description: Include mean model calculation?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
+  _region_global:
+    description: Global (click to expand)
+    value:
+      type: choice
+      default: 'On'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_bona:
+    description: Boreal North America (BONA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_tena:
+    description: Temperate North America (TENA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_ceam:
+    description: Central America (CEAM)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_nhsa:
+    description: Northern Hemisphere South America (NHSA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_shsa:
+    description: Southern Hemisphere South America (SHSA)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_euro:
+    description: Europe (EURO)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_mide:
+    description: Middle East (MIDE)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_nhaf:
+    description: Northern Hemisphere Africa (NHAF)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_shaf:
+    description: Southern Hemisphere Africa (SHAF)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_boas:
+    description: Boreal Asia (BOAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_ceas:
+    description: Central Asia (CEAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_seas:
+    description: Southeast Asia (SEAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_eqas:
+    description: Equatorial Asia (EQAS)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _region_aust:
+    description: Australia (AUST)
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _define_regions_file:
+    description: File (netCDF or text) defining custom analysis region
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+
+groups:
+  cmip5_models_group:
+    - _cmip5_models
+    - _model_bcc-csm1-1-m
+    - _model_BNU-ESM
+    - _model_CanESM2
+  mstmip_models_group:
+    - _mstmip_models
+    - _model_BIOME-BGC
+    - _model_CLASS-CTEM-N
+    - _model_CLM4
+  regions_group:
+    - _region_global
+    - _region_bona
+    - _region_tena
+    - _region_ceam
+    - _region_nhsa
+    - _region_shsa
+    - _region_euro
+    - _region_mide
+    - _region_nhaf
+    - _region_shaf
+    - _region_boas
+    - _region_ceas
+    - _region_seas
+    - _region_eqas
+    - _region_aust
+
+sections:
+  - title: General
+    members:
+      - simulation_name
+  - title: Models
+    members:
+      - ilamb_root
+      - model_root
+      - _cmip5_models
+      - _model_bcc-csm1-1-m
+      - _model_BNU-ESM
+      - _model_CanESM2
+      - _mstmip_models
+      - _model_BIOME-BGC
+      - _model_CLASS-CTEM-N
+      - _model_CLM4
+  - title: Model outputs
+    members:
+      - _variable1
+      - _variable2
+      - _variable3
+      - _relationships
+      - _mean_model
+  - title: Regions
+    members:
+      - _region_global
+      - _region_bona
+      - _region_tena
+      - _region_ceam
+      - _region_nhsa
+      - _region_shsa
+      - _region_euro
+      - _region_mide
+      - _region_nhaf
+      - _region_shaf
+      - _region_boas
+      - _region_ceas
+      - _region_seas
+      - _region_eqas
+      - _region_aust
+      - _define_regions_file
