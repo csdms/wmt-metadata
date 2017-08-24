@@ -27,4 +27,5 @@ def execute(env):
         src = find_simulation_input_file(env[fname])
         shutil.copy(src, os.curdir)
 
+    env['_file_list'] = file_list
     yaml_dump('_env.yaml', env)
