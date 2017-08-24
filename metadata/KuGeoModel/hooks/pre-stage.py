@@ -1,6 +1,9 @@
 """A hook for modifying parameter values read from the WMT client."""
 
-from wmt.utils.hook import yaml_dump
+import os
+import shutil
+
+from wmt.utils.hook import find_simulation_input_file, yaml_dump
 from topoflow_utils.hook import assign_parameters
 
 
@@ -20,5 +23,8 @@ def execute(env):
 
     assign_parameters(env, file_list)
 
-    env['_file_list'] = file_list
+    for fname in file_list:
+        src = find_simulation_input_file(env[fname])
+        shutil.copy(src, os.curdir)
+
     yaml_dump('_env.yaml', env)

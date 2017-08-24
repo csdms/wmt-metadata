@@ -1,6 +1,9 @@
 """A hook for modifying parameter values read from the WMT client."""
 
-from wmt.utils.hook import yaml_dump
+import os
+import shutil
+
+from wmt.utils.hook import find_simulation_input_file, yaml_dump
 from topoflow_utils.hook import assign_parameters
 
 
@@ -20,7 +23,7 @@ def execute(env):
                             + long(env['_run_duration'])
 
     env['input_var_source'] = 'WMT'
-    env['output_filename'] = 'FrostNumberGeo_output.nc'
+    env['output_filename'] = 'FrostnumberGeo_output.nc'
 
     # Todo: Remove these hooks when methods are implemented.
     env['degree_days_method'] = 'MinJanMaxJul'  # will become a choice
@@ -34,5 +37,8 @@ def execute(env):
 
     assign_parameters(env, file_list)
 
-    env['_file_list'] = file_list
+    for fname in file_list:
+        src = find_simulation_input_file(env[fname])
+        shutil.copy(src, os.curdir)
+
     yaml_dump('_env.yaml', env)
