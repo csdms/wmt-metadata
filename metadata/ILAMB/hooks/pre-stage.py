@@ -64,18 +64,18 @@ def execute(env):
             model_list.append(k.lstrip('_model_').encode('utf-8'))
     env['models'] = model_list
 
-    regions = []
+    region_list = []
     for r in gfed_region_names:
         if env['_region_' + r] == 'On':
-            regions.append(r)
-    env['regions'] = regions
+            region_list.append(r)
+    env['regions'] = region_list
 
     if env['_define_regions_file'] != 'Off':
         env['define_regions'] = \
             find_simulation_input_file(env['_define_regions_file'])
         shutil.copy(env['define_regions'], os.curdir)
-        custom_regions = load_custom_regions(env['define_regions'])
-        env['regions'].extend(custom_regions)
+        custom_regions_list = load_custom_regions(env['define_regions'])
+        env['regions'].extend(custom_regions_list)
 
     # For debugging.
     env['_sources_file'] = f.sources_file
