@@ -1,8 +1,8 @@
 """A hook for modifying parameter values read from the WMT client."""
 
 import os
-from wmt.controllers.models import copy_uploaded_files
-from wmt.utils.hook import yaml_dump
+import shutil
+from wmt.utils.hook import yaml_dump, find_simulation_input_file
 from permafrost_benchmark_system.file import (IlambConfigFile,
                                               get_region_labels_txt,
                                               get_region_labels_ncdf)
@@ -71,8 +71,9 @@ def execute(env):
     env['regions'] = regions
 
     if env['_define_regions_file'] != 'Off':
-        env['define_regions'] = str(env['_define_regions_file'])
-        copy_uploaded_files(env['_model_id'], os.getcwd())
+        env['define_regions'] = \
+            find_simulation_input_file(env['_define_regions_file'])
+        shutil.copy(env['define_regions'], os.curdir)
         custom_regions = load_custom_regions(env['define_regions'])
         env['regions'].extend(custom_regions)
 
