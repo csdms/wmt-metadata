@@ -45,12 +45,8 @@ extras:
   _cmip5_models:
     description: CMIP5 models (click to expand)
     value:
-      type: choice
-      default: 'All off'
-      choices:
-        - 'All on'
-        - 'All off'
-        - 'User-selected'
+      type: subheading
+      default: ''
   _model_bcc-csm1-1-m:
     description: BCC-CSM1-1-M
     value:
@@ -78,12 +74,8 @@ extras:
   _mstmip_models:
     description: MsTMIP models (click to expand)
     value:
-      type: choice
-      default: 'All off'
-      choices:
-        - 'All on'
-        - 'All off'
-        - 'User-selected'
+      type: subheading
+      default: ''
   _model_BIOME-BGC:
     description: BIOME-BGC
     value:
@@ -154,13 +146,18 @@ extras:
         - 'Yes'
         - 'No'
   _region_global:
-    description: Global (click to expand)
+    description: Global
     value:
       type: choice
       default: 'On'
       choices:
         - 'On'
         - 'Off'
+  _gfed_regions:
+    description: GFED regions (click to expand)
+    value:
+      type: subheading
+      default: ''
   _region_bona:
     description: Boreal North America (BONA)
     value:
@@ -293,7 +290,7 @@ groups:
     - _model_CLASS-CTEM-N
     - _model_CLM4
   regions_group:
-    - _region_global
+    - _gfed_regions
     - _region_bona
     - _region_tena
     - _region_ceam
@@ -335,6 +332,7 @@ sections:
   - title: Regions
     members:
       - _region_global
+      - _gfed_regions
       - _region_bona
       - _region_tena
       - _region_ceam
