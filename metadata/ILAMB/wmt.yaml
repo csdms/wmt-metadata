@@ -312,18 +312,66 @@ extras:
       type: choice
       default: gpp
       choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
         - gpp
         - lai
+        - landfraction
         - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
   _variable2:
     description: Variable 2
     value:
       type: choice
       default: 'Off'
       choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
         - gpp
         - lai
+        - landfraction
         - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
         - 'Off'
   _variable3:
     description: Variable 3
@@ -331,9 +379,33 @@ extras:
       type: choice
       default: 'Off'
       choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
         - gpp
         - lai
+        - landfraction
         - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
         - 'Off'
   _relationships:
     description: Calculate relationships between variables?
