@@ -81,6 +81,86 @@ extras:
       choices:
         - 'On'
         - 'Off'
+  _model_CESM1-BGC:
+    description: CESM1-BGC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_cesm1_2bgc:
+    description: 'CESM1.2-BGC'
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_GFDL-ESM2G:
+    description: GFDL-ESM2G
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_HadGEM2-ES:
+    description: HadGEM2-ES
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_inmcm4:
+    description: INM-CM4
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_IPSL-CM5A-LR:
+    description: IPSL-CM5A-LR
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MIROC-ESM:
+    description: MIROC-ESM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MPI-ESM-LR:
+    description: MPI-ESM-LR
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MRI-ESM1:
+    description: MRI-ESM1
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_NorESM1-ME:
+    description: NorESM1-ME
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
   _mstmip_models:
     description: MsTMIP models (click to expand)
     value:
@@ -314,6 +394,16 @@ groups:
     - _model_bcc-csm1-1-m
     - _model_BNU-ESM
     - _model_CanESM2
+    - _model_cesm1_2bgc
+    - _model_CESM1-BGC
+    - _model_GFDL-ESM2G
+    - _model_HadGEM2-ES
+    - _model_inmcm4
+    - _model_IPSL-CM5A-LR
+    - _model_MIROC-ESM
+    - _model_MPI-ESM-LR
+    - _model_MRI-ESM1
+    - _model_NorESM1-ME
   mstmip_models_group:
     - _mstmip_models
     - _model_BIOME-BGC
@@ -349,6 +439,16 @@ sections:
       - _model_bcc-csm1-1-m
       - _model_BNU-ESM
       - _model_CanESM2
+      - _model_cesm1_2bgc
+      - _model_CESM1-BGC
+      - _model_GFDL-ESM2G
+      - _model_HadGEM2-ES
+      - _model_inmcm4
+      - _model_IPSL-CM5A-LR
+      - _model_MIROC-ESM
+      - _model_MPI-ESM-LR
+      - _model_MRI-ESM1
+      - _model_NorESM1-ME
       - _mstmip_models
       - _model_BIOME-BGC
       - _model_CLASS-CTEM-N
