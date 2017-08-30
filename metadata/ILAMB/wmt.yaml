@@ -42,6 +42,14 @@ extras:
       choices:
         - netcdf
         - vtk
+  _overview_models:
+    description:
+      "Select one or more
+      <a href='http://cmip-pcmdi.llnl.gov/cmip5/index.html'>CMIP5</a>-compatible
+      models for benchmarking with the ILAMB model evaluation software."
+    value:
+      type: overview
+      default: ''
   _cmip5_models:
     description: CMIP5 models (click to expand)
     value:
@@ -100,6 +108,15 @@ extras:
       choices:
         - 'On'
         - 'Off'
+  _overview_variables:
+    description:
+      "Select up to three CMIP5 standard output variables for evaluation.
+      Each variable is compared against all matching benchmark datasets.
+      Optionally, compute relationships between variables, and/or calculate
+      a mean of the selected models for each variable."
+    value:
+      type: overview
+      default: ''
   _variable1:
     description: Variable 1 (must be present)
     value:
@@ -145,6 +162,16 @@ extras:
       choices:
         - 'Yes'
         - 'No'
+  _overview_regions:
+    description:
+      "Choose the geographical region over which the benchmarking analysis is
+      performed. Global is the default, but predefined
+      <a href='http://www.globalfiredata.org/'>Global Fire Emissions Database</a>
+      (GFED) regions can also be selected,
+      or a custom analysis region can uploaded in a file."
+    value:
+      type: overview
+      default: ''
   _region_global:
     description: Global
     value:
@@ -312,6 +339,7 @@ sections:
       - simulation_name
   - title: Models
     members:
+      - _overview_models
       - ilamb_root
       - model_root
       - _cmip5_models
@@ -324,6 +352,7 @@ sections:
       - _model_CLM4
   - title: Model outputs
     members:
+      - _overview_variables
       - _variable1
       - _variable2
       - _variable3
@@ -331,6 +360,7 @@ sections:
       - _mean_model
   - title: Regions
     members:
+      - _overview_regions
       - _region_global
       - _gfed_regions
       - _region_bona
