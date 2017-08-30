@@ -141,22 +141,22 @@ extras:
     description: Variable 2
     value:
       type: choice
-      default: ''
+      default: 'Off'
       choices:
         - gpp
         - lai
         - le
-        - ''
+        - 'Off'
   _variable3:
     description: Variable 3
     value:
       type: choice
-      default: ''
+      default: 'Off'
       choices:
         - gpp
         - lai
         - le
-        - ''
+        - 'Off'
   _relationships:
     description: Calculate relationships between variables?
     value:
