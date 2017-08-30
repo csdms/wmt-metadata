@@ -190,6 +190,104 @@ extras:
       choices:
         - 'On'
         - 'Off'
+
+  _model_CLM4VIC:
+    description: CLM4VIC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_DLEM:
+    description: DLEM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_GTEC:
+    description: GTEC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_ISAM:
+    description: ISAM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_LPJ-wsl:
+    description: LPJ-wsl
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_ORCHIDEE-LSCE:
+    description: ORCHIDEE-LSCE
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_SiB3:
+    description: SiB3
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_SiBCASA:
+    description: SiBCASA
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_TEM6:
+    description: TEM6
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_TRIPLEX-GHG:
+    description: TRIPLEX-GHG
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_VEGAS21:
+    description: 'VEGAS2.1'
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_VISIT:
+    description: VISIT
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+
   _mean_model:
     description: Include mean model calculation?
     value:
@@ -409,6 +507,18 @@ groups:
     - _model_BIOME-BGC
     - _model_CLASS-CTEM-N
     - _model_CLM4
+    - _model_CLM4VIC
+    - _model_DLEM
+    - _model_GTEC
+    - _model_ISAM
+    - _model_LPJ-wsl
+    - _model_ORCHIDEE-LSCE
+    - _model_SiB3
+    - _model_SiBCASA
+    - _model_TEM6
+    - _model_TRIPLEX-GHG
+    - _model_VEGAS21
+    - _model_VISIT
   regions_group:
     - _gfed_regions
     - _region_bona
@@ -439,8 +549,8 @@ sections:
       - _model_bcc-csm1-1-m
       - _model_BNU-ESM
       - _model_CanESM2
-      - _model_cesm1_2bgc
       - _model_CESM1-BGC
+      - _model_cesm1_2bgc
       - _model_GFDL-ESM2G
       - _model_HadGEM2-ES
       - _model_inmcm4
@@ -453,6 +563,18 @@ sections:
       - _model_BIOME-BGC
       - _model_CLASS-CTEM-N
       - _model_CLM4
+      - _model_CLM4VIC
+      - _model_DLEM
+      - _model_GTEC
+      - _model_ISAM
+      - _model_LPJ-wsl
+      - _model_ORCHIDEE-LSCE
+      - _model_SiB3
+      - _model_SiBCASA
+      - _model_TEM6
+      - _model_TRIPLEX-GHG
+      - _model_VEGAS21
+      - _model_VISIT
       - _mean_model
   - title: Model outputs
     members:
