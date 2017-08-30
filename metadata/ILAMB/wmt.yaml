@@ -46,7 +46,9 @@ extras:
     description:
       "Select one or more
       <a href='http://cmip-pcmdi.llnl.gov/cmip5/index.html'>CMIP5</a>-compatible
-      models for benchmarking with the ILAMB model evaluation software."
+      models for benchmarking with the ILAMB model evaluation software.
+      Optionally, compute a mean model from the selected models and include it
+      in the analysis."
     value:
       type: overview
       default: ''
@@ -108,12 +110,21 @@ extras:
       choices:
         - 'On'
         - 'Off'
+  _mean_model:
+    description: Include mean model calculation?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
   _overview_variables:
     description:
-      "Select up to three CMIP5 standard output variables for evaluation.
+      "Select up to three CMIP5
+      <a href='http://cmip-pcmdi.llnl.gov/cmip5/output_req.html#req_list'>standard
+      output variables</a> for evaluation.
       Each variable is compared against all matching benchmark datasets.
-      Optionally, compute relationships between variables, and/or calculate
-      a mean of the selected models for each variable."
+      Optionally, compute relationships between the variables."
     value:
       type: overview
       default: ''
@@ -154,18 +165,10 @@ extras:
       choices:
         - 'Yes'
         - 'No'
-  _mean_model:
-    description: Include mean model calculation?
-    value:
-      type: choice
-      default: 'No'
-      choices:
-        - 'Yes'
-        - 'No'
   _overview_regions:
     description:
-      "Choose the geographical region over which the benchmarking analysis is
-      performed. Global is the default, but predefined
+      "Choose the geographical region where the benchmarking analysis is
+      performed. 'Global' is the default, but predefined
       <a href='http://www.globalfiredata.org/'>Global Fire Emissions Database</a>
       (GFED) regions can also be selected,
       or a custom analysis region can uploaded in a file."
@@ -350,6 +353,7 @@ sections:
       - _model_BIOME-BGC
       - _model_CLASS-CTEM-N
       - _model_CLM4
+      - _mean_model
   - title: Model outputs
     members:
       - _overview_variables
@@ -357,7 +361,6 @@ sections:
       - _variable2
       - _variable3
       - _relationships
-      - _mean_model
   - title: Regions
     members:
       - _overview_regions
