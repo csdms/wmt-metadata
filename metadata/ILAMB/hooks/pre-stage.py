@@ -46,7 +46,7 @@ def execute(env):
     """
     var_list = []
     for k, v in env.items():
-        if k.startswith('_variable') and v != '':
+        if k.startswith('_variable') and v != 'Off':
             var_list.append(str(v))
 
     has_relationships = (env['_relationships'] == 'Yes') and \

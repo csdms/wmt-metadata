@@ -42,6 +42,16 @@ extras:
       choices:
         - netcdf
         - vtk
+  _overview_models:
+    description:
+      "Select one or more
+      <a href='http://cmip-pcmdi.llnl.gov/cmip5/index.html'>CMIP5</a>-compatible
+      models for benchmarking with the ILAMB model evaluation software.
+      Optionally, compute a mean model from the selected models and include it
+      in the analysis."
+    value:
+      type: overview
+      default: ''
   _cmip5_models:
     description: CMIP5 models (click to expand)
     value:
@@ -65,6 +75,86 @@ extras:
         - 'Off'
   _model_CanESM2:
     description: CanESM2
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_CESM1-BGC:
+    description: CESM1-BGC
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_cesm1_2bgc:
+    description: 'CESM1.2-BGC'
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_GFDL-ESM2G:
+    description: GFDL-ESM2G
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_HadGEM2-ES:
+    description: HadGEM2-ES
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_inmcm4:
+    description: INM-CM4
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_IPSL-CM5A-LR:
+    description: IPSL-CM5A-LR
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MIROC-ESM:
+    description: MIROC-ESM
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MPI-ESM-LR:
+    description: MPI-ESM-LR
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_MRI-ESM1:
+    description: MRI-ESM1
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_NorESM1-ME:
+    description: NorESM1-ME
     value:
       type: choice
       default: 'Off'
@@ -100,43 +190,104 @@ extras:
       choices:
         - 'On'
         - 'Off'
-  _variable1:
-    description: Variable 1 (must be present)
+
+  _model_CLM4VIC:
+    description: CLM4VIC
     value:
       type: choice
-      default: gpp
+      default: 'Off'
       choices:
-        - gpp
-        - lai
-        - le
-  _variable2:
-    description: Variable 2
+        - 'On'
+        - 'Off'
+  _model_DLEM:
+    description: DLEM
     value:
       type: choice
-      default: ''
+      default: 'Off'
       choices:
-        - gpp
-        - lai
-        - le
-        - ''
-  _variable3:
-    description: Variable 3
+        - 'On'
+        - 'Off'
+  _model_GTEC:
+    description: GTEC
     value:
       type: choice
-      default: ''
+      default: 'Off'
       choices:
-        - gpp
-        - lai
-        - le
-        - ''
-  _relationships:
-    description: Calculate relationships between variables?
+        - 'On'
+        - 'Off'
+  _model_ISAM:
+    description: ISAM
     value:
       type: choice
-      default: 'No'
+      default: 'Off'
       choices:
-        - 'Yes'
-        - 'No'
+        - 'On'
+        - 'Off'
+  _model_LPJ-wsl:
+    description: LPJ-wsl
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_ORCHIDEE-LSCE:
+    description: ORCHIDEE-LSCE
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_SiB3:
+    description: SiB3
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_SiBCASA:
+    description: SiBCASA
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_TEM6:
+    description: TEM6
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_TRIPLEX-GHG:
+    description: TRIPLEX-GHG
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_VEGAS21:
+    description: 'VEGAS2.1'
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+  _model_VISIT:
+    description: VISIT
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - 'On'
+        - 'Off'
+
   _mean_model:
     description: Include mean model calculation?
     value:
@@ -145,6 +296,135 @@ extras:
       choices:
         - 'Yes'
         - 'No'
+  _overview_variables:
+    description:
+      "Select up to three CMIP5
+      <a href='http://cmip-pcmdi.llnl.gov/cmip5/output_req.html#req_list'>standard
+      output variables</a> for evaluation.
+      Each variable is compared against all matching benchmark datasets.
+      Optionally, compute relationships between the variables."
+    value:
+      type: overview
+      default: ''
+  _variable1:
+    description: Variable 1 (must be present)
+    value:
+      type: choice
+      default: gpp
+      choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
+        - gpp
+        - lai
+        - landfraction
+        - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
+  _variable2:
+    description: Variable 2
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
+        - gpp
+        - lai
+        - landfraction
+        - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
+        - 'Off'
+  _variable3:
+    description: Variable 3
+    value:
+      type: choice
+      default: 'Off'
+      choices:
+        - albedo
+        - biomass
+        - biomes
+        - burntArea
+        - co2
+        - et
+        - gpp
+        - lai
+        - landfraction
+        - le
+        - nbp
+        - nee
+        - pr
+        - reco
+        - rhums
+        - rlds
+        - rlns
+        - rlus
+        - rns
+        - rsds
+        - rsns
+        - rsus
+        - runoff
+        - sh
+        - soilc
+        - tas
+        - twsa
+        - 'Off'
+  _relationships:
+    description: Calculate relationships between variables?
+    value:
+      type: choice
+      default: 'No'
+      choices:
+        - 'Yes'
+        - 'No'
+  _overview_regions:
+    description:
+      "Choose the geographical region where the benchmarking analysis is
+      performed. 'Global' is the default, but predefined
+      <a href='http://www.globalfiredata.org/'>Global Fire Emissions Database</a>
+      (GFED) regions can also be selected,
+      or a custom analysis region can uploaded in a file."
+    value:
+      type: overview
+      default: ''
   _region_global:
     description: Global
     value:
@@ -284,11 +564,33 @@ groups:
     - _model_bcc-csm1-1-m
     - _model_BNU-ESM
     - _model_CanESM2
+    - _model_cesm1_2bgc
+    - _model_CESM1-BGC
+    - _model_GFDL-ESM2G
+    - _model_HadGEM2-ES
+    - _model_inmcm4
+    - _model_IPSL-CM5A-LR
+    - _model_MIROC-ESM
+    - _model_MPI-ESM-LR
+    - _model_MRI-ESM1
+    - _model_NorESM1-ME
   mstmip_models_group:
     - _mstmip_models
     - _model_BIOME-BGC
     - _model_CLASS-CTEM-N
     - _model_CLM4
+    - _model_CLM4VIC
+    - _model_DLEM
+    - _model_GTEC
+    - _model_ISAM
+    - _model_LPJ-wsl
+    - _model_ORCHIDEE-LSCE
+    - _model_SiB3
+    - _model_SiBCASA
+    - _model_TEM6
+    - _model_TRIPLEX-GHG
+    - _model_VEGAS21
+    - _model_VISIT
   regions_group:
     - _gfed_regions
     - _region_bona
@@ -312,25 +614,50 @@ sections:
       - simulation_name
   - title: Models
     members:
+      - _overview_models
       - ilamb_root
       - model_root
       - _cmip5_models
       - _model_bcc-csm1-1-m
       - _model_BNU-ESM
       - _model_CanESM2
+      - _model_CESM1-BGC
+      - _model_cesm1_2bgc
+      - _model_GFDL-ESM2G
+      - _model_HadGEM2-ES
+      - _model_inmcm4
+      - _model_IPSL-CM5A-LR
+      - _model_MIROC-ESM
+      - _model_MPI-ESM-LR
+      - _model_MRI-ESM1
+      - _model_NorESM1-ME
       - _mstmip_models
       - _model_BIOME-BGC
       - _model_CLASS-CTEM-N
       - _model_CLM4
+      - _model_CLM4VIC
+      - _model_DLEM
+      - _model_GTEC
+      - _model_ISAM
+      - _model_LPJ-wsl
+      - _model_ORCHIDEE-LSCE
+      - _model_SiB3
+      - _model_SiBCASA
+      - _model_TEM6
+      - _model_TRIPLEX-GHG
+      - _model_VEGAS21
+      - _model_VISIT
+      - _mean_model
   - title: Model outputs
     members:
+      - _overview_variables
       - _variable1
       - _variable2
       - _variable3
       - _relationships
-      - _mean_model
   - title: Regions
     members:
+      - _overview_regions
       - _region_global
       - _gfed_regions
       - _region_bona
