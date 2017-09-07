@@ -42,6 +42,12 @@ extras:
       choices:
         - netcdf
         - vtk
+  _visualization:
+    description:
+      The name of a file in the results to visualize
+    value:
+      type: string
+      default: '_build'
   _overview_models:
     description:
       "Select one or more
