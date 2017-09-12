@@ -1,5 +1,7 @@
 ignore:
   - output_filename
+  - domain_type
+  - dict_of_boundary_conditions
 
 globals:
   - _run_duration
@@ -39,6 +41,172 @@ extras:
       choices:
         - netcdf
         - vtk
+  _boundary_condition_left:
+    description: Left boundary condition (expand for Dirichlet)
+    value:
+      type: choice
+      default: Reflective
+      choices:
+        - Reflective
+        - Transmissive
+        - Dirichlet
+  _bc_left_dirichlet_stage:
+    description: Stage (Dirichlet only)
+    value:
+      type: float
+      default: 5.0
+      range:
+        min: 0.0
+        max: 1.0e3
+      units: m
+  _bc_left_dirichlet_x_momentum:
+    description: '<i>x</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _bc_left_dirichlet_y_momentum:
+    description: '<i>y</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _boundary_condition_right:
+    description: Right boundary condition (expand for Dirichlet)
+    value:
+      type: choice
+      default: Dirichlet
+      choices:
+        - Reflective
+        - Transmissive
+        - Dirichlet
+  _bc_right_dirichlet_stage:
+    description: Stage (Dirichlet only)
+    value:
+      type: float
+      default: 5.0
+      range:
+        min: 0.0
+        max: 1.0e3
+      units: m
+  _bc_right_dirichlet_x_momentum:
+    description: '<i>x</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _bc_right_dirichlet_y_momentum:
+    description: '<i>y</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _boundary_condition_top:
+    description: Top boundary condition (expand for Dirichlet)
+    value:
+      type: choice
+      default: Reflective
+      choices:
+        - Reflective
+        - Transmissive
+        - Dirichlet
+  _bc_top_dirichlet_stage:
+    description: Stage (Dirichlet only)
+    value:
+      type: float
+      default: 5.0
+      range:
+        min: 0.0
+        max: 1.0e3
+      units: m
+  _bc_top_dirichlet_x_momentum:
+    description: '<i>x</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _bc_top_dirichlet_y_momentum:
+    description: '<i>y</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _boundary_condition_bottom:
+    description: Bottom boundary condition (expand for Dirichlet)
+    value:
+      type: choice
+      default: Reflective
+      choices:
+        - Reflective
+        - Transmissive
+        - Dirichlet
+  _bc_bottom_dirichlet_stage:
+    description: Stage (Dirichlet only)
+    value:
+      type: float
+      default: 5.0
+      range:
+        min: 0.0
+        max: 1.0e3
+      units: m
+  _bc_bottom_dirichlet_x_momentum:
+    description: '<i>x</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+  _bc_bottom_dirichlet_y_momentum:
+    description: '<i>y</i>-momentum (Dirichlet only)'
+    value:
+      type: float
+      default: 0.0
+      range:
+        min: 0.0
+        max: 1.0e6
+      units: 'kg m s-1'
+
+groups:
+  boundary_condition_left_group:
+    - _boundary_condition_left
+    - _bc_left_dirichlet_stage
+    - _bc_left_dirichlet_x_momentum
+    - _bc_left_dirichlet_y_momentum
+  boundary_condition_right_group:
+    - _boundary_condition_right
+    - _bc_right_dirichlet_stage
+    - _bc_right_dirichlet_x_momentum
+    - _bc_right_dirichlet_y_momentum
+  boundary_condition_top_group:
+    - _boundary_condition_top
+    - _bc_top_dirichlet_stage
+    - _bc_top_dirichlet_x_momentum
+    - _bc_top_dirichlet_y_momentum
+  boundary_condition_bottom_group:
+    - _boundary_condition_bottom
+    - _bc_bottom_dirichlet_stage
+    - _bc_bottom_dirichlet_x_momentum
+    - _bc_bottom_dirichlet_y_momentum
 
 sections:
 - title: Run
@@ -49,23 +217,31 @@ sections:
     - _output_format
 - title: Domain
   members:
-    - domain_type
     - number_of_rows
     - number_of_columns
     - grid_size_x
     - grid_size_y
 - title: Initial conditions
   members:
-    - elevation_filename
     - initial_flow_depth
 - title: Boundary conditions
   members:
-    - boundary_filename
-    - dict_of_boundary_tags
-    - dict_of_boundary_conditions
-    - maximum_triangle_area
-    - interior_polygon_filename
-    - interior_polygon_triangle_area
+    - _boundary_condition_left
+    - _bc_left_dirichlet_stage
+    - _bc_left_dirichlet_x_momentum
+    - _bc_left_dirichlet_y_momentum
+    - _boundary_condition_right
+    - _bc_right_dirichlet_stage
+    - _bc_right_dirichlet_x_momentum
+    - _bc_right_dirichlet_y_momentum
+    - _boundary_condition_top
+    - _bc_top_dirichlet_stage
+    - _bc_top_dirichlet_x_momentum
+    - _bc_top_dirichlet_y_momentum
+    - _boundary_condition_bottom    
+    - _bc_bottom_dirichlet_stage
+    - _bc_bottom_dirichlet_x_momentum
+    - _bc_bottom_dirichlet_y_momentum
 - title: Model physics
   members:
     - use_sed_transport_operator
