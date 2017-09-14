@@ -1,6 +1,7 @@
 ignore:
   - output_filename
   - domain_type
+  - boundary_filename
 
 globals:
   - _run_duration
@@ -40,10 +41,18 @@ extras:
       choices:
         - netcdf
         - vtk
+  _boundary_filename:
+    description: CSV file of exterior boundary node coordinates (max of 8 sides)
+    value:
+      type: file
+      default: outline.csv
+      files:
+        - outline.csv
+      units: UTM
 
 groups:
   exterior_group:
-    - boundary_filename
+    - _boundary_filename
     - maximum_triangle_area
   interior_group:
     - interior_polygon_filename
@@ -58,7 +67,7 @@ sections:
     - _output_format
 - title: Domain
   members:
-    - boundary_filename
+    - _boundary_filename
     - maximum_triangle_area
     - interior_polygon_filename
     - interior_polygon_triangle_area

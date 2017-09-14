@@ -12,4 +12,6 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
+    env['boundary_filename'] = env['_boundary_filename']
+
     yaml_dump('_env.yaml', env)
