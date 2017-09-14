@@ -1,5 +1,6 @@
 ignore:
   - output_filename
+  - domain_type
 
 globals:
   - _run_duration
@@ -40,6 +41,14 @@ extras:
         - netcdf
         - vtk
 
+groups:
+  exterior_group:
+    - boundary_filename
+    - maximum_triangle_area
+  interior_group:
+    - interior_polygon_filename
+    - interior_polygon_triangle_area
+
 sections:
 - title: Run
   members:
@@ -49,23 +58,19 @@ sections:
     - _output_format
 - title: Domain
   members:
-    - domain_type
-    - number_of_rows
-    - number_of_columns
-    - grid_size_x
-    - grid_size_y
-- title: Initial conditions
-  members:
-    - elevation_filename
-    - initial_flow_depth
-- title: Boundary conditions
-  members:
     - boundary_filename
-    - dict_of_boundary_tags
-    - dict_of_boundary_conditions
     - maximum_triangle_area
     - interior_polygon_filename
     - interior_polygon_triangle_area
+- title: Initial conditions
+  members:
+    - elevation_filename
+    - projection_filename
+    - initial_flow_depth
+- title: Boundary conditions
+  members:
+    - dict_of_boundary_tags
+    - dict_of_boundary_conditions
 - title: Model physics
   members:
     - use_sed_transport_operator
