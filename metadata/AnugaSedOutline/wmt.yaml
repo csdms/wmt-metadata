@@ -52,7 +52,7 @@ extras:
         - outline.csv
       units: UTM
   _boundary_condition_side1:
-    description: Side 1 boundary condition (expand for Dirichlet)
+    description: Side 1 boundary condition
     value:
       type: choice
       default: Dirichlet
@@ -88,7 +88,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side2:
-    description: Side 2 boundary condition (expand for Dirichlet)
+    description: Side 2 boundary condition
     value:
       type: choice
       default: Reflective
@@ -124,7 +124,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side3:
-    description: Side 3 boundary condition (expand for Dirichlet)
+    description: Side 3 boundary condition
     value:
       type: choice
       default: Reflective
@@ -160,7 +160,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side4:
-    description: Side 4 boundary condition (expand for Dirichlet)
+    description: Side 4 boundary condition
     value:
       type: choice
       default: Dirichlet
@@ -197,7 +197,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side5:
-    description: Side 5 boundary condition (expand for Dirichlet)
+    description: Side 5 boundary condition
     value:
       type: choice
       default: Reflective
@@ -234,7 +234,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side6:
-    description: Side 6 boundary condition (expand for Dirichlet)
+    description: Side 6 boundary condition
     value:
       type: choice
       default: Reflective
@@ -271,7 +271,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side7:
-    description: Side 7 boundary condition (expand for Dirichlet)
+    description: Side 7 boundary condition
     value:
       type: choice
       default: 'Off'
@@ -308,7 +308,7 @@ extras:
         max: 1.0e6
       units: 'kg m s-1'
   _boundary_condition_side8:
-    description: Side 8 boundary condition (expand for Dirichlet)
+    description: Side 8 boundary condition
     value:
       type: choice
       default: 'Off'
@@ -360,17 +360,17 @@ extras:
       default: ''
   _overview_ic:
     description:
-      "Upload a raster of initial elevations and optionally set the
+      "Upload a raster of initial elevations and set the
       initial water depth over the domain."
     value:
       type: overview
       default: ''
   _overview_bc:
     description:
-      "Set Reflective, Transmissive, or Dirichlet (expand heading for
+      "Set Reflective, Transmissive, or Dirichlet (expand description for
       additional options) boundary conditions for each side of the outline
-      domain. For an N-sided domain, set boundary conditions for the first
-      N sides; set the remaining sides to 'Off'."
+      domain. For an N-sided domain, set the first N boundary conditions;
+      set the remaining boundary conditions to 'Off'."
     value:
       type: overview
       default: ''
