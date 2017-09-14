@@ -57,7 +57,7 @@ extras:
       default: 5.0
       range:
         min: 0.0
-        max: 1.0e3
+        max: 1.0e6
       units: m
   _bc_left_dirichlet_x_momentum:
     description: '<i>x</i>-momentum (Dirichlet only)'
@@ -93,7 +93,7 @@ extras:
       default: 5.0
       range:
         min: 0.0
-        max: 1.0e3
+        max: 1.0e6
       units: m
   _bc_right_dirichlet_x_momentum:
     description: '<i>x</i>-momentum (Dirichlet only)'
@@ -129,7 +129,7 @@ extras:
       default: 5.0
       range:
         min: 0.0
-        max: 1.0e3
+        max: 1.0e6
       units: m
   _bc_top_dirichlet_x_momentum:
     description: '<i>x</i>-momentum (Dirichlet only)'
@@ -165,7 +165,7 @@ extras:
       default: 5.0
       range:
         min: 0.0
-        max: 1.0e3
+        max: 1.0e6
       units: m
   _bc_bottom_dirichlet_x_momentum:
     description: '<i>x</i>-momentum (Dirichlet only)'
