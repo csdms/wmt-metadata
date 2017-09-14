@@ -344,6 +344,42 @@ extras:
         min: 0.0
         max: 1.0e6
       units: 'kg m s-1'
+  _overview_run:
+    description:
+      "Set general parameters for the model run."
+    value:
+      type: overview
+      default: ''
+  _overview_domain:
+    description:
+      "Upload a CSV file with the (x,y) coordinates of an N-sided domain,
+      where 3 < N < 8. Optionally, upload a second CSV file with the 
+      coordinates of an interior boundary."
+    value:
+      type: overview
+      default: ''
+  _overview_ic:
+    description:
+      "Upload a raster of initial elevations and optionally set the
+      initial water depth over the domain."
+    value:
+      type: overview
+      default: ''
+  _overview_bc:
+    description:
+      "Set Reflective, Transmissive, or Dirichlet (expand heading for
+      additional options) boundary conditions for each side of the outline
+      domain. For an N-sided domain, set boundary conditions for the first
+      N sides; set the remaining sides to 'Off'."
+    value:
+      type: overview
+      default: ''
+  _overview_model_physics:
+    description:
+      "Set optional model physics parameters."
+    value:
+      type: overview
+      default: ''
 
 groups:
   exterior_group:
@@ -396,23 +432,27 @@ groups:
 sections:
 - title: Run
   members:
+    - _overview_run
     - output_timestep
     - _update_time_step
     - _output_interval
     - _output_format
 - title: Domain
   members:
+    - _overview_domain
     - _boundary_filename
     - maximum_triangle_area
     - interior_polygon_filename
     - interior_polygon_triangle_area
 - title: Initial conditions
   members:
+    - _overview_ic
     - elevation_filename
     - projection_filename
     - initial_flow_depth
 - title: Boundary conditions
   members:
+    - _overview_bc
     - _boundary_condition_side1
     - _bc_side1_dirichlet_stage
     - _bc_side1_dirichlet_x_momentum
@@ -447,6 +487,7 @@ sections:
     - _bc_side8_dirichlet_y_momentum
 - title: Model physics
   members:
+    - _overview_model_physics
     - use_sed_transport_operator
     - inflow_sediment_concentration
     - initial_sediment_concentration
