@@ -42,7 +42,6 @@ extras:
       choices:
         - netcdf
         - vtk
-<<<<<<< HEAD
   _boundary_filename:
     description: CSV file of exterior boundary node coordinates (minimum of 3, maximum of 8 sides)
     value:
