@@ -29,8 +29,6 @@ def execute(env):
       A dict of component parameter values from WMT.
 
     """
-    env['boundary_filename'] = env['_boundary_filename']
-
     sides = []
     for i in range(max_sides):
         name = 'side' + str(i+1)

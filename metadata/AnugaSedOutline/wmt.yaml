@@ -1,7 +1,6 @@
 ignore:
   - output_filename
   - domain_type
-  - boundary_filename
   - dict_of_boundary_tags
   - dict_of_boundary_conditions
 
@@ -43,6 +42,7 @@ extras:
       choices:
         - netcdf
         - vtk
+<<<<<<< HEAD
   _boundary_filename:
     description: CSV file of exterior boundary node coordinates (minimum of 3, maximum of 8 sides)
     value:
@@ -383,7 +383,7 @@ extras:
 
 groups:
   exterior_group:
-    - _boundary_filename
+    - boundary_filename
     - maximum_triangle_area
   interior_group:
     - interior_polygon_filename
@@ -440,7 +440,7 @@ sections:
 - title: Domain
   members:
     - _overview_domain
-    - _boundary_filename
+    - boundary_filename
     - maximum_triangle_area
     - interior_polygon_filename
     - interior_polygon_triangle_area
