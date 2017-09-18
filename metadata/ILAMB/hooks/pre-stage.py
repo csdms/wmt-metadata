@@ -71,9 +71,10 @@ def execute(env):
     env['regions'] = region_list
 
     if env['_define_regions_file'] != 'Off':
-        env['define_regions'] = \
-            find_simulation_input_file(env['_define_regions_file'])
-        shutil.copy(env['define_regions'], os.curdir)
+        env['define_regions'] = env['_define_regions_file']
+        shutil.copy(
+            find_simulation_input_file(env['define_regions']),
+            os.curdir)
         custom_regions_list = load_custom_regions(env['define_regions'])
         env['regions'].extend(custom_regions_list)
 
