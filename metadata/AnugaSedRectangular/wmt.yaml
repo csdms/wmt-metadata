@@ -45,7 +45,7 @@ extras:
     description: Left boundary condition
     value:
       type: choice
-      default: Reflective
+      default: Dirichlet
       choices:
         - Reflective
         - Transmissive
@@ -54,7 +54,7 @@ extras:
     description: Stage (Dirichlet only)
     value:
       type: float
-      default: 5.0
+      default: 0.4
       range:
         min: 0.0
         max: 1.0e6
@@ -81,7 +81,7 @@ extras:
     description: Right boundary condition
     value:
       type: choice
-      default: Dirichlet
+      default: Reflective
       choices:
         - Reflective
         - Transmissive
@@ -257,6 +257,7 @@ sections:
 - title: Initial conditions
   members:
     - _overview_ic
+    - elevation_profile
     - initial_flow_depth
 - title: Boundary conditions
   members:
