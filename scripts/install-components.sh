@@ -5,6 +5,10 @@ if [ -z "$wmt_executor" ]; then
     wmt_executor="beach.colorado.edu"
 fi
 
+if [ -z "$wmt_executor_username" ]; then
+    wmt_executor=$USER
+fi
+
 if [ -z "$wmt_executor_path" ]; then
     wmt_executor_path="/home/csdms/wmt/_testing"
 fi
@@ -16,10 +20,11 @@ fi
 project_dir=$(pwd)
 
 echo "WMT executor      = $wmt_executor"
+echo "WMT executor user = $wmt_executor_username"
 echo "WMT executor path = $wmt_executor_path"
 echo "WMT server path   = $wmt_server_path"
 
-ssh $wmt_executor \
+ssh $wmt_executor_username@$wmt_executor \
     PATH=$wmt_executor_path/conda/bin:\$PATH \
     cmt-config > $project_dir/wmt-config-beach.yaml
 

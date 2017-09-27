@@ -331,15 +331,16 @@ def fetch_files(config, prefix='.'):
     files_to_fetch = build_file_list(config, prefix=prefix)
 
     hostname = config['host']['hostname']
+    username = os.environ['wmt_executor_username']
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     try:
-        ssh.connect(hostname)
+        ssh.connect(hostname, username=username)
     except paramiko.AuthenticationException:
         password = getpass.getpass()
-        ssh.connect(hostname, password=password)
+        ssh.connect(hostname, username=username, password=password)
     except paramiko.SSHException:
         raise
 
