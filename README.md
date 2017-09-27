@@ -9,6 +9,7 @@ the paths to where WMT is installed on the server and the executor.
 
     export wmt_project=_testing  # change this
     export wmt_executor="beach.colorado.edu"
+    export wmt_executor_username=$USER  # change this
     export wmt_executor_path=/home/csdms/wmt/$wmt_project
     export wmt_server_path=/data/web/htdocs/wmt/api/$wmt_project
 
@@ -25,9 +26,9 @@ are needed to install the components.
 To instead install components manually, use
 
 ```
-ssh $wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
+ssh $wmt_executor_username@$wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
 sudo rm -rf $wmt_server_path/db/components
 sudo cp -r metadata/ $wmt_server_path/db/components
 sudo chown -R $USER $wmt_server_path/db/components
-./scripts/build-metadata ./wmt-config-beach.yaml --prefix=../../db/components
+./scripts/build-metadata ./wmt-config-beach.yaml --prefix=$wmt_server_path/db/components
 ```
