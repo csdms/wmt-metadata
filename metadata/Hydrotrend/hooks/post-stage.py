@@ -1,16 +1,12 @@
 import os
-import shutil
-
-from wmt.utils.hook import find_simulation_input_file
+import glob
+from wmt.utils.hook import yaml_dump
 
 
 def execute(env):
-    os.mkdir('HYDRO_IN')
-    os.mkdir('HYDRO_OUTPUT')
+    hyps_files = glob.glob('*.hyps')
+    for f in hyps_files:
+        os.remove(f)
 
-    os.rename('hydrotrend.in', 'HYDRO.IN')
-    shutil.move('HYDRO.IN', 'HYDRO_IN')
-
-    src = find_simulation_input_file(env['hypsometry_file'])
-
-    shutil.copy(src, os.path.join('HYDRO_IN', 'HYDRO0.HYPS'))
+    # For debugging
+    yaml_dump('_env_post.yaml', env)
