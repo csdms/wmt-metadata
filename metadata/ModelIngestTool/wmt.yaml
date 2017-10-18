@@ -48,14 +48,49 @@ extras:
     value:
       type: overview
       default: ''
+  _ingest_file1:
+    description: Model output file 1 (required)
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file2:
+    description: Model output file 2
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file3:
+    description: Model output file 3
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file4:
+    description: Model output file 4
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file5:
+    description: Model output file 5
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
 
 sections:
 - title: Model Ingest
   members:
     - _overview
-    - ingest_file1
-    - ingest_file2
-    - ingest_file3
-    - ingest_file4
-    - ingest_file5
+    - _ingest_file1
+    - _ingest_file2
+    - _ingest_file3
+    - _ingest_file4
+    - _ingest_file5
     - make_public

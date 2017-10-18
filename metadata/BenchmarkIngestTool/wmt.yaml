@@ -49,14 +49,49 @@ extras:
     value:
       type: overview
       default: ''
+  _ingest_file1:
+    description: Benchmark data file 1 (required)
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file2:
+    description: Benchmark data file 2
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file3:
+    description: Benchmark data file 3
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file4:
+    description: Benchmark data file 4
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
+  _ingest_file5:
+    description: Benchmark data file 5
+    value:
+      type: file
+      default: 'Off'
+      files:
+        - 'Off'
 
 sections:
 - title: Benchmark Ingest
   members:
     - _overview
-    - ingest_file1
-    - ingest_file2
-    - ingest_file3
-    - ingest_file4
-    - ingest_file5
+    - _ingest_file1
+    - _ingest_file2
+    - _ingest_file3
+    - _ingest_file4
+    - _ingest_file5
     - make_public
