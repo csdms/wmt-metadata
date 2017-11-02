@@ -89,6 +89,8 @@ sections:
 - title: Benchmark Ingest
   members:
     - _overview
+    - ilamb_root
+    - dest_dir
     - _ingest_file1
     - _ingest_file2
     - _ingest_file3
