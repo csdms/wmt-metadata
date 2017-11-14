@@ -90,6 +90,8 @@ sections:
     - _overview
     - ilamb_root
     - dest_dir
+    - link_dir
+    - study_name
     - _ingest_file1
     - _ingest_file2
     - _ingest_file3
