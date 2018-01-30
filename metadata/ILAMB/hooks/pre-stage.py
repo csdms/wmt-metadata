@@ -3,9 +3,9 @@
 import os
 import shutil
 from wmt.utils.hook import yaml_dump, find_simulation_input_file
-from permafrost_benchmark_system.file import (IlambConfigFile,
-                                              get_region_labels_txt,
-                                              get_region_labels_ncdf)
+from pbs_server.file import (IlambConfigFile,
+                             get_region_labels_txt,
+                             get_region_labels_ncdf)
 
 
 gfed_region_names = ['global', 'bona', 'tena', 'ceam', 'nhsa', 'shsa',
