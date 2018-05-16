@@ -1,0 +1,74 @@
+ignore:
+  - filename
+  - run_description
+  - run_region
+  - first_valid_year
+  - last_valid_year
+  - filepattern
+  - grid_type
+
+globals:
+  - _run_duration
+
+extras:
+  _run_duration:
+    description: Simulation run time
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 3153600000
+      units: yr
+  _update_time_step:
+    description: Interval between port updates
+    value:
+      type: int
+      default: 1
+      range:
+        min: 1
+        max: 1000000
+      units: yr
+  _output_interval:
+    description: Number of times to write output
+    value:
+      type: int
+      default: 10
+      range:
+        min: 1
+        max: 1000000
+  _output_format:
+    description: File format for output
+    value:
+      type: choice
+      default: netcdf
+      choices:
+        - netcdf
+        - vtk
+
+sections:
+- title: Run
+  members:
+    - model_start_year
+    - timestep
+    - _update_time_step
+    - _output_interval
+    - _output_format
+- title: Data source
+  members:
+    - srcdata_dir
+- title: Grid
+  members:
+    - grid_columns
+    - grid_rows
+    - i_ul
+    - j_ul
+
+provides:
+  meteorology:
+    required: false
+    exchange_items:
+      - atmosphere_bottom_air__temperature
+      - atmosphere_bottom_air__temperature_mean_jan
+      - atmosphere_bottom_air__temperature_mean_jul
+      - atmosphere_bottom_air__temperature_year
