@@ -26,9 +26,9 @@ are needed to install the components.
 To instead install components manually, use
 
 ```
-ssh $wmt_executor_username@$wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-beach.yaml
+ssh $wmt_executor_username@$wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-$wmt_executor.yaml
 sudo rm -rf $wmt_server_path/db/components
 sudo cp -r metadata/ $wmt_server_path/db/components
 sudo chown -R $USER $wmt_server_path/db/components
-./scripts/build-metadata ./wmt-config-beach.yaml --prefix=$wmt_server_path/db/components
+./scripts/build-metadata ./wmt-config-$wmt_executor.yaml --prefix=$wmt_server_path/db/components
 ```
