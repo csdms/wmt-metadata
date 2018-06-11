@@ -52,6 +52,18 @@ def load_wmt_config(file_like):
     return yaml.load(file_like)
 
 
+def open_connection(hostname, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    try:
+        ssh.connect(hostname, username=username, password=password)
+    except paramiko.SSHException:
+        raise
+
+    return ssh
+
+
 def dump_info(info, api):
     info['id'] = api['class']
     info['name'] = api['class']
@@ -332,18 +344,9 @@ def fetch_files(config, prefix='.'):
 
     hostname = config['host']['hostname']
     username = os.environ['wmt_executor_username']
+    password = getpass.getpass()
 
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    try:
-        ssh.connect(hostname, username=username)
-    except paramiko.AuthenticationException:
-        password = getpass.getpass()
-        ssh.connect(hostname, username=username, password=password)
-    except paramiko.SSHException:
-        raise
-
+    ssh = open_connection(hostname, username, password)
     sftp = ssh.open_sftp()
 
     # def callback(bytes, total):
