@@ -2,8 +2,10 @@
 import os
 import yaml
 
+project_dir=os.path.dirname(os.path.dirname(__file__))
 wmt_executor = os.environ['wmt_executor']
-cfg_file = 'wmt-config-' + wmt_executor + '.yaml' 
+cfg_file = os.path.join(project_dir,
+                        'wmt-config-{}.yaml'.format(wmt_executor))
 
 try:
     with open(cfg_file, 'r') as fp:
