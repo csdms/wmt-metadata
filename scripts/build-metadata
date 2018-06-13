@@ -321,6 +321,24 @@ def add_output_vars_to_params(params, sections, provides):
     sections.append(print_section)
 
 
+def fetch_config(hostname, hostpath=None, username=None, password=None):
+    config_file = 'wmt-config-{}.yaml'.format(hostname)
+
+    cmd = 'PATH={}:$PATH;cmt-config > /tmp/{}'.format(hostpath, config_file)
+    ssh = open_connection(hostname, username, password)
+    ssh.exec_command(cmd)
+    ssh.close()
+
+    ssh = open_connection(hostname, username, password)
+    sftp = ssh.open_sftp()
+    with cd(project_dir):
+        sftp.get(config_path_exe, config_file)
+        config = load_config(config_file)
+    ssh.close()
+
+    return config
+
+
 def build_metadata(config, prefix='.'):
     for name, component in config['components'].items():
         with cd(os.path.join(prefix, name)):
