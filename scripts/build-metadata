@@ -15,6 +15,9 @@ import getpass
 import yaml
 
 
+project_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
+
 class cd(object):
     def __init__(self, dir):
         self._dir = dir
@@ -57,10 +60,6 @@ def load_host_info(info_file):
     with open(info_file, 'r') as fp:
         info = json.load(fp)
     return info
-
-
-def get_project_dir():
-    return os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 def open_connection(hostname, username, password):
@@ -345,7 +344,7 @@ def fetch_config(hostname, hostpath=None, username=None, password=None):
 
     ssh = open_connection(hostname, username, password)
     sftp = ssh.open_sftp()
-    with cd(get_project_dir()):
+    with cd(project_dir):
         sftp.get(config_path, config_file)
         config = load_config(file(config_file))
     ssh.close()
