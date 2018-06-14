@@ -59,6 +59,10 @@ def load_host_info(info_file):
     return info
 
 
+def get_project_dir():
+    return os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
+
 def open_connection(hostname, username, password):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -329,17 +333,21 @@ def add_output_vars_to_params(params, sections, provides):
 
 def fetch_config(hostname, hostpath=None, username=None, password=None):
     config_file = 'wmt-config-{}.yaml'.format(hostname)
+    config_path = '/tmp/{}'.format(config_file)
 
-    cmd = 'PATH={}:$PATH;cmt-config > /tmp/{}'.format(hostpath, config_file)
+    cmd = 'PATH={}:$PATH;cmt-config > {}'.format(hostpath, config_path)
     ssh = open_connection(hostname, username, password)
-    ssh.exec_command(cmd)
+    ssh.connect(hostname, username=username, password=password)
+    _, stdout, stderr = ssh.exec_command(cmd)  # All
+    cfg = stdout.readlines()                   # three lines
+    err = stderr.readlines()                   # needed. Why?
     ssh.close()
 
     ssh = open_connection(hostname, username, password)
     sftp = ssh.open_sftp()
-    with cd(project_dir):
-        sftp.get(config_path_exe, config_file)
-        config = load_config(config_file)
+    with cd(get_project_dir()):
+        sftp.get(config_path, config_file)
+        config = load_config(file(config_file))
     ssh.close()
 
     return config
@@ -404,6 +412,10 @@ def main():
         info_file = os.path.join(args.prefix, 'db', 'hosts',
                                  args.hostname, 'db', 'info.json')
         info = load_host_info(info_file)
+        config = fetch_config(info['name'],
+                              username=info['username'],
+                              password=info['password'],
+                              hostpath=os.path.join(info['wmt_prefix'], 'bin'))
 
     build_metadata(config, prefix=os.path.abspath(args.prefix))
     fetch_files(config, prefix=os.path.abspath(args.prefix))
