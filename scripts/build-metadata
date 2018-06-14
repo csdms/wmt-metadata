@@ -383,12 +383,17 @@ def build_metadata(config, prefix='.'):
             dump_provides(component['provides'], wmt_config)
 
 
-def fetch_files(config, prefix='.'):
+def fetch_files(config, prefix='.', executor_info=None):
     files_to_fetch = build_file_list(config, prefix=prefix)
 
-    hostname = config['host']['hostname']
-    username = os.environ['wmt_executor_username']
-    password = getpass.getpass()
+    if executor_info is None:
+        hostname = config['host']['hostname']
+        username = os.environ['wmt_executor_username']
+        password = getpass.getpass()
+    else:
+        hostname = executor_info['name']
+        username = executor_info['username']
+        password = executor_info['password']
 
     ssh = open_connection(hostname, username, password)
     sftp = ssh.open_sftp()
@@ -419,6 +424,7 @@ def main():
 
     if args.config_file is not None:
         config = load_config(args.config_file)
+        info = None
     else:
         info_file = os.path.join(args.prefix, 'db', 'hosts',
                                  args.hostname, 'db', 'info.json')
@@ -430,8 +436,8 @@ def main():
 
     components_dir = os.path.join(args.prefix, 'db', 'components')
     fetch_metadata_files(config, prefix=components_dir)
-    # build_metadata(config, prefix=os.path.abspath(args.prefix))
-    # fetch_files(config, prefix=os.path.abspath(args.prefix))
+    build_metadata(config, prefix=components_dir)
+    fetch_files(config, prefix=components_dir, executor_info=info)
 
 
 if __name__ == '__main__':
