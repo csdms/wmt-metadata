@@ -53,6 +53,12 @@ def load_wmt_config(file_like):
     return yaml.load(file_like)
 
 
+def load_host_info(info_file):
+    with open(info_file, 'r') as fp:
+        info = json.load(fp)
+    return info
+
+
 def open_connection(hostname, username, password):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -392,7 +398,12 @@ def main():
                         help='Hostname of execution server')
     args = parser.parse_args()
 
-    config = load_config(args.config_file)
+    if args.config_file is not None:
+        config = load_config(args.config_file)
+    else:
+        info_file = os.path.join(args.prefix, 'db', 'hosts',
+                                 args.hostname, 'db', 'info.json')
+        info = load_host_info(info_file)
 
     build_metadata(config, prefix=os.path.abspath(args.prefix))
     fetch_files(config, prefix=os.path.abspath(args.prefix))
