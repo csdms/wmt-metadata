@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 import os
+import sys
+import shutil
 import argparse
 import json
 from distutils.dir_util import mkpath
@@ -12,6 +14,9 @@ import collections
 import paramiko
 import getpass
 import yaml
+
+
+project_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 class cd(object):
@@ -50,6 +55,24 @@ def load_config(file_like):
 
 def load_wmt_config(file_like):
     return yaml.load(file_like)
+
+
+def load_host_info(info_file):
+    with open(info_file, 'r') as fp:
+        info = json.load(fp)
+    return info
+
+
+def open_connection(hostname, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    try:
+        ssh.connect(hostname, username=username, password=password)
+    except paramiko.SSHException:
+        raise
+
+    return ssh
 
 
 def dump_info(info, api):
@@ -308,6 +331,39 @@ def add_output_vars_to_params(params, sections, provides):
     sections.append(print_section)
 
 
+def fetch_config(hostname, hostpath=None, username=None, password=None):
+    config_file = 'wmt-config-{}.yaml'.format(hostname)
+    config_path = '/tmp/{}'.format(config_file)
+
+    cmd = 'PATH={}:$PATH;cmt-config > {}'.format(hostpath, config_path)
+    ssh = open_connection(hostname, username, password)
+    ssh.connect(hostname, username=username, password=password)
+    _, stdout, stderr = ssh.exec_command(cmd)  # All
+    cfg = stdout.readlines()                   # three lines
+    err = stderr.readlines()                   # needed. Why?
+    ssh.close()
+
+    ssh = open_connection(hostname, username, password)
+    sftp = ssh.open_sftp()
+    with cd(project_dir):
+        sftp.get(config_path, config_file)
+        config = load_config(file(config_file))
+    ssh.close()
+
+    return config
+
+
+def fetch_metadata_files(config, prefix='.'):
+    for name in config['components'].keys():
+        print '-', name
+        with cd(prefix):
+            if os.path.exists(name):
+                shutil.rmtree(name)
+            src = os.path.join(project_dir, 'metadata', name)
+            dst = os.path.join(os.getcwd(), name)
+            shutil.copytree(src, dst)
+
+
 def build_metadata(config, prefix='.'):
     for name, component in config['components'].items():
         with cd(os.path.join(prefix, name)):
@@ -327,23 +383,19 @@ def build_metadata(config, prefix='.'):
             dump_provides(component['provides'], wmt_config)
 
 
-def fetch_files(config, prefix='.'):
+def fetch_files(config, prefix='.', executor_info=None):
     files_to_fetch = build_file_list(config, prefix=prefix)
 
-    hostname = config['host']['hostname']
-    username = os.environ['wmt_executor_username']
-
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-    try:
-        ssh.connect(hostname, username=username)
-    except paramiko.AuthenticationException:
+    if executor_info is None:
+        hostname = config['host']['hostname']
+        username = os.environ['wmt_executor_username']
         password = getpass.getpass()
-        ssh.connect(hostname, username=username, password=password)
-    except paramiko.SSHException:
-        raise
+    else:
+        hostname = executor_info['name']
+        username = executor_info['username']
+        password = executor_info['password']
 
+    ssh = open_connection(hostname, username, password)
     sftp = ssh.open_sftp()
 
     # def callback(bytes, total):
@@ -358,17 +410,34 @@ def fetch_files(config, prefix='.'):
 
 
 def main():
+    prefix = os.path.dirname(sys.prefix)
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('file', type=argparse.FileType('r'),
+    parser.add_argument('config_file', type=argparse.FileType('r'),
+                        nargs='?',
                         help='Execution server configuration file')
-    parser.add_argument('--prefix', default='.',
-                        help='Path to installation')
+    parser.add_argument('--prefix', default=prefix,
+                        help='Path to server installation')
+    parser.add_argument('--hostname', default='siwenna.colorado.edu',
+                        help='Hostname of execution server')
     args = parser.parse_args()
 
-    config = load_config(args.file)
+    if args.config_file is not None:
+        config = load_config(args.config_file)
+        info = None
+    else:
+        info_file = os.path.join(args.prefix, 'db', 'hosts',
+                                 args.hostname, 'db', 'info.json')
+        info = load_host_info(info_file)
+        config = fetch_config(info['name'],
+                              username=info['username'],
+                              password=info['password'],
+                              hostpath=os.path.join(info['wmt_prefix'], 'bin'))
 
-    build_metadata(config, prefix=os.path.abspath(args.prefix))
-    fetch_files(config, prefix=os.path.abspath(args.prefix))
+    components_dir = os.path.join(args.prefix, 'db', 'components')
+    fetch_metadata_files(config, prefix=components_dir)
+    build_metadata(config, prefix=components_dir)
+    fetch_files(config, prefix=components_dir, executor_info=info)
 
 
 if __name__ == '__main__':
