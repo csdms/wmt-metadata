@@ -290,9 +290,12 @@ def dump_provides(provides_names, wmt_config):
         json.dump(ports, fp, indent=4)
 
 
-def build_file_list(config, prefix='.'):
+def build_file_list(config, prefix='.', single_component=None):
     all_files = []
     for name, component in config['components'].items():
+        if single_component is not None:
+            if single_component != name:
+                continue
         datadir = commonpath(component['files'])
         if len(component['files']) == 1:
             datadir = os.path.dirname(datadir)
@@ -353,8 +356,11 @@ def fetch_config(hostname, hostpath=None, username=None, password=None):
     return config
 
 
-def fetch_metadata_files(config, prefix='.'):
+def fetch_metadata_files(config, prefix='.', single_component=None):
     for name in config['components'].keys():
+        if single_component is not None:
+            if single_component != name:
+                continue
         print '-', name
         with cd(prefix):
             if os.path.exists(name):
@@ -364,8 +370,11 @@ def fetch_metadata_files(config, prefix='.'):
             shutil.copytree(src, dst)
 
 
-def build_metadata(config, prefix='.'):
+def build_metadata(config, prefix='.', single_component=None):
     for name, component in config['components'].items():
+        if single_component is not None:
+            if single_component != name:
+                continue
         with cd(os.path.join(prefix, name)):
             with open('wmt.yaml', 'r') as fp:
                 wmt_config = load_wmt_config(fp)
@@ -383,8 +392,10 @@ def build_metadata(config, prefix='.'):
             dump_provides(component['provides'], wmt_config)
 
 
-def fetch_files(config, prefix='.', executor_info=None):
-    files_to_fetch = build_file_list(config, prefix=prefix)
+def fetch_files(config, prefix='.', single_component=None,
+                executor_info=None):
+    files_to_fetch = build_file_list(config, prefix=prefix,
+                                     single_component=single_component)
 
     if executor_info is None:
         hostname = config['host']['hostname']
@@ -420,6 +431,8 @@ def main():
                         help='Path to server installation')
     parser.add_argument('--hostname', default='siwenna.colorado.edu',
                         help='Hostname of execution server')
+    parser.add_argument('--component', default=None,
+                        help='Name of single component to build')
     args = parser.parse_args()
 
     if args.config_file is not None:
@@ -435,9 +448,12 @@ def main():
                               hostpath=os.path.join(info['wmt_prefix'], 'bin'))
 
     components_dir = os.path.join(args.prefix, 'db', 'components')
-    fetch_metadata_files(config, prefix=components_dir)
-    build_metadata(config, prefix=components_dir)
-    fetch_files(config, prefix=components_dir, executor_info=info)
+    fetch_metadata_files(config, prefix=components_dir,
+                         single_component=args.component)
+    build_metadata(config, prefix=components_dir,
+                   single_component=args.component)
+    fetch_files(config, prefix=components_dir,
+                single_component=args.component, executor_info=info)
 
 
 if __name__ == '__main__':
