@@ -1,11 +1,15 @@
 """A hook for refreshing a component's metadata."""
 
+import os
+import yaml
 from wmt.utils.ssh import get_host_info, open_connection_to_host
+from wmt.config import site
 from wmt.utils.hook import yaml_dump
 
 
 hostname = 'siwenna.colorado.edu'
 pbs_dir = '/home/csdms/ilamb/MODELS-by-project/PBS'
+metadata_dir = os.path.join(site['opt'], 'wmt-metadata')
 
 
 # Note that I modified info.json to add login credentials.
@@ -50,3 +54,15 @@ def execute(name):
     # Extract model names from file list, removing duplicates.
     models = get_model_names(pbs_files)
     yaml_dump('/tmp/models.yaml', models)
+
+    # Read the ILAMB wmt.yaml metadata file.
+    metadata_file = os.path.join(metadata_dir, 'metadata', name, 'wmt.yaml')
+    with open(metadata_file, 'r') as fp:
+        metadata = yaml.safe_load(fp)
+
+    # TODO Add new models to the ILAMB metadata.
+
+    # Write the updated ILAMB wmt.yaml metadata file.
+    # Note that I had to give `a+w` permissions to the file.
+    with open(metadata_file, 'w') as fp:
+        yaml.dump(metadata, fp, default_flow_style=False)
