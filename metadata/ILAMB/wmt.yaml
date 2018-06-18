@@ -196,7 +196,6 @@ extras:
       choices:
         - 'On'
         - 'Off'
-
   _model_CLM4VIC:
     description: CLM4VIC
     value:
@@ -293,7 +292,11 @@ extras:
       choices:
         - 'On'
         - 'Off'
-
+  _pbs_models:
+    description: Model outputs uploaded through the PBS (click to expand)
+    value:
+      type: subheading
+      default: ''
   _mean_model:
     description: Include mean model calculation?
     value:
@@ -597,6 +600,8 @@ groups:
     - _model_TRIPLEX-GHG
     - _model_VEGAS21
     - _model_VISIT
+  pbs_models_group:
+    - _pbs_models
   regions_group:
     - _gfed_regions
     - _region_bona
@@ -653,6 +658,7 @@ sections:
       - _model_TRIPLEX-GHG
       - _model_VEGAS21
       - _model_VISIT
+      - _pbs_models
       - _mean_model
   - title: Model outputs
     members:
