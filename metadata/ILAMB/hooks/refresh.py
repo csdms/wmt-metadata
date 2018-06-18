@@ -23,6 +23,16 @@ def get_pbs_listing():
     return file_list
 
 
+def get_model_names(pbs_files):
+    names = []
+    for pbs_file in pbs_files:
+        parts = pbs_file.split('_')
+        name = parts[2]
+        if name not in names:
+            names.append(name)
+    return names
+
+
 def execute(name):
     """Hook called by components/refresh API.
 
@@ -36,3 +46,7 @@ def execute(name):
     # Get files listed in MODELS-by-project/PBS directory.
     pbs_files = get_pbs_listing()
     yaml_dump('/tmp/files.yaml', pbs_files)
+
+    # Extract model names from file list, removing duplicates.
+    models = get_model_names(pbs_files)
+    yaml_dump('/tmp/models.yaml', models)
