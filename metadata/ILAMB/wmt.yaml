@@ -59,7 +59,7 @@ extras:
       type: overview
       default: ''
   _cmip5_models:
-    description: CMIP5 models (click to expand)
+    description: CMIP5 model outputs (click to expand)
     value:
       type: subheading
       default: ''
@@ -168,7 +168,7 @@ extras:
         - 'On'
         - 'Off'
   _mstmip_models:
-    description: MsTMIP models (click to expand)
+    description: MsTMIP model outputs (click to expand)
     value:
       type: subheading
       default: ''
@@ -660,7 +660,7 @@ sections:
       - _model_VISIT
       - _pbs_models
       - _mean_model
-  - title: Model outputs
+  - title: Variables
     members:
       - _overview_variables
       - _variable1
