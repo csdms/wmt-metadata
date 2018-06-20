@@ -98,3 +98,9 @@ def execute(name):
     # Note that I had to give `a+w` permissions to the file.
     with open(parameters_file, 'w') as fp:
         json.dump(params, fp, indent=4)
+
+    # Touch the wsgi script so the client reads the changes.
+    # I had to change the permissions to `a+w` on the wsgi script.
+    # And also add site['bin'].
+    script_path = os.path.join(site['bin'], 'wmt_wsgi_main.py')
+    r = subprocess.call(['touch', script_path])
