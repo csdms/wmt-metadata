@@ -4,7 +4,6 @@ import os
 import json
 from wmt.utils.ssh import get_host_info, open_connection_to_host
 from wmt.config import site
-from wmt.utils.hook import yaml_dump
 
 
 hostname = 'siwenna.colorado.edu'
@@ -48,11 +47,9 @@ def execute(name):
 
     # Get files listed in MODELS-by-project/PBS directory.
     pbs_files = get_pbs_listing()
-    yaml_dump('/tmp/files.yaml', pbs_files)
 
     # Extract model names from file list, removing duplicates.
     models = get_model_names(pbs_files)
-    yaml_dump('/tmp/models.yaml', models)
 
     # Read the ILAMB parameters.json file.
     parameters_file = os.path.join(site['db'], 'components', name,
