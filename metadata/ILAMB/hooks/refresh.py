@@ -1,7 +1,7 @@
 """A hook for refreshing a component's metadata."""
 
 import os
-import yaml
+import json
 from wmt.utils.ssh import get_host_info, open_connection_to_host
 from wmt.config import site
 from wmt.utils.hook import yaml_dump
@@ -9,7 +9,6 @@ from wmt.utils.hook import yaml_dump
 
 hostname = 'siwenna.colorado.edu'
 pbs_dir = '/home/csdms/ilamb/MODELS-by-project/PBS'
-metadata_dir = os.path.join(site['opt'], 'wmt-metadata')
 
 
 # Note that I modified info.json to add login credentials.
@@ -55,14 +54,15 @@ def execute(name):
     models = get_model_names(pbs_files)
     yaml_dump('/tmp/models.yaml', models)
 
-    # Read the ILAMB wmt.yaml metadata file.
-    metadata_file = os.path.join(metadata_dir, 'metadata', name, 'wmt.yaml')
-    with open(metadata_file, 'r') as fp:
-        metadata = yaml.safe_load(fp)
+    # Read the ILAMB parameters.json file.
+    parameters_file = os.path.join(site['db'], 'components', name,
+                                   'db', 'parameters.json')
+    with open(parameters_file, 'r') as fp:
+        params = json.load(fp)
 
     # TODO Add new models to the ILAMB metadata.
 
-    # Write the updated ILAMB wmt.yaml metadata file.
+    # Write the updated ILAMB parameters.json file.
     # Note that I had to give `a+w` permissions to the file.
-    with open(metadata_file, 'w') as fp:
-        yaml.dump(metadata, fp, default_flow_style=False)
+    with open(parameters_file, 'w') as fp:
+        json.dump(params, fp, indent=4)
