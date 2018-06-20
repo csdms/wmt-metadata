@@ -83,6 +83,7 @@ def execute(name):
 
     # Extract model names from file list, removing duplicates.
     models = get_model_names(pbs_files)
+    models.sort()
 
     # Read the ILAMB parameters.json file.
     parameters_file = os.path.join(site['db'], 'components', name,
