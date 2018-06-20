@@ -1,6 +1,7 @@
 """A hook for refreshing a component's metadata."""
 
 import os
+import subprocess
 import json
 from wmt.utils.ssh import get_host_info, open_connection_to_host
 from wmt.config import site
@@ -8,6 +9,11 @@ from wmt.config import site
 
 hostname = 'siwenna.colorado.edu'
 pbs_dir = '/home/csdms/ilamb/MODELS-by-project/PBS'
+model_template = { "group": { "name": "pbs_models_group", "members":
+    1, "leader": False }, "name": "{model_name}", "global": False,
+    "value": { "default": "Off", "type": "choice", "choices": [ "On",
+    "Off" ] }, "visible": True, "key": "_model_{model_name}",
+    "description": "{model_name}" }
 
 
 # Note that I modified info.json to add login credentials.
@@ -35,6 +41,33 @@ def get_model_names(pbs_files):
     return names
 
 
+def key_in_pbs_group(key, parameters):
+    for param in parameters:
+        if 'group' in param.keys():
+            if param['group']['name'] == 'pbs_models_group':
+                if param['key'] == key:
+                    return True
+    return False
+
+
+def update_parameters(parameters, models):
+    for index, param in enumerate(parameters):
+        if param['key'] == '_pbs_models':
+            pbs_group_header = param
+            pbs_group_index = index
+
+    for model in models:
+        key = '_model_{}'.format(model)
+        if not key_in_pbs_group(key, parameters):
+            entry = model_template.copy()
+            entry['key'] = key
+            entry['name'] = model
+            entry['description'] = model
+            pbs_group_header['group']['members'] += 1
+            pbs_group_index += 1
+            parameters.insert(pbs_group_index, entry)
+
+
 def execute(name):
     """Hook called by components/refresh API.
 
@@ -57,7 +90,8 @@ def execute(name):
     with open(parameters_file, 'r') as fp:
         params = json.load(fp)
 
-    # TODO Add new models to the ILAMB metadata.
+    # Add new models to the ILAMB metadata.
+    update_parameters(params, models)
 
     # Write the updated ILAMB parameters.json file.
     # Note that I had to give `a+w` permissions to the file.
