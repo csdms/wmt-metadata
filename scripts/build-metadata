@@ -236,6 +236,7 @@ def dump_parameters(params, wmt_config):
     plist = make_mappers(plist, wmt_config.get('parameter_mappers', {}))
     with open('parameters.json', 'w') as fp:
         json.dump(plist, fp, indent=4)
+    os.chmod('parameters.json', 0666)
 
 
 def dump_files(files):
