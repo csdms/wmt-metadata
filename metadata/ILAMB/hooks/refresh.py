@@ -5,8 +5,8 @@ import subprocess
 import json
 from wmt.utils.ssh import get_host_info, open_connection_to_host
 from wmt.config import site
-from pbs_server.models import get_model_name, update_parameters
-from pbs_server.variables import get_variable_name
+import pbs_server.models as models
+import pbs_server.variables as variables
 
 
 hostname = 'siwenna.colorado.edu'
@@ -58,20 +58,20 @@ def execute(name):
     data_files = get_pbs_listing(data_dir)
 
     # Extract model names from file list, removing duplicates.
-    models = []
+    model_list = []
     for pbs_file in models_files:
-        model_name = get_model_name(pbs_file)
-        if model_name not in models:
-            models.append(model_name)
-    models.sort()
+        model_name = models.get_name(pbs_file)
+        if model_name not in model_list:
+            model_list.append(model_name)
+    model_list.sort()
 
     # Extract variable names from file list, removing duplicates.
-    variables = []
+    variable_list = []
     for pbs_file in data_files:
-        variable_name = get_variable_name(pbs_file)
-        if variable_name not in variables:
-            variables.append(variable_name)
-    variables.sort()
+        variable_name = variables.get_name(pbs_file)
+        if variable_name not in variable_list:
+            variable_list.append(variable_name)
+    variable_list.sort()
 
     # Read the ILAMB parameters.json file.
     parameters_file = os.path.join(site['db'], 'components', name,
@@ -80,7 +80,7 @@ def execute(name):
         params = json.load(fp)
 
     # Add new models to the ILAMB metadata.
-    update_parameters(params, models)
+    models.update_parameters(params, model_list)
 
     # Write the updated ILAMB parameters.json file.
     # Note that I had to give `a+w` permissions to the file.
