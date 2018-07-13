@@ -6,6 +6,7 @@ import json
 from wmt.utils.ssh import get_host_info, open_connection_to_host
 from wmt.config import site
 from pbs_server.models import get_model_name, update_parameters
+from pbs_server.variables import get_variable_name
 
 
 hostname = 'siwenna.colorado.edu'
@@ -63,6 +64,14 @@ def execute(name):
         if model_name not in models:
             models.append(model_name)
     models.sort()
+
+    # Extract variable names from file list, removing duplicates.
+    variables = []
+    for pbs_file in data_files:
+        variable_name = get_variable_name(pbs_file)
+        if variable_name not in variables:
+            variables.append(variable_name)
+    variables.sort()
 
     # Read the ILAMB parameters.json file.
     parameters_file = os.path.join(site['db'], 'components', name,
