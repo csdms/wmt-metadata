@@ -9,13 +9,19 @@ from pbs_server.models import get_model_name, update_parameters
 
 
 hostname = 'siwenna.colorado.edu'
-pbs_dir = '/home/csdms/ilamb/MODELS-by-project/PBS'
+models_dir = '/home/csdms/ilamb/MODELS-by-project/PBS'
+data_dir = '/home/csdms/ilamb/DATA-by-project/PBS'
 
 
 # Note that I modified info.json to add login credentials.
-def get_pbs_listing():
+def get_pbs_listing(pbs_dir):
     """
-    Get a listing of model outputs uploaded through the PBS.
+    Get a listing of model outputs or benchmark data uploaded through the PBS.
+
+    Parameters
+    ----------
+    pbs_dir : str
+      The path to the directory of uploaded PBS files.
 
     Returns
     -------
@@ -46,12 +52,13 @@ def execute(name):
 
     """
 
-    # Get files listed in MODELS-by-project/PBS directory.
-    pbs_files = get_pbs_listing()
+    # Get names of files uploaded through the PBS.
+    models_files = get_pbs_listing(models_dir)
+    data_files = get_pbs_listing(data_dir)
 
     # Extract model names from file list, removing duplicates.
     models = []
-    for pbs_file in pbs_files:
+    for pbs_file in models_files:
         model_name = get_model_name(pbs_file)
         if model_name not in models:
             models.append(model_name)
