@@ -79,8 +79,9 @@ def execute(name):
     with open(parameters_file, 'r') as fp:
         params = json.load(fp)
 
-    # Add new models to the ILAMB metadata.
+    # Add new models and variables to the ILAMB metadata.
     models.update_parameters(params, model_list)
+    variables.update_parameters(params, variable_list)
 
     # Write the updated ILAMB parameters.json file.
     # Note that I had to give `a+w` permissions to the file.
