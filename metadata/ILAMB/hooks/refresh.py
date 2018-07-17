@@ -87,6 +87,10 @@ def execute(name):
     with open(parameters_file, 'w') as fp:
         json.dump(params, fp, indent=4)
 
+    # Create or update the .cfg.tmpl file for each variable.
+    for var_name, file_name in variable_dict.items():
+        variables.update_template(var_name, file_name)
+
     # Touch the wsgi script so the client reads the changes.
     # I had to change the permissions to `a+w` on the wsgi script.
     # And also add site['bin'].
