@@ -66,12 +66,11 @@ def execute(name):
     model_list.sort()
 
     # Extract variable names from file list, removing duplicates.
-    variable_list = []
+    variable_dict = {}
     for pbs_file in data_files:
         variable_name = variables.get_name(pbs_file)
-        if variable_name not in variable_list:
-            variable_list.append(variable_name)
-    variable_list.sort()
+        if variable_name not in variable_dict.keys():
+            variable_dict[variable_name] = pbs_file
 
     # Read the ILAMB parameters.json file.
     parameters_file = os.path.join(site['db'], 'components', name,
@@ -81,7 +80,7 @@ def execute(name):
 
     # Add new models and variables to the ILAMB metadata.
     models.update_parameters(params, model_list)
-    variables.update_parameters(params, variable_list)
+    variables.update_parameters(params, variable_dict.keys())
 
     # Write the updated ILAMB parameters.json file.
     # Note that I had to give `a+w` permissions to the file.
