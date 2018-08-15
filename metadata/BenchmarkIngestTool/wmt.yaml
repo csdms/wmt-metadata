@@ -92,10 +92,12 @@ sections:
     # - ilamb_root
     # - dest_dir
     # - link_dir
-    # - study_name
+    # - project_name
+    - source_name
     - _ingest_file1
     - _ingest_file2
     - _ingest_file3
     - _ingest_file4
     - _ingest_file5
     # - make_public
+    - overwrite_files
