@@ -16,7 +16,7 @@ def read_requirements():
         return [require.split() for require in requires]
 
 
-setup(name='wmtmetatdata',
+setup(name='wmtmetadata',
       version='0.1',
       description='CSDMS Web Modeling Tool (WMT) component metadata and tools',
       author='Mark Piper',
