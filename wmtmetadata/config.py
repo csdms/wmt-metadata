@@ -1,6 +1,9 @@
 """Configuration information for a remote WMT executor."""
 
+import os
 import yaml
+from wmtmetadata.ssh import open_connection
+from wmtmetadata.host import HostInfo
 
 
 class Config(object):
@@ -20,3 +23,28 @@ class ConfigFromFile(Config):
     def __init__(self, filename='wmt-config-siwenna.yaml'):
         super(ConfigFromFile, self).__init__()
         self.filename = filename
+
+
+class ConfigFromHost(Config):
+
+    cmd = 'PATH={}:$PATH;cmt-config > {}'
+
+    def __init__(self, hostname='siwenna.colorado.edu'):
+        super(ConfigFromHost, self).__init__()
+        self.filename = 'wmt-config-{}.yaml'.format(hostname)
+        self.host = HostInfo(hostname)
+        self.host.load()
+        self.hostpath = os.path.join(self.host.info['wmt_prefix'], 'bin')
+        self.hostfile = '/tmp/{}'.format(self.filename)
+
+    def build_on_host(self, username=None, password=None):
+        if username is None:
+            username = self.host.info['username']
+        if password is None:
+            password = self.host.info['password']
+        cmd = self.cmd.format(self.hostpath, self.hostfile)
+        ssh = open_connection(self.host.info['name'], username, password)
+        _, stdout, stderr = ssh.exec_command(cmd)  # All
+        cfg = stdout.readlines()                   # three lines
+        err = stderr.readlines()                   # needed. Why?
+        ssh.close()
