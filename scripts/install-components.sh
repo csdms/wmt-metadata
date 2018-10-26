@@ -42,5 +42,4 @@ for c in $components; do
 done
 
 $project_dir/scripts/build-metadata \
-    $project_dir/wmt-config-$wmt_executor.yaml \
-    --prefix=$wmt_server_path/db/components
+    $project_dir/wmt-config-$wmt_executor.yaml
