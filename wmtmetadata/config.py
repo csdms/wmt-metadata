@@ -4,6 +4,7 @@ import os
 import yaml
 from wmtmetadata.ssh import open_connection
 from wmtmetadata.host import HostInfo
+from wmtmetadata import top_dir
 
 
 class Config(object):
@@ -47,4 +48,17 @@ class ConfigFromHost(Config):
         _, stdout, stderr = ssh.exec_command(cmd)  # All
         cfg = stdout.readlines()                   # three lines
         err = stderr.readlines()                   # needed. Why?
+        ssh.close()
+
+    def fetch_from_host(self, local_dir=None, username=None, password=None):
+        if local_dir is None:
+            local_dir = top_dir
+        if username is None:
+            username = self.host.info['username']
+        if password is None:
+            password = self.host.info['password']
+        ssh = open_connection(self.host.info['name'], username, password)
+        sftp = ssh.open_sftp()
+        self.filename = os.path.join(local_dir, self.filename)
+        sftp.get(self.hostfile, self.filename)
         ssh.close()

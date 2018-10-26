@@ -6,9 +6,11 @@ from wmtmetadata.host import HostInfo
 from . import data_dir
 
 
-config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
+tmp_dir = '/tmp'
+test_config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
 host = 'siwenna.colorado.edu'
 name = 'Hydrotrend'
+fetched_config_file = 'wmt-config-{}.yaml'.format(host)
 
 
 def test_config():
@@ -17,12 +19,12 @@ def test_config():
 
 
 def test_configfromfile():
-    config = ConfigFromFile(config_file)
-    assert config.filename == config_file
+    config = ConfigFromFile(test_config_file)
+    assert config.filename == test_config_file
 
 
 def test_configfromfile_load():
-    config = ConfigFromFile(config_file)
+    config = ConfigFromFile(test_config_file)
     config.load()
     components = config.components.keys()
     assert components.pop() == name
@@ -36,3 +38,18 @@ def test_configfromhost():
 def test_configfromhost_build():
     config = ConfigFromHost(host)
     config.build_on_host()
+
+
+def test_configfromhost_fetch():
+    config = ConfigFromHost(host)
+    config.fetch_from_host(local_dir=tmp_dir)
+    assert os.path.isfile(os.path.join(tmp_dir, fetched_config_file))
+
+
+def test_configfromhost_load():
+    config = ConfigFromHost(host)
+    config.build_on_host()
+    config.fetch_from_host(local_dir=tmp_dir)
+    config.load()
+    components = config.components.keys()
+    assert components.pop() == name
