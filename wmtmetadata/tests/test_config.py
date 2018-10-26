@@ -37,19 +37,19 @@ def test_configfromhost():
 
 def test_configfromhost_build():
     config = ConfigFromHost(host)
-    config.build_on_host()
+    config.build()
 
 
 def test_configfromhost_fetch():
     config = ConfigFromHost(host)
-    config.fetch_from_host(local_dir=tmp_dir)
+    config.fetch(local_dir=tmp_dir)
     assert os.path.isfile(os.path.join(tmp_dir, fetched_config_file))
 
 
 def test_configfromhost_load():
     config = ConfigFromHost(host)
-    config.build_on_host()
-    config.fetch_from_host(local_dir=tmp_dir)
+    config.build()
+    config.fetch(local_dir=tmp_dir)
     config.load()
     components = config.components.keys()
     assert components.pop() == name

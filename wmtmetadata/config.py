@@ -38,7 +38,7 @@ class ConfigFromHost(Config):
         self.hostpath = os.path.join(self.host.info['wmt_prefix'], 'bin')
         self.hostfile = '/tmp/{}'.format(self.filename)
 
-    def build_on_host(self, username=None, password=None):
+    def build(self, username=None, password=None):
         if username is None:
             username = self.host.info['username']
         if password is None:
@@ -50,7 +50,7 @@ class ConfigFromHost(Config):
         err = stderr.readlines()                   # needed. Why?
         ssh.close()
 
-    def fetch_from_host(self, local_dir=None, username=None, password=None):
+    def fetch(self, local_dir=None, username=None, password=None):
         if local_dir is None:
             local_dir = top_dir
         if username is None:
