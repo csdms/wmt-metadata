@@ -28,7 +28,7 @@ class ConfigFromFile(Config):
 
 class ConfigFromHost(Config):
 
-    cmd = 'PATH={}:$PATH;cmt-config > {}'
+    _cmd = 'PATH={}:$PATH;cmt-config > {}'
 
     def __init__(self, hostname='siwenna.colorado.edu'):
         super(ConfigFromHost, self).__init__()
@@ -43,7 +43,7 @@ class ConfigFromHost(Config):
             username = self.host.info['username']
         if password is None:
             password = self.host.info['password']
-        cmd = self.cmd.format(self.hostpath, self.hostfile)
+        cmd = self._cmd.format(self.hostpath, self.hostfile)
         ssh = open_connection(self.host.info['name'], username, password)
         _, stdout, stderr = ssh.exec_command(cmd)  # All
         cfg = stdout.readlines()                   # three lines
