@@ -1,6 +1,7 @@
 """Create the metadata files describing a WMT component."""
 
 import os
+import warnings
 import json
 from wmtmetadata.utils import commonpath
 
@@ -42,3 +43,18 @@ class Files(MetadataBase):
             prefix = commonpath(self.files)
         prefix += os.path.sep
         return prefix
+
+
+class Info(MetadataBase):
+    
+    def __init__(self, component):
+        super(Info, self).__init__(component)
+        self.filename = 'info.json'
+        self.data = self.info.copy()
+        for key in ['id', 'name', 'class']:
+            self.data[key] = self.api['class']
+        try:
+            self.data['initialize_args'] = self.api['initialize_args']
+        except KeyError:
+            warnings.warn('missing initialize_args')
+            self.data['initialize_args'] = ''
