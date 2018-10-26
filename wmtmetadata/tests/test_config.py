@@ -1,6 +1,7 @@
 """Unit tests for the config module."""
 
 import os
+import pytest
 from wmtmetadata.config import Config, ConfigFromFile, ConfigFromHost
 from wmtmetadata.host import HostInfo
 from . import data_dir
@@ -35,17 +36,20 @@ def test_configfromhost():
     assert config.host.info['name'] == host
 
 
+@pytest.mark.skip(reason="Don't abuse remote test machine")
 def test_configfromhost_build():
     config = ConfigFromHost(host)
     config.build()
 
 
+@pytest.mark.skip(reason="Don't abuse remote test machine")
 def test_configfromhost_fetch():
     config = ConfigFromHost(host)
     config.fetch(local_dir=tmp_dir)
     assert os.path.isfile(os.path.join(tmp_dir, fetched_config_file))
 
 
+@pytest.mark.skip(reason="Don't abuse remote test machine")
 def test_configfromhost_load():
     config = ConfigFromHost(host)
     config.build()
