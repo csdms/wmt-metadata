@@ -10,10 +10,9 @@ from wmtmetadata.utils import commonpath
 from wmtmetadata import metadata_dir
 
 
-indent = 2
-
-
 class MetadataBase(object):
+
+    indent = 2
 
     def __init__(self, component):
         self.filename = None
@@ -35,7 +34,7 @@ class MetadataBase(object):
 
     def write(self):
         with open(self.filename, 'w') as fp:
-            json.dump(self.data, fp, indent=indent)
+            json.dump(self.data, fp, indent=self.indent)
 
 
 class Files(MetadataBase):
