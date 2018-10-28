@@ -2,7 +2,7 @@
 
 import os
 from wmtmetadata.config import ConfigFromFile
-from wmtmetadata.metadata import Files, Info
+from wmtmetadata.metadata import Files, Info, Uses, Provides
 from . import data_dir
 
 
@@ -11,7 +11,9 @@ test_config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
 name = 'Hydrotrend'
 files = {
     'files_file': 'files.json',
-    'info_file': 'info.json'
+    'info_file': 'info.json',
+    'uses_file': 'uses.json',
+    'provides_file': 'provides.json',
     }
 
 
@@ -49,3 +51,33 @@ def test_info_write():
     n = Info(config.components[name])
     n.write()
     assert os.path.isfile(files['info_file'])
+
+
+def test_uses():
+    config = ConfigFromFile(test_config_file)
+    config.load()
+    u = Uses(config.components[name])
+    assert u.data == []
+
+
+def test_uses_write():
+    config = ConfigFromFile(test_config_file)
+    config.load()
+    u = Uses(config.components[name])
+    u.write()
+    assert os.path.isfile(files['uses_file'])
+
+
+def test_provides():
+    config = ConfigFromFile(test_config_file)
+    config.load()
+    u = Provides(config.components[name])
+    assert u.data[0]['id'] == 'discharge'
+
+
+def test_provides_write():
+    config = ConfigFromFile(test_config_file)
+    config.load()
+    u = Provides(config.components[name])
+    u.write()
+    assert os.path.isfile(files['provides_file'])
