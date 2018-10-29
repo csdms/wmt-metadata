@@ -144,6 +144,9 @@ class Parameters(MetadataBase):
         self.data = []
         self.load_component_config()
 
+        if len(self.provides) > 0:
+            self.add_outputs()
+
         if self.component_config.has_key('extras'):
             self.parameters.update(self.component_config['extras'])
 
@@ -250,3 +253,25 @@ class Parameters(MetadataBase):
                     if item['selection']['selector'] is True:
                         item['selection']['mapping'] = \
                             self._get_mappings(roles['selections'])
+
+    def add_outputs(self):
+        print_section = {
+            'title': 'Output files',
+            'members': [],
+        }
+
+        for name in self.provides:
+            self.parameters[name] = {
+                'description': name,
+                'value': {
+                    'type': 'choice',
+                    'default': 'off',
+                    'choices': [
+                        'off',
+                        name
+                    ]
+                }
+            }
+            print_section['members'].append(name)
+
+        self.component_config['sections'].append(print_section)
