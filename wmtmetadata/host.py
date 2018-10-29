@@ -1,17 +1,17 @@
 """Get information about the machine hosting a WMT executor."""
 
 import os
-import sys
 import json
+from wmtmetadata.server import hosts_dir
 
 
 class HostInfo(object):
 
-    prefix = os.path.dirname(sys.prefix)
+    host_info_file = 'info.json'
 
     def __init__(self, hostname):
-        self.filename = os.path.join(self.prefix, 'db', 'hosts',
-                                     hostname, 'db', 'info.json')
+        self.filename = os.path.join(hosts_dir, hostname, 'db',
+                                     self.host_info_file)
         self.info = {}
 
     def load(self):
