@@ -45,10 +45,10 @@ class Files(MetadataBase):
     def __init__(self, component):
         super(Files, self).__init__(component)
         self.filename = 'files.json'
-        self._prefix = self._get_prefix()
+        self.prefix = self._get_prefix()
         self.data = []
         for name in self.files:
-            self.data.append(name[len(self._prefix):])
+            self.data.append(name[len(self.prefix):])
 
     def _get_prefix(self):
         if len(self.files) == 1:
