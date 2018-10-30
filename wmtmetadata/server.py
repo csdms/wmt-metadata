@@ -8,3 +8,4 @@ prefix = os.path.dirname(sys.prefix)
 
 components_dir = os.path.join(prefix, 'db', 'components')
 hosts_dir = os.path.join(prefix, 'db', 'hosts')
+tmp_dir = os.path.join(prefix, 'tmp')
