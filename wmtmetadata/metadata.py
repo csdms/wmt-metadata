@@ -169,7 +169,7 @@ class Parameters(MetadataBase):
         ignored = []
         for pattern in self._component_config['ignore']:
             p = re.compile(fnmatch.translate(pattern))
-            ignored.extend(filter(p.match, params))
+            ignored.extend(filter(p.match, self._parameters))
 
         for name in ignored:
             if name in self._parameters:
