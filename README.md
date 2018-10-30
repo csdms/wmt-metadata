@@ -1,34 +1,14 @@
 # wmt-metadata
 
-Metadata for components used by the CSDMS Web Modeling Tool (WMT).
+Build the metadata for CSDMS components used in the
+Web Modeling Tool (WMT).
 
-Prepare to install components into a WMT server
-by setting
-the name of the WMT executor and
-the paths to where WMT is installed on the server and the executor.
+Install this package into the Python distribution used by a WMT server.
+Then,
+build and install component metdata with the hostname of an executor
 
-    export wmt_project=_testing  # change this
-    export wmt_executor="beach.colorado.edu"
-    export wmt_executor_username=$USER  # change this
-    export wmt_executor_path=/home/csdms/wmt/$wmt_project
-    export wmt_server_path=/data/web/htdocs/wmt/api/$wmt_project
+    build-metadata --hostname='siwenna.colorado.edu'
 
-Install the components with
+or with an existing WMT config file from an executor
 
-    bash ./scripts/install-components.sh
-
-This pulls component information from the executor into the server.
-
-The ownership of all WMT server files is by the group `nobody`,
-so `sudo` privileges on the server machine
-are needed to install the components.
-
-To instead install components manually, use
-
-```
-ssh $wmt_executor_username@$wmt_executor PATH=$wmt_executor_path/conda/bin:\$PATH cmt-config > wmt-config-$wmt_executor.yaml
-sudo rm -rf $wmt_server_path/db/components
-sudo cp -r metadata/ $wmt_server_path/db/components
-sudo chown -R $USER $wmt_server_path/db/components
-./scripts/build-metadata ./wmt-config-$wmt_executor.yaml --prefix=$wmt_server_path/db/components
-```
+    build-metadata --config-file='wmt-config-siwenna.colorado.edu.yaml'
