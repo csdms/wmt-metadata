@@ -8,7 +8,7 @@ from . import data_dir
 
 
 tmp_dir = '/tmp'
-test_config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
+sample_config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
 host = 'siwenna.colorado.edu'
 name = 'Hydrotrend'
 fetched_config_file = 'wmt-config-{}.yaml'.format(host)
@@ -20,12 +20,12 @@ def test_config():
 
 
 def test_configfromfile():
-    config = ConfigFromFile(test_config_file)
-    assert config.filename == test_config_file
+    config = ConfigFromFile(sample_config_file)
+    assert config.filename == sample_config_file
 
 
 def test_configfromfile_load():
-    config = ConfigFromFile(test_config_file)
+    config = ConfigFromFile(sample_config_file)
     config.load()
     components = config.components.keys()
     assert components.pop() == name
