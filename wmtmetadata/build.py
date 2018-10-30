@@ -5,6 +5,8 @@ import shutil
 from scripting.contexts import cd
 
 from wmtmetadata.config import ConfigFromFile, ConfigFromHost
+from wmtmetadata.metadata import (Files, Info, Uses, Provides,
+                                  Parameters)
 from wmtmetadata.server import components_dir, tmp_dir
 from wmtmetadata import metadata_dir
 
@@ -37,3 +39,8 @@ class BuildMetadata(object):
         for name, component in self.config.components.items():
             with cd(target_dir):
                 self.copy_metadata_files(name)
+
+            for cls in [Files, Info, Uses, Provides, Parameters]:
+                c = cls(component)
+                with cd(os.path.join(target_dir, name, 'db')):
+                    c.write()

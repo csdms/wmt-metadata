@@ -39,3 +39,4 @@ def test_build_build():
     b = BuildMetadata(config_file=sample_config_file)
     b.build(target_dir=tmp_dir)
     assert os.path.isfile(os.path.join(tmp_dir, name, 'wmt.yaml'))
+    assert os.path.isfile(os.path.join(tmp_dir, name, 'db', 'info.json'))
