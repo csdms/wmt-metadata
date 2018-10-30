@@ -12,3 +12,11 @@ build and install component metdata with the hostname of an executor
 or with an existing WMT config file from an executor
 
     build-metadata --config-file='wmt-config-siwenna.colorado.edu.yaml'
+
+Note that  `--config-file` and `--hostname` are mutually exclusive.
+
+By default,
+metadata for all components is built.
+Setting the `--components` keyword to the name of a single component
+will built only that component.
+This keyword works with either `--config-file` or `--hostname`.
