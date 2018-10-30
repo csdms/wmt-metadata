@@ -7,6 +7,7 @@ from scripting.contexts import cd
 from wmtmetadata.config import ConfigFromFile, ConfigFromHost
 from wmtmetadata.metadata import (Files, Info, Uses, Provides,
                                   Parameters)
+from wmtmetadata.host import HostInfo
 from wmtmetadata.server import components_dir, tmp_dir
 from wmtmetadata import metadata_dir
 
@@ -27,6 +28,14 @@ class BuildMetadata(object):
             raise ValueError('Must supply config file or hostname')
 
         self.config.load()
+        self.get_executor_info()
+
+    def get_executor_info(self):
+        try:
+            self.config.executor
+        except AttributeError:
+            self.config.executor = HostInfo(self.config.host['hostname'])
+            self.config.executor.load()
 
     def copy_metadata_files(self, component_name):
         if os.path.exists(component_name):

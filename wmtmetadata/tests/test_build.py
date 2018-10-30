@@ -28,11 +28,22 @@ def test_build_fromfile():
     assert components.pop() == name
 
 
+def test_build_fromfile_hazexecutor():
+    b = BuildMetadata(config_file=sample_config_file)
+    assert hasattr(b.config, 'executor')
+
+
 @pytest.mark.skip(reason="Don't abuse remote test machine")
 def test_build_fromhost():
     b = BuildMetadata(hostname=host)
     components = b.config.components.keys()
     assert components.pop() == name
+
+
+@pytest.mark.skip(reason="Don't abuse remote test machine")
+def test_build_fromhost_hazexecutor():
+    b = BuildMetadata(hostname=host)
+    assert hasattr(b.config, 'executor')
 
 
 def test_build_build():
