@@ -45,13 +45,17 @@ class BuildMetadata(object):
         dst = os.path.join(os.getcwd(), component_name)
         shutil.copytree(src, dst)
 
-    def build(self, target_dir=components_dir, username=None, password=None):
+    def build(self, target_dir=components_dir, username=None,
+              password=None, single_component=None):
         if username is None:
             username = self.config.executor.info['username']
         if password is None:
             password = self.config.executor.info['password']
 
         for name, component in self.config.components.items():
+            if single_component is not None:
+                if single_component != name:
+                    continue
             with cd(target_dir):
                 self.copy_metadata_files(name)
 

@@ -53,3 +53,12 @@ def test_build_build():
     assert os.path.isfile(os.path.join(tmp_dir, name, 'wmt.yaml'))
     assert os.path.isfile(os.path.join(tmp_dir, name, 'db', 'info.json'))
     assert os.path.isfile(os.path.join(tmp_dir, name, 'files', 'api.yaml'))
+
+
+# Makes a call to remote test machine.
+def test_build_build_single_component():
+    b = BuildMetadata(config_file=sample_config_file)
+    b.build(target_dir=tmp_dir, single_component=name)
+    assert os.path.isfile(os.path.join(tmp_dir, name, 'wmt.yaml'))
+    assert os.path.isfile(os.path.join(tmp_dir, name, 'db', 'info.json'))
+    assert os.path.isfile(os.path.join(tmp_dir, name, 'files', 'HYDRO.IN'))

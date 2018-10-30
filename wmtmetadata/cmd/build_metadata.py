@@ -22,7 +22,7 @@ def main():
 
     # Args config_file and hostname are mutually exclusive.
     b = BuildMetadata(config_file=args.config_file, hostname=args.hostname)
-    b.build()
+    b.build(single_component=args.component)
 
 if __name__ == '__main__':
     main()
