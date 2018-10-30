@@ -9,6 +9,7 @@ from . import data_dir
 sample_config_file = os.path.join(data_dir, 'wmt-config-siwenna.yaml')
 host = 'siwenna.colorado.edu'
 name = 'Hydrotrend'
+tmp_dir = '/tmp'
 
 
 def test_build_noargs():
@@ -28,7 +29,13 @@ def test_build_fromfile():
 
 
 @pytest.mark.skip(reason="Don't abuse remote test machine")
-def test_configfromhost_load():
+def test_build_fromhost():
     b = BuildMetadata(hostname=host)
     components = b.config.components.keys()
     assert components.pop() == name
+
+
+def test_build_build():
+    b = BuildMetadata(config_file=sample_config_file)
+    b.build(target_dir=tmp_dir)
+    assert os.path.isfile(os.path.join(tmp_dir, name, 'wmt.yaml'))

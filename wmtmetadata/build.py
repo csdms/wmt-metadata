@@ -25,3 +25,15 @@ class BuildMetadata(object):
             raise ValueError('Must supply config file or hostname')
 
         self.config.load()
+
+    def copy_metadata_files(self, component_name):
+        if os.path.exists(component_name):
+            shutil.rmtree(component_name)
+        src = os.path.join(metadata_dir, component_name)
+        dst = os.path.join(os.getcwd(), component_name)
+        shutil.copytree(src, dst)
+
+    def build(self, target_dir=components_dir):
+        for name, component in self.config.components.items():
+            with cd(target_dir):
+                self.copy_metadata_files(name)
