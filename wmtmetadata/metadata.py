@@ -13,29 +13,29 @@ from wmtmetadata import metadata_dir
 
 class MetadataBase(object):
 
-    indent = 2
+    _indent = 2
 
     def __init__(self, component):
         self.filename = None
         self.data = None
-        self.api = component['api']
-        self.files = component['files']
-        self.info = component['info']
-        self.parameters = component['parameters']
-        self.provides = component['provides']
-        self.uses = component['uses']
-        self.component_config_file = os.path.join(metadata_dir,
-                                                  self.api['class'],
+        self._api = component['api']
+        self._files = component['files']
+        self._info = component['info']
+        self._parameters = component['parameters']
+        self._provides = component['provides']
+        self._uses = component['uses']
+        self._component_config_file = os.path.join(metadata_dir,
+                                                  self._api['class'],
                                                   'wmt.yaml')
-        self.component_config = None
+        self._component_config = None
 
-    def load_component_config(self):
-        with open(self.component_config_file, 'r') as fp:
-            self.component_config = yaml.load(fp)
+    def _load_component_config(self):
+        with open(self._component_config_file, 'r') as fp:
+            self._component_config = yaml.load(fp)
 
     def write(self):
         with open(self.filename, 'w') as fp:
-            json.dump(self.data, fp, indent=self.indent)
+            json.dump(self.data, fp, indent=self._indent)
         if self.filename == 'parameters.json':
             os.chmod(self.filename, 0666)
 
@@ -47,14 +47,14 @@ class Files(MetadataBase):
         self.filename = 'files.json'
         self.prefix = self._get_prefix()
         self.data = []
-        for name in self.files:
+        for name in self._files:
             self.data.append(name[len(self.prefix):])
 
     def _get_prefix(self):
-        if len(self.files) == 1:
+        if len(self._files) == 1:
             prefix = os.path.dirname(prefix)
         else:
-            prefix = commonpath(self.files)
+            prefix = commonpath(self._files)
         prefix += os.path.sep
         return prefix
 
@@ -64,11 +64,11 @@ class Info(MetadataBase):
     def __init__(self, component):
         super(Info, self).__init__(component)
         self.filename = 'info.json'
-        self.data = self.info.copy()
+        self.data = self._info.copy()
         for key in ['id', 'name', 'class']:
-            self.data[key] = self.api['class']
+            self.data[key] = self._api['class']
         try:
-            self.data['initialize_args'] = self.api['initialize_args']
+            self.data['initialize_args'] = self._api['initialize_args']
         except KeyError:
             warnings.warn('missing initialize_args')
             self.data['initialize_args'] = ''
@@ -79,16 +79,16 @@ class Ports(MetadataBase):
     def __init__(self, component):
         super(Ports, self).__init__(component)
         self.data = []
-        self.load_component_config()
+        self._load_component_config()
 
     def load(self):
         port_type = type(self).__name__.lower()
-        port = self.component_config.get(port_type, [])
+        port = self._component_config.get(port_type, [])
         for name in port:
             names = []
             for pattern in port[name]['exchange_items']:
                 p = re.compile(fnmatch.translate(pattern))
-                names.extend(filter(p.match, getattr(self, port_type)))
+                names.extend(filter(p.match, getattr(self, '_' + port_type)))
 
             self.data.append({
                 'id': name,
@@ -142,24 +142,24 @@ class Parameters(MetadataBase):
         super(Parameters, self).__init__(component)
         self.filename = 'parameters.json'
         self.data = []
-        self.load_component_config()
+        self._load_component_config()
 
-        if len(self.provides) > 0:
+        if len(self._provides) > 0:
             self.add_outputs()
 
-        if self.component_config.has_key('extras'):
-            self.parameters.update(self.component_config['extras'])
+        if self._component_config.has_key('extras'):
+            self._parameters.update(self._component_config['extras'])
 
-        if self.component_config.has_key('ignore'):
+        if self._component_config.has_key('ignore'):
             self._hide_ignored()
 
-        if self.component_config.has_key('globals'):
+        if self._component_config.has_key('globals'):
             driver = section_break('Globals')
             driver['global'] = True
             self.data.append(driver)
-            for name in self.component_config.get('globals', []):
-                if name in self.parameters.keys():
-                    self.parameters[name]['global'] = True
+            for name in self._component_config.get('globals', []):
+                if name in self._parameters.keys():
+                    self._parameters[name]['global'] = True
 
         self.make_sections()
         self.make_groups()
@@ -167,52 +167,52 @@ class Parameters(MetadataBase):
 
     def _hide_ignored(self):
         ignored = []
-        for pattern in self.component_config['ignore']:
+        for pattern in self._component_config['ignore']:
             p = re.compile(fnmatch.translate(pattern))
             ignored.extend(filter(p.match, params))
 
         for name in ignored:
-            if name in self.parameters:
-                self.parameters[name]['visible'] = False
+            if name in self._parameters:
+                self._parameters[name]['visible'] = False
             else:
-                if name not in self.parameters.keys():
+                if name not in self._parameters.keys():
                     msg = '{name}: pattern not in params'.format(name)
                     warnings.warn(msg)
 
     def make_sections(self):
         added = set()
 
-        for name in self.parameters.keys():
-            if self.parameters[name].has_key('global') and \
-               self.parameters[name]['global'] is True:
+        for name in self._parameters.keys():
+            if self._parameters[name].has_key('global') and \
+               self._parameters[name]['global'] is True:
                 try:
                     self.data.append(
-                        old_style_parameter(name, self.parameters[name]))
+                        old_style_parameter(name, self._parameters[name]))
                 except KeyError:
                     warnings.warn('{}: missing parameter'.format(name))
                 else:
                     added.add(name)
 
-        for section in self.component_config.get('sections', []):
+        for section in self._component_config.get('sections', []):
             self.data.append(section_break(section['title']))
             for member in section['members']:
                 try:
                     self.data.append(
-                        old_style_parameter(member, self.parameters[member]))
+                        old_style_parameter(member, self._parameters[member]))
                 except KeyError:
                     warnings.warn('{}: missing parameter'.format(name))
                 else:
                     added.add(member)
 
-        missing = set(self.parameters.keys()) - added
+        missing = set(self._parameters.keys()) - added
         if len(missing) > 0:
             for name in missing:
-                self.parameters[name]['visible'] = False
+                self._parameters[name]['visible'] = False
                 self.data.append(
-                    old_style_parameter(name, self.parameters[name]))
+                    old_style_parameter(name, self._parameters[name]))
 
     def make_groups(self):
-        groups = self.component_config.get('groups', {})
+        groups = self._component_config.get('groups', {})
         for name, members in groups.items():
             for item in self.data:
                 if item['key'] in members:
@@ -240,7 +240,7 @@ class Parameters(MetadataBase):
         return mappings
 
     def make_mappers(self):
-        mappers = self.component_config.get('parameter_mappers', {})
+        mappers = self._component_config.get('parameter_mappers', {})
         for mapper, roles in mappers.items():
             mapped_params = self._get_mapped_parameters(roles)
             for item in self.data:
@@ -260,8 +260,8 @@ class Parameters(MetadataBase):
             'members': [],
         }
 
-        for name in self.provides:
-            self.parameters[name] = {
+        for name in self._provides:
+            self._parameters[name] = {
                 'description': name,
                 'value': {
                     'type': 'choice',
@@ -274,4 +274,4 @@ class Parameters(MetadataBase):
             }
             print_section['members'].append(name)
 
-        self.component_config['sections'].append(print_section)
+        self._component_config['sections'].append(print_section)
