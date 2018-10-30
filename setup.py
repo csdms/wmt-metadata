@@ -25,11 +25,11 @@ setup(name='wmtmetadata',
       url='http://csdms.colorado.edu',
       setup_requires=['setuptools', ],
       packages=find_packages(),
-      # entry_points={
-      #     'console_scripts': [
-      #         'build-metadata=wmtmetadata.cmd.build:main',
-      #     ],
-      # },
+      entry_points={
+          'console_scripts': [
+              'build-metadata=wmtmetadata.cmd.build_metadata:main',
+          ],
+      },
       classifiers=[
           'Development Status :: 4 - Beta',
           'License :: OSI Approved :: MIT License',
