@@ -9,6 +9,7 @@ from wmtmetadata.metadata import (Files, Info, Uses, Provides,
                                   Parameters)
 from wmtmetadata.host import HostInfo
 from wmtmetadata.server import components_dir, tmp_dir
+from wmtmetadata.ssh import open_connection
 from wmtmetadata import metadata_dir
 
 
@@ -44,7 +45,12 @@ class BuildMetadata(object):
         dst = os.path.join(os.getcwd(), component_name)
         shutil.copytree(src, dst)
 
-    def build(self, target_dir=components_dir):
+    def build(self, target_dir=components_dir, username=None, password=None):
+        if username is None:
+            username = self.config.executor.info['username']
+        if password is None:
+            password = self.config.executor.info['password']
+
         for name, component in self.config.components.items():
             with cd(target_dir):
                 self.copy_metadata_files(name)
@@ -53,3 +59,15 @@ class BuildMetadata(object):
                 c = cls(component)
                 with cd(os.path.join(target_dir, name, 'db')):
                     c.write()
+
+            datadir = Files(component).prefix
+            ssh = open_connection(self.config.executor.info['name'],
+                                  username, password)
+            sftp = ssh.open_sftp()
+            remote_files = sftp.listdir(path=datadir)
+
+            with cd(os.path.join(target_dir, name, 'files')):
+                for f in remote_files:
+                    sftp.get(os.path.join(datadir, f), f)
+
+            ssh.close()
