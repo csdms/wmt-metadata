@@ -29,11 +29,12 @@ def test_configfromfile_load():
     config.load()
     components = config.components.keys()
     assert components.pop() == name
+    assert config.host['hostname'] == host
 
 
 def test_configfromhost():
     config = ConfigFromHost(host)
-    assert config.host.info['name'] == host
+    assert config.executor.info['name'] == host
 
 
 @pytest.mark.skip(reason="Don't abuse remote test machine")

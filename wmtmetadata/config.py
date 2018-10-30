@@ -12,11 +12,13 @@ class Config(object):
     def __init__(self):
         self.filename = None
         self.components = {}
+        self.host = {}
 
     def load(self):
         with open(self.filename, 'r') as fp:
             _cfg = yaml.load(fp)
         self.components = _cfg['components']
+        self.host = _cfg['host']
 
 
 class ConfigFromFile(Config):
@@ -33,18 +35,18 @@ class ConfigFromHost(Config):
     def __init__(self, hostname='siwenna.colorado.edu'):
         super(ConfigFromHost, self).__init__()
         self.filename = 'wmt-config-{}.yaml'.format(hostname)
-        self.host = HostInfo(hostname)
-        self.host.load()
-        self.hostpath = os.path.join(self.host.info['wmt_prefix'], 'bin')
+        self.executor = HostInfo(hostname)
+        self.executor.load()
+        self.hostpath = os.path.join(self.executor.info['wmt_prefix'], 'bin')
         self.hostfile = '/tmp/{}'.format(self.filename)
 
     def build(self, username=None, password=None):
         if username is None:
-            username = self.host.info['username']
+            username = self.executor.info['username']
         if password is None:
-            password = self.host.info['password']
+            password = self.executor.info['password']
         cmd = self._cmd.format(self.hostpath, self.hostfile)
-        ssh = open_connection(self.host.info['name'], username, password)
+        ssh = open_connection(self.executor.info['name'], username, password)
         _, stdout, stderr = ssh.exec_command(cmd)  # All
         cfg = stdout.readlines()                   # three lines
         err = stderr.readlines()                   # needed. Why?
@@ -54,10 +56,10 @@ class ConfigFromHost(Config):
         if local_dir is None:
             local_dir = top_dir
         if username is None:
-            username = self.host.info['username']
+            username = self.executor.info['username']
         if password is None:
-            password = self.host.info['password']
-        ssh = open_connection(self.host.info['name'], username, password)
+            password = self.executor.info['password']
+        ssh = open_connection(self.executor.info['name'], username, password)
         sftp = ssh.open_sftp()
         self.filename = os.path.join(local_dir, self.filename)
         sftp.get(self.hostfile, self.filename)
