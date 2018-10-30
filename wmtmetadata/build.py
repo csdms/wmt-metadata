@@ -56,6 +56,9 @@ class BuildMetadata(object):
             if single_component is not None:
                 if single_component != name:
                     continue
+
+            print '- {}'.format(name)
+
             with cd(target_dir):
                 self.copy_metadata_files(name)
 
