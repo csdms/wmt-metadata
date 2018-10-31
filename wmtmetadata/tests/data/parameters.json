@@ -1,0 +1,1838 @@
+[
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "global": true, 
+    "name": "Globals", 
+    "key": "separator", 
+    "description": "Globals"
+  }, 
+  {
+    "name": "Simulation run time", 
+    "global": true, 
+    "value": {
+      "default": 365, 
+      "units": "d", 
+      "range": {
+        "max": 3153600000, 
+        "min": 1
+      }, 
+      "type": "int"
+    }, 
+    "visible": true, 
+    "key": "_run_duration", 
+    "description": "Simulation run time"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Run", 
+    "key": "separator", 
+    "description": "Run"
+  }, 
+  {
+    "name": "Interval between port updates", 
+    "global": false, 
+    "value": {
+      "default": 1, 
+      "units": "d", 
+      "range": {
+        "max": 1000000, 
+        "min": 1
+      }, 
+      "type": "int"
+    }, 
+    "visible": true, 
+    "key": "_update_time_step", 
+    "description": "Interval between port updates"
+  }, 
+  {
+    "name": "Number of output files", 
+    "global": false, 
+    "value": {
+      "default": 12, 
+      "range": {
+        "max": 1000000, 
+        "min": 1
+      }, 
+      "type": "int"
+    }, 
+    "visible": true, 
+    "key": "_output_interval", 
+    "description": "Number of output files"
+  }, 
+  {
+    "name": "File format for output files", 
+    "global": false, 
+    "value": {
+      "default": "netcdf", 
+      "type": "choice", 
+      "choices": [
+        "netcdf", 
+        "vtk"
+      ]
+    }, 
+    "visible": true, 
+    "key": "_output_format", 
+    "description": "File format for output files"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Input", 
+    "key": "separator", 
+    "description": "Input"
+  }, 
+  {
+    "name": "Basin hypsometry file", 
+    "global": false, 
+    "value": {
+      "default": "waipaoa.hyps", 
+      "files": [
+        "danube.hyps", 
+        "eel.hyps", 
+        "ganges.hyps", 
+        "lanyang.hyps", 
+        "po.hyps", 
+        "waipaoa.hyps"
+      ], 
+      "type": "file"
+    }, 
+    "visible": true, 
+    "key": "hypsometry_file", 
+    "description": "Basin hypsometry file"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Temperature", 
+    "key": "separator", 
+    "description": "Temperature"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": true
+    }, 
+    "name": "Mean annual temperature at the start of the simulation", 
+    "global": false, 
+    "value": {
+      "default": 14.26, 
+      "units": "deg C", 
+      "range": {
+        "max": 50.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "starting_mean_annual_temperature", 
+    "description": "Mean annual temperature at the start of the simulation"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for January", 
+    "global": false, 
+    "value": {
+      "default": 19.14, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "january_temperature_mean", 
+    "description": "Mean temperature for January"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for February", 
+    "global": false, 
+    "value": {
+      "default": 18.85, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "february_temperature_mean", 
+    "description": "Mean temperature for February"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for March", 
+    "global": false, 
+    "value": {
+      "default": 17.49, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "march_temperature_mean", 
+    "description": "Mean temperature for March"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for April", 
+    "global": false, 
+    "value": {
+      "default": 14.76, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "april_temperature_mean", 
+    "description": "Mean temperature for April"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for May", 
+    "global": false, 
+    "value": {
+      "default": 12.08, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "may_temperature_mean", 
+    "description": "Mean temperature for May"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for June", 
+    "global": false, 
+    "value": {
+      "default": 9.99, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "june_temperature_mean", 
+    "description": "Mean temperature for June"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for July", 
+    "global": false, 
+    "value": {
+      "default": 9.43, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "july_temperature_mean", 
+    "description": "Mean temperature for July"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for August", 
+    "global": false, 
+    "value": {
+      "default": 10.13, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "august_temperature_mean", 
+    "description": "Mean temperature for August"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for September", 
+    "global": false, 
+    "value": {
+      "default": 11.92, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "september_temperature_mean", 
+    "description": "Mean temperature for September"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for October", 
+    "global": false, 
+    "value": {
+      "default": 13.91, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "october_temperature_mean", 
+    "description": "Mean temperature for October"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for November", 
+    "global": false, 
+    "value": {
+      "default": 15.82, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "november_temperature_mean", 
+    "description": "Mean temperature for November"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_temperature_group", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean temperature for December", 
+    "global": false, 
+    "value": {
+      "default": 17.93, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "december_temperature_mean", 
+    "description": "Mean temperature for December"
+  }, 
+  {
+    "name": "Rate of change of mean annual temperature", 
+    "global": false, 
+    "value": {
+      "default": 0.0, 
+      "units": "deg C / yr", 
+      "range": {
+        "max": 10.0, 
+        "min": -10.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "change_in_mean_annual_temperature", 
+    "description": "Rate of change of mean annual temperature"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": true
+    }, 
+    "name": "Standard deviation of mean annual temperature", 
+    "global": false, 
+    "value": {
+      "default": 0.55, 
+      "units": "deg C", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "standard_deviation_of_mean_annual_temperature", 
+    "description": "Standard deviation of mean annual temperature"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of January temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.05, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "january_temperature_standard_deviation", 
+    "description": "Standard deviation of January temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of February temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.32, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "february_temperature_standard_deviation", 
+    "description": "Standard deviation of February temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of March temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.07, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "march_temperature_standard_deviation", 
+    "description": "Standard deviation of March temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of April temperatures", 
+    "global": false, 
+    "value": {
+      "default": 0.88, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "april_temperature_standard_deviation", 
+    "description": "Standard deviation of April temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of May temperatures", 
+    "global": false, 
+    "value": {
+      "default": 0.86, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "may_temperature_standard_deviation", 
+    "description": "Standard deviation of May temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of June temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.08, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "june_temperature_standard_deviation", 
+    "description": "Standard deviation of June temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of July temperatures", 
+    "global": false, 
+    "value": {
+      "default": 0.95, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "july_temperature_standard_deviation", 
+    "description": "Standard deviation of July temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of August temperatures", 
+    "global": false, 
+    "value": {
+      "default": 0.74, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "august_temperature_standard_deviation", 
+    "description": "Standard deviation of August temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of September temperatures", 
+    "global": false, 
+    "value": {
+      "default": 0.94, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "september_temperature_standard_deviation", 
+    "description": "Standard deviation of September temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of October temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.14, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "october_temperature_standard_deviation", 
+    "description": "Standard deviation of October temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of November temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.08, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "november_temperature_standard_deviation", 
+    "description": "Standard deviation of November temperatures"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_temperature", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of December temperatures", 
+    "global": false, 
+    "value": {
+      "default": 1.03, 
+      "units": "deg C", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "december_temperature_standard_deviation", 
+    "description": "Standard deviation of December temperatures"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Precipitation", 
+    "key": "separator", 
+    "description": "Precipitation"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": true
+    }, 
+    "name": "Mean total annual precipitation", 
+    "global": false, 
+    "value": {
+      "default": 1.59, 
+      "units": "m/yr", 
+      "range": {
+        "max": 50.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "total_annual_precipitation", 
+    "description": "Mean total annual precipitation"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for January", 
+    "global": false, 
+    "value": {
+      "default": 103.91, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "january_precipitation_mean", 
+    "description": "Mean precipitation for January"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for February", 
+    "global": false, 
+    "value": {
+      "default": 101.22, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "february_precipitation_mean", 
+    "description": "Mean precipitation for February"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for March", 
+    "global": false, 
+    "value": {
+      "default": 121.9, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "march_precipitation_mean", 
+    "description": "Mean precipitation for March"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for April", 
+    "global": false, 
+    "value": {
+      "default": 147.96, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "april_precipitation_mean", 
+    "description": "Mean precipitation for April"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for May", 
+    "global": false, 
+    "value": {
+      "default": 125.5, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "may_precipitation_mean", 
+    "description": "Mean precipitation for May"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for June", 
+    "global": false, 
+    "value": {
+      "default": 151.8, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "june_precipitation_mean", 
+    "description": "Mean precipitation for June"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for July", 
+    "global": false, 
+    "value": {
+      "default": 176.36, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "july_precipitation_mean", 
+    "description": "Mean precipitation for July"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for August", 
+    "global": false, 
+    "value": {
+      "default": 147.82, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "august_precipitation_mean", 
+    "description": "Mean precipitation for August"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for September", 
+    "global": false, 
+    "value": {
+      "default": 132.03, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "september_precipitation_mean", 
+    "description": "Mean precipitation for September"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for October", 
+    "global": false, 
+    "value": {
+      "default": 127.39, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "october_precipitation_mean", 
+    "description": "Mean precipitation for October"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for November", 
+    "global": false, 
+    "value": {
+      "default": 114.85, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "november_precipitation_mean", 
+    "description": "Mean precipitation for November"
+  }, 
+  {
+    "group": {
+      "name": "mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Mean precipitation for December", 
+    "global": false, 
+    "value": {
+      "default": 116.84, 
+      "units": "mm", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "december_precipitation_mean", 
+    "description": "Mean precipitation for December"
+  }, 
+  {
+    "name": "Rate of change in the total annual precipitation", 
+    "global": false, 
+    "value": {
+      "default": 0.0, 
+      "units": "m/yr/yr", 
+      "range": {
+        "max": 10.0, 
+        "min": -10.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "change_in_total_annual_precipitation", 
+    "description": "Rate of change in the total annual precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": true
+    }, 
+    "name": "Standard deviation of the total annual precipitation", 
+    "global": false, 
+    "value": {
+      "default": 0.3, 
+      "units": "m/yr", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "standard_deviation_of_total_annual_precipitation", 
+    "description": "Standard deviation of the total annual precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of January precipitation", 
+    "global": false, 
+    "value": {
+      "default": 62.07, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "january_precipitation_standard_deviation", 
+    "description": "Standard deviation of January precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of February precipitation", 
+    "global": false, 
+    "value": {
+      "default": 69.9, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "february_precipitation_standard_deviation", 
+    "description": "Standard deviation of February precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of March precipitation", 
+    "global": false, 
+    "value": {
+      "default": 71.12, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "march_precipitation_standard_deviation", 
+    "description": "Standard deviation of March precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of April precipitation", 
+    "global": false, 
+    "value": {
+      "default": 56.59, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "april_precipitation_standard_deviation", 
+    "description": "Standard deviation of April precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of May precipitation", 
+    "global": false, 
+    "value": {
+      "default": 71.91, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "may_precipitation_standard_deviation", 
+    "description": "Standard deviation of May precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of June precipitation", 
+    "global": false, 
+    "value": {
+      "default": 67.8, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "june_precipitation_standard_deviation", 
+    "description": "Standard deviation of June precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of July precipitation", 
+    "global": false, 
+    "value": {
+      "default": 63.04, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "july_precipitation_standard_deviation", 
+    "description": "Standard deviation of July precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of August precipitation", 
+    "global": false, 
+    "value": {
+      "default": 49.38, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "august_precipitation_standard_deviation", 
+    "description": "Standard deviation of August precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of September precipitation", 
+    "global": false, 
+    "value": {
+      "default": 64.54, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "september_precipitation_standard_deviation", 
+    "description": "Standard deviation of September precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of October precipitation", 
+    "global": false, 
+    "value": {
+      "default": 60.39, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "october_precipitation_standard_deviation", 
+    "description": "Standard deviation of October precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of November precipitation", 
+    "global": false, 
+    "value": {
+      "default": 60.34, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "november_precipitation_standard_deviation", 
+    "description": "Standard deviation of November precipitation"
+  }, 
+  {
+    "group": {
+      "name": "stdev_mean_annual_precipitation", 
+      "members": 13, 
+      "leader": false
+    }, 
+    "name": "Standard deviation of December precipitation", 
+    "global": false, 
+    "value": {
+      "default": 70.08, 
+      "units": "mm", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "december_precipitation_standard_deviation", 
+    "description": "Standard deviation of December precipitation"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Basin", 
+    "key": "separator", 
+    "description": "Basin"
+  }, 
+  {
+    "name": "Lithology factor for BQRT equation", 
+    "global": false, 
+    "value": {
+      "default": 0.3, 
+      "units": "-", 
+      "range": {
+        "max": 3.0, 
+        "min": 0.3
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "bqrt_lithology_factor", 
+    "description": "Lithology factor for BQRT equation"
+  }, 
+  {
+    "name": "Anthropogenic factor for BQRT equation", 
+    "global": false, 
+    "value": {
+      "default": 6, 
+      "units": "-", 
+      "range": {
+        "max": 8.0, 
+        "min": 0.5
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "bqrt_anthropogenic_factor", 
+    "description": "Anthropogenic factor for BQRT equation"
+  }, 
+  {
+    "name": "Lapse rate to calculate freezing line", 
+    "global": false, 
+    "value": {
+      "default": 6.16, 
+      "units": "deg C / km", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "lapse_rate", 
+    "description": "Lapse rate to calculate freezing line"
+  }, 
+  {
+    "name": "Starting equilibrium line altitude of glacier", 
+    "global": false, 
+    "value": {
+      "default": 3269.93, 
+      "units": "m", 
+      "range": {
+        "max": 10000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "ela_start", 
+    "description": "Starting equilibrium line altitude of glacier"
+  }, 
+  {
+    "name": "Rate of change of equilibrium line altitude", 
+    "global": false, 
+    "value": {
+      "default": 0, 
+      "units": "m / yr", 
+      "range": {
+        "max": 10.0, 
+        "min": -10.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "ela_change", 
+    "description": "Rate of change of equilibrium line altitude"
+  }, 
+  {
+    "name": "Dry precipitation (nival and ice) evaporation fraction", 
+    "global": false, 
+    "value": {
+      "default": 0.3, 
+      "units": "-", 
+      "range": {
+        "max": 1.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "evaporation_fraction", 
+    "description": "Dry precipitation (nival and ice) evaporation fraction"
+  }, 
+  {
+    "name": "River length", 
+    "global": false, 
+    "value": {
+      "default": 100.0, 
+      "units": "km", 
+      "range": {
+        "max": 10000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "basin_length", 
+    "description": "River length"
+  }, 
+  {
+    "name": "Mean volume of reservoir", 
+    "global": false, 
+    "value": {
+      "default": 0.0, 
+      "units": "km^3", 
+      "range": {
+        "max": 100.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "reservoir_volume", 
+    "description": "Mean volume of reservoir"
+  }, 
+  {
+    "name": "Drainage area of reservoir", 
+    "global": false, 
+    "value": {
+      "default": 1000.0, 
+      "units": "km^2", 
+      "range": {
+        "max": 100000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "reservoir_area", 
+    "description": "Drainage area of reservoir"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "River Mouth", 
+    "key": "separator", 
+    "description": "River Mouth"
+  }, 
+  {
+    "name": "River mouth velocity coefficient k in v=kQ^m", 
+    "global": false, 
+    "value": {
+      "default": 0.87, 
+      "units": "m/s", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "river_velocity_coefficient", 
+    "description": "River mouth velocity coefficient k in v=kQ^m"
+  }, 
+  {
+    "name": "River mouth velocity exponent m in v=kQ^m", 
+    "global": false, 
+    "value": {
+      "default": 0.1, 
+      "units": "-", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "river_velocity_exponent", 
+    "description": "River mouth velocity exponent m in v=kQ^m"
+  }, 
+  {
+    "name": "River mouth width coefficient a in ack=1", 
+    "global": false, 
+    "value": {
+      "default": 3.0, 
+      "units": "m", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "river_width_coefficient", 
+    "description": "River mouth width coefficient a in ack=1"
+  }, 
+  {
+    "name": "River mouth width exponent b in b+m+f=1", 
+    "global": false, 
+    "value": {
+      "default": 0.5, 
+      "units": "m", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "river_width_exponent", 
+    "description": "River mouth width exponent b in b+m+f=1"
+  }, 
+  {
+    "name": "Mean river mouth velocity", 
+    "global": false, 
+    "value": {
+      "default": 1.1, 
+      "units": "m/s", 
+      "range": {
+        "max": 10.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "river_mean_velocity", 
+    "description": "Mean river mouth velocity"
+  }, 
+  {
+    "name": "Constant annual base flow", 
+    "global": false, 
+    "value": {
+      "default": 1.1, 
+      "units": "m^3/s", 
+      "range": {
+        "max": 1000000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "base_flow", 
+    "description": "Constant annual base flow"
+  }, 
+  {
+    "name": "Delta trapping efficiency", 
+    "global": false, 
+    "value": {
+      "default": 0.0, 
+      "units": "-", 
+      "range": {
+        "max": 1.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "trapping_efficiency", 
+    "description": "Delta trapping efficiency"
+  }, 
+  {
+    "name": "Delta gradient", 
+    "global": false, 
+    "value": {
+      "default": 0.0001, 
+      "units": "-", 
+      "range": {
+        "max": 1.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "delta_gradient", 
+    "description": "Delta gradient"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Groundwater", 
+    "key": "separator", 
+    "description": "Groundwater"
+  }, 
+  {
+    "name": "Maximum groundwater storage", 
+    "global": false, 
+    "value": {
+      "default": 7100000000.0, 
+      "units": "m^3", 
+      "range": {
+        "max": 1e+16, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "groundwater_storage_max", 
+    "description": "Maximum groundwater storage"
+  }, 
+  {
+    "name": "Minimum groundwater storage", 
+    "global": false, 
+    "value": {
+      "default": 4200000000.0, 
+      "units": "m^3", 
+      "range": {
+        "max": 1e+16, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "groundwater_storage_min", 
+    "description": "Minimum groundwater storage"
+  }, 
+  {
+    "name": "Groundwater storage at start of simulation", 
+    "global": false, 
+    "value": {
+      "default": 4200000000.0, 
+      "units": "m^3", 
+      "range": {
+        "max": 1e+16, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "groundwater_storage_start", 
+    "description": "Groundwater storage at start of simulation"
+  }, 
+  {
+    "name": "Groundwater (subsurface storm flow) coefficient", 
+    "global": false, 
+    "value": {
+      "default": 20000, 
+      "units": "m^3", 
+      "range": {
+        "max": 1000000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "groundwater_coefficient", 
+    "description": "Groundwater (subsurface storm flow) coefficient"
+  }, 
+  {
+    "name": "Groundwater (subsurface storm flow) exponent", 
+    "global": false, 
+    "value": {
+      "default": 1.4, 
+      "units": "-", 
+      "range": {
+        "max": 10, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "groundwater_exponent", 
+    "description": "Groundwater (subsurface storm flow) exponent"
+  }, 
+  {
+    "name": "Saturated hydraulic conductivity", 
+    "global": false, 
+    "value": {
+      "default": 110, 
+      "units": "mm/day", 
+      "range": {
+        "max": 1000.0, 
+        "min": 0.0
+      }, 
+      "type": "float"
+    }, 
+    "visible": true, 
+    "key": "hydraulic_conductivity", 
+    "description": "Saturated hydraulic conductivity"
+  }, 
+  {
+    "value": {
+      "default": "", 
+      "type": "string"
+    }, 
+    "name": "Output files", 
+    "key": "separator", 
+    "description": "Output files"
+  }, 
+  {
+    "name": "atmosphere_bottom_air__domain_mean_of_temperature", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "atmosphere_bottom_air__domain_mean_of_temperature"
+      ]
+    }, 
+    "visible": true, 
+    "key": "atmosphere_bottom_air__domain_mean_of_temperature", 
+    "description": "atmosphere_bottom_air__domain_mean_of_temperature"
+  }, 
+  {
+    "name": "channel_exit_water_sediment~suspended__mass_flow_rate", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_sediment~suspended__mass_flow_rate"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_sediment~suspended__mass_flow_rate", 
+    "description": "channel_exit_water_sediment~suspended__mass_flow_rate"
+  }, 
+  {
+    "name": "channel_exit_water_flow__speed", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_flow__speed"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_flow__speed", 
+    "description": "channel_exit_water_flow__speed"
+  }, 
+  {
+    "name": "channel_entrance_water_sediment~bedload__mass_flow_rate", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_entrance_water_sediment~bedload__mass_flow_rate"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_entrance_water_sediment~bedload__mass_flow_rate", 
+    "description": "channel_entrance_water_sediment~bedload__mass_flow_rate"
+  }, 
+  {
+    "name": "channel_exit_water__volume_flow_rate", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water__volume_flow_rate"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water__volume_flow_rate", 
+    "description": "channel_exit_water__volume_flow_rate"
+  }, 
+  {
+    "name": "channel_exit_water_x-section__width", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_x-section__width"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_x-section__width", 
+    "description": "channel_exit_water_x-section__width"
+  }, 
+  {
+    "name": "channel_exit_water_x-section__depth", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_x-section__depth"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_x-section__depth", 
+    "description": "channel_exit_water_x-section__depth"
+  }, 
+  {
+    "name": "channel_entrance_water__volume_flow_rate", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_entrance_water__volume_flow_rate"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_entrance_water__volume_flow_rate", 
+    "description": "channel_entrance_water__volume_flow_rate"
+  }, 
+  {
+    "name": "atmosphere_water__domain_mean_of_precipitation_leq-volume_flux", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "atmosphere_water__domain_mean_of_precipitation_leq-volume_flux"
+      ]
+    }, 
+    "visible": true, 
+    "key": "atmosphere_water__domain_mean_of_precipitation_leq-volume_flux", 
+    "description": "atmosphere_water__domain_mean_of_precipitation_leq-volume_flux"
+  }, 
+  {
+    "name": "channel_exit_water_sediment~bedload__mass_flow_rate", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_sediment~bedload__mass_flow_rate"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_sediment~bedload__mass_flow_rate", 
+    "description": "channel_exit_water_sediment~bedload__mass_flow_rate"
+  }, 
+  {
+    "name": "channel_exit_water_sediment~suspended__mass_concentration", 
+    "global": false, 
+    "value": {
+      "default": "off", 
+      "type": "choice", 
+      "choices": [
+        "off", 
+        "channel_exit_water_sediment~suspended__mass_concentration"
+      ]
+    }, 
+    "visible": true, 
+    "key": "channel_exit_water_sediment~suspended__mass_concentration", 
+    "description": "channel_exit_water_sediment~suspended__mass_concentration"
+  }, 
+  {
+    "name": "Number of years to run model for", 
+    "global": false, 
+    "value": {
+      "default": 1, 
+      "units": "yr", 
+      "range": {
+        "max": 1000000, 
+        "min": 0
+      }, 
+      "type": "int"
+    }, 
+    "visible": false, 
+    "key": "run_duration", 
+    "description": "Number of years to run model for"
+  }
+]

@@ -1,0 +1,762 @@
+components:
+  Hydrotrend:
+    api:
+      class: Hydrotrend
+      initialize_args: ''
+      module: pymt.components
+    files:
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/HYDRO.IN
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/HYDRO0.HYPS
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/danube.hyps
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/eel.hyps
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/ganges.hyps
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/hydro_config.txt
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/lanyang.hyps
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/po.hyps
+    - /home/csdms/wmt/analyst/conda/share/csdms/Hydrotrend/waipaoa.hyps
+    info:
+      author: Albert Kettner
+      cite_as: "@article{kettner2008hydrotrend,\n  title={HydroTrend v. 3.0: a climate-driven\
+        \ hydrological transport model that simulates discharge and sediment load\
+        \ leaving a river system},\n  author={Kettner, Albert J and Syvitski, James\
+        \ PM},\n  journal={Computers \\& Geosciences},\n  volume={34},\n  number={10},\n\
+        \  pages={1170--1183},\n  year={2008},\n  publisher={Elsevier}\n}\n"
+      doi: 10.1594/IEDA/100135
+      email: albert.kettner@colorado.edu
+      license: GPLv3
+      name: HydroTrend
+      summary: Climate-driven hydrological water balance and transport model that
+        simulates water discharge and sediment load at a river outlet. HydroTrend
+        simulates water and sediment fluxes at a daily timescale based on drainage
+        basin characteristics and climate. HydroTrend can provide this river flux
+        information to other components like CEM and Sedflux2D or Sedflux3D
+      url: http://csdms.colorado.edu/wiki/Model_help:HydroTrend
+      version: 3.0.1
+    parameters:
+      april_precipitation_mean:
+        description: Mean precipitation for April
+        value:
+          default: 147.96
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      april_precipitation_standard_deviation:
+        description: Standard deviation of April precipitation
+        value:
+          default: 56.59
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      april_temperature_mean:
+        description: Mean temperature for April
+        value:
+          default: 14.76
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      april_temperature_standard_deviation:
+        description: Standard deviation of April temperatures
+        name: Standard deviation of April temperatures
+        value:
+          default: 0.88
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      august_precipitation_mean:
+        description: Mean precipitation for August
+        value:
+          default: 147.82
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      august_precipitation_standard_deviation:
+        description: Standard deviation of August precipitation
+        value:
+          default: 49.38
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      august_temperature_mean:
+        description: Mean temperature for August
+        value:
+          default: 10.13
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      august_temperature_standard_deviation:
+        description: Standard deviation of August temperatures
+        value:
+          default: 0.74
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      base_flow:
+        description: Constant annual base flow
+        value:
+          default: 1.1
+          range:
+            max: 1000000.0
+            min: 0.0
+          type: float
+          units: m^3/s
+      basin_length:
+        description: River length
+        value:
+          default: 100.0
+          range:
+            max: 10000.0
+            min: 0.0
+          type: float
+          units: km
+      bqrt_anthropogenic_factor:
+        description: Anthropogenic factor for BQRT equation
+        value:
+          default: 6
+          range:
+            max: 8.0
+            min: 0.5
+          type: float
+          units: '-'
+      bqrt_lithology_factor:
+        description: Lithology factor for BQRT equation
+        value:
+          default: 0.3
+          range:
+            max: 3.0
+            min: 0.3
+          type: float
+          units: '-'
+      change_in_mean_annual_temperature:
+        description: Rate of change of mean annual temperature
+        value:
+          default: 0.0
+          range:
+            max: 10.0
+            min: -10.0
+          type: float
+          units: deg C / yr
+      change_in_total_annual_precipitation:
+        description: Rate of change in the total annual precipitation
+        value:
+          default: 0.0
+          range:
+            max: 10.0
+            min: -10.0
+          type: float
+          units: m/yr/yr
+      december_precipitation_mean:
+        description: Mean precipitation for December
+        value:
+          default: 116.84
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      december_precipitation_standard_deviation:
+        description: Standard deviation of December precipitation
+        value:
+          default: 70.08
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      december_temperature_mean:
+        description: Mean temperature for December
+        value:
+          default: 17.93
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      december_temperature_standard_deviation:
+        description: Standard deviation of December temperatures
+        value:
+          default: 1.03
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      delta_gradient:
+        description: Delta gradient
+        value:
+          default: 0.0001
+          range:
+            max: 1.0
+            min: 0.0
+          type: float
+          units: '-'
+      ela_change:
+        description: Rate of change of equilibrium line altitude
+        value:
+          default: 0
+          range:
+            max: 10.0
+            min: -10.0
+          type: float
+          units: m / yr
+      ela_start:
+        description: Starting equilibrium line altitude of glacier
+        value:
+          default: 3269.93
+          range:
+            max: 10000.0
+            min: 0.0
+          type: float
+          units: m
+      evaporation_fraction:
+        description: Dry precipitation (nival and ice) evaporation fraction
+        value:
+          default: 0.3
+          range:
+            max: 1.0
+            min: 0.0
+          type: float
+          units: '-'
+      february_precipitation_mean:
+        description: Mean precipitation for February
+        value:
+          default: 101.22
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      february_precipitation_standard_deviation:
+        description: Standard deviation of February precipitation
+        value:
+          default: 69.9
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      february_temperature_mean:
+        description: Mean temperature for February
+        value:
+          default: 18.85
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      february_temperature_standard_deviation:
+        description: Standard deviation of February temperatures
+        value:
+          default: 1.32
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      groundwater_coefficient:
+        description: Groundwater (subsurface storm flow) coefficient
+        value:
+          default: 20000
+          range:
+            max: 1000000.0
+            min: 0.0
+          type: float
+          units: m^3
+      groundwater_exponent:
+        description: Groundwater (subsurface storm flow) exponent
+        value:
+          default: 1.4
+          range:
+            max: 10
+            min: 0.0
+          type: float
+          units: '-'
+      groundwater_storage_max:
+        description: Maximum groundwater storage
+        value:
+          default: 7100000000.0
+          range:
+            max: 1.0e+16
+            min: 0.0
+          type: float
+          units: m^3
+      groundwater_storage_min:
+        description: Minimum groundwater storage
+        value:
+          default: 4200000000.0
+          range:
+            max: 1.0e+16
+            min: 0.0
+          type: float
+          units: m^3
+      groundwater_storage_start:
+        description: Groundwater storage at start of simulation
+        value:
+          default: 4200000000.0
+          range:
+            max: 1.0e+16
+            min: 0.0
+          type: float
+          units: m^3
+      hydraulic_conductivity:
+        description: Saturated hydraulic conductivity
+        value:
+          default: 110
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm/day
+      january_precipitation_mean:
+        description: Mean precipitation for January
+        value:
+          default: 103.91
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      january_precipitation_standard_deviation:
+        description: Standard deviation of January precipitation
+        value:
+          default: 62.07
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      january_temperature_mean:
+        description: Mean temperature for January
+        value:
+          default: 19.14
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      january_temperature_standard_deviation:
+        description: Standard deviation of January temperatures
+        value:
+          default: 1.05
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      july_precipitation_mean:
+        description: Mean precipitation for July
+        value:
+          default: 176.36
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      july_precipitation_standard_deviation:
+        description: Standard deviation of July precipitation
+        value:
+          default: 63.04
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      july_temperature_mean:
+        description: Mean temperature for July
+        value:
+          default: 9.43
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      july_temperature_standard_deviation:
+        description: Standard deviation of July temperatures
+        value:
+          default: 0.95
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      june_precipitation_mean:
+        description: Mean precipitation for June
+        value:
+          default: 151.8
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      june_precipitation_standard_deviation:
+        description: Standard deviation of June precipitation
+        value:
+          default: 67.8
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      june_temperature_mean:
+        description: Mean temperature for June
+        value:
+          default: 9.99
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      june_temperature_standard_deviation:
+        description: Standard deviation of June temperatures
+        value:
+          default: 1.08
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      lapse_rate:
+        description: Lapse rate to calculate freezing line
+        value:
+          default: 6.16
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: deg C / km
+      march_precipitation_mean:
+        description: Mean precipitation for March
+        value:
+          default: 121.9
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      march_precipitation_standard_deviation:
+        description: Standard deviation of March precipitation
+        value:
+          default: 71.12
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      march_temperature_mean:
+        description: Mean temperature for March
+        value:
+          default: 17.49
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      march_temperature_standard_deviation:
+        description: Standard deviation of March temperatures
+        value:
+          default: 1.07
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      may_precipitation_mean:
+        description: Mean precipitation for May
+        value:
+          default: 125.5
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      may_precipitation_standard_deviation:
+        description: Standard deviation of May precipitation
+        value:
+          default: 71.91
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      may_temperature_mean:
+        description: Mean temperature for May
+        value:
+          default: 12.08
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      may_temperature_standard_deviation:
+        description: Standard deviation of May temperatures
+        value:
+          default: 0.86
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      november_precipitation_mean:
+        description: Mean precipitation for November
+        value:
+          default: 114.85
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      november_precipitation_standard_deviation:
+        description: Standard deviation of November precipitation
+        value:
+          default: 60.34
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      november_temperature_mean:
+        description: Mean temperature for November
+        value:
+          default: 15.82
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      november_temperature_standard_deviation:
+        description: Standard deviation of November temperatures
+        value:
+          default: 1.08
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      october_precipitation_mean:
+        description: Mean precipitation for October
+        value:
+          default: 127.39
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      october_precipitation_standard_deviation:
+        description: Standard deviation of October precipitation
+        value:
+          default: 60.39
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      october_temperature_mean:
+        description: Mean temperature for October
+        value:
+          default: 13.91
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      october_temperature_standard_deviation:
+        description: Standard deviation of October temperatures
+        value:
+          default: 1.14
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      reservoir_area:
+        description: Drainage area of reservoir
+        value:
+          default: 1000.0
+          range:
+            max: 100000.0
+            min: 0.0
+          type: float
+          units: km^2
+      reservoir_volume:
+        description: Mean volume of reservoir
+        value:
+          default: 0.0
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: km^3
+      river_mean_velocity:
+        description: Mean river mouth velocity
+        value:
+          default: 1.1
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: m/s
+      river_velocity_coefficient:
+        description: River mouth velocity coefficient k in v=kQ^m
+        value:
+          default: 0.87
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: m/s
+      river_velocity_exponent:
+        description: River mouth velocity exponent m in v=kQ^m
+        value:
+          default: 0.1
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: '-'
+      river_width_coefficient:
+        description: River mouth width coefficient a in ack=1
+        value:
+          default: 3.0
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: m
+      river_width_exponent:
+        description: River mouth width exponent b in b+m+f=1
+        value:
+          default: 0.5
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: m
+      run_duration:
+        description: Number of years to run model for
+        value:
+          default: 1
+          range:
+            max: 1000000
+            min: 0
+          type: int
+          units: yr
+      september_precipitation_mean:
+        description: Mean precipitation for September
+        value:
+          default: 132.03
+          range:
+            max: 1000.0
+            min: 0.0
+          type: float
+          units: mm
+      september_precipitation_standard_deviation:
+        description: Standard deviation of September precipitation
+        value:
+          default: 64.54
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: mm
+      september_temperature_mean:
+        description: Mean temperature for September
+        value:
+          default: 11.92
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      september_temperature_standard_deviation:
+        description: Standard deviation of September temperatures
+        value:
+          default: 0.94
+          range:
+            max: 100.0
+            min: 0.0
+          type: float
+          units: deg C
+      standard_deviation_of_mean_annual_temperature:
+        description: Standard deviation of mean annual temperature
+        value:
+          default: 0.55
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: deg C
+      standard_deviation_of_total_annual_precipitation:
+        description: Standard deviation of the total annual precipitation
+        value:
+          default: 0.3
+          range:
+            max: 10.0
+            min: 0.0
+          type: float
+          units: m/yr
+      starting_mean_annual_temperature:
+        description: Mean annual temperature at the start of the simulation
+        value:
+          default: 14.26
+          range:
+            max: 50.0
+            min: 0.0
+          type: float
+          units: deg C
+      total_annual_precipitation:
+        description: Mean total annual precipitation
+        value:
+          default: 1.59
+          range:
+            max: 50.0
+            min: 0.0
+          type: float
+          units: m/yr
+      trapping_efficiency:
+        description: Delta trapping efficiency
+        value:
+          default: 0.0
+          range:
+            max: 1.0
+            min: 0.0
+          type: float
+          units: '-'
+    provides:
+    - atmosphere_bottom_air__domain_mean_of_temperature
+    - channel_exit_water_sediment~suspended__mass_flow_rate
+    - channel_exit_water_flow__speed
+    - channel_entrance_water_sediment~bedload__mass_flow_rate
+    - channel_exit_water__volume_flow_rate
+    - channel_exit_water_x-section__width
+    - channel_exit_water_x-section__depth
+    - channel_entrance_water__volume_flow_rate
+    - atmosphere_water__domain_mean_of_precipitation_leq-volume_flux
+    - channel_exit_water_sediment~bedload__mass_flow_rate
+    - channel_exit_water_sediment~suspended__mass_concentration
+    uses: []
+host:
+  environ:
+    PATH: /home/csdms/wmt/analyst/conda/bin:/usr/bin:/bin
+  hostname: siwenna.colorado.edu
+  os_name: Linux
+  os_release: 3.10.0-693.5.2.el7.x86_64
+  os_version: '#1 SMP Fri Oct 20 20:32:50 UTC 2017'
+  platform: x86_64
+  prefix: /home/csdms/wmt/analyst/conda
+  python_version: 3.6.5
+
