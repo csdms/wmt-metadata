@@ -53,6 +53,7 @@ extras:
       "Select one or more
       <a href='http://cmip-pcmdi.llnl.gov/cmip5/index.html'>CMIP5</a>-compatible
       models for benchmarking with the ILAMB model evaluation software.
+      <i>At least one model must be selected.</i>
       Optionally, compute a mean model from the selected models and include it
       in the analysis."
     value:
